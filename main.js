@@ -327,6 +327,9 @@ function Wizerd_stats(){
         Gold = 0;
         XP_Requirements = 2000;
         Skill_points = 0;   
+        SpellSlots = 0;
+        document.getElementById("spellslotsshow").style.display="";
+        
         }        
 
 
