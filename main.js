@@ -73,8 +73,7 @@ function selecter(choice) {
             if (choice == 5) {
                 if (Level_Availability == 1){
                 if(Intelligence==100){}else
-                {Intelligence += 1;            
-                resetButtonone();}
+                {Intelligence_increase();}
             }           
             } 
 
@@ -83,8 +82,7 @@ function selecter(choice) {
                 if(Charisma==100)
                 {}else
                 {  
-                Charisma += 1;             
-                resetButtonone();}
+                Charisma_increase();}
                 }
                 }           
             
@@ -276,6 +274,24 @@ function Wisdom_increase(){
     if (Sub_WisdomMod == 2) {
         WisdomMod += 1; 
     Sub_WisdomMod = 0;       
+    }
+    resetButtonone();
+}
+function Intelligence_increase(){
+    Intelligence += 1;
+    Sub_IntelligenceMod += 1;
+    if (Sub_IntelligenceMod == 2) {
+        IntelligenceMod += 1;
+        Sub_IntelligenceMod = 0;        
+    }
+    resetButtonone();
+}
+function Charisma_increase(){
+    Charisma += 1;
+    Sub_CharismaMod += 1;
+    if (Sub_CharismaMod == 1) {
+        CharismaMod += 1;
+        Sub_CharismaMod = 0;         
     }
     resetButtonone();
 }
