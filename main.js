@@ -8,7 +8,7 @@ let preclasssub3 = document.getElementById("preclasssub3");
 let class_select1 = document.getElementById("class_select1");       
 let XP_Requirements, Other_Bonuses, MaxHP, PClass, piercing, bludgeoning, slashing, fier, ice, nectotic ,SpellSlots, regain, healing, damige, Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma, HP, Armer_Class, Action_Point, Level, XP, Gold, Level_Availability;
 let StrengthMod, DexterityMod, ConstitutionMod, IntelligenceMod, WisdomMod, CharismaMod, Skill_points, Class, subclass;
-let Sub_SthrengthMod, Sub_DexterityMod, Sub_ConstitutionMod, Sub_IntelligenceMod, Sub_WisdomMod, Sub_CharismaMod;
+let Sub_SthrengthMod =0, Sub_DexterityMod =0, Sub_ConstitutionMod =0, Sub_IntelligenceMod =0, Sub_WisdomMod =0, Sub_CharismaMod =0;
     Class = 0;
     subclass = 0;
 function prestart(){
@@ -40,8 +40,8 @@ function selecter(choice) {
                 if (Level_Availability == 1){
                     if (Strength == 100) 
                     {}else{                
-                    Strength += 1;          
-                    resetButtonone(); 
+                    Strength_increase();          
+                    
                     }                
                 }          
             }
@@ -50,8 +50,7 @@ function selecter(choice) {
                 if (Level_Availability == 1){
                     if(Dexterity==100)
                     {}else
-                    {Dexterity += 1;           
-                    resetButtonone();}
+                    {Dexterity_increase();}
             }           
             } 
 
@@ -59,8 +58,7 @@ function selecter(choice) {
                 if (Level_Availability == 1){
                     if(Constitution==100)
                     {}else
-                    {Constitution += 1;            
-                    resetButtonone();}
+                    {Constitution_increase();}
                     }           
             } 
 
@@ -68,8 +66,7 @@ function selecter(choice) {
                 if (Level_Availability == 1){
                     if(Wisdom==100)
                     {}else
-                    {Wisdom += 1;             
-                    resetButtonone();}
+                    {Wisdom_increase();}
                     }           
             } 
 
@@ -245,6 +242,43 @@ function resetButtonone(){
             }            
             stats_uppduate();
         }
+
+function Strength_increase(){
+    Strength += 1;
+    Sub_SthrengthMod += 1;
+    if (Sub_SthrengthMod == 2) {
+    StrengthMod += 1; 
+    Sub_SthrengthMod = 0;       
+    }
+    resetButtonone();
+}
+function Dexterity_increase(){
+    Dexterity += 1;
+    Sub_DexterityMod += 1;
+    if (Sub_DexterityMod == 2) {
+        DexterityMod += 1; 
+    Sub_DexterityMod = 0;       
+    }
+    resetButtonone();
+}
+function Constitution_increase(){
+    Constitution += 1;
+    Sub_ConstitutionMod += 1;
+    if (Sub_ConstitutionMod == 2) {
+    ConstitutionMod += 1; 
+    Sub_ConstitutionMod = 0;       
+    }
+    resetButtonone();
+}
+function Wisdom_increase(){
+    Wisdom += 1;
+    Sub_WisdomMod += 1;
+    if (Sub_WisdomMod == 2) {
+        WisdomMod += 1; 
+    Sub_WisdomMod = 0;       
+    }
+    resetButtonone();
+}
         
         //main Wizerd class this is wear ewrything is going to be colectet for the sub-class and other starts.
 
