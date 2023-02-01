@@ -10,8 +10,8 @@ let XP_Requirements, Other_Bonuses, MaxHP, PClass, piercing, bludgeoning, slashi
 let StrengthMod, DexterityMod, ConstitutionMod, IntelligenceMod, WisdomMod, CharismaMod, Skill_points, Class, subclass;
 let Sub_SthrengthMod =0, Sub_DexterityMod =0, Sub_ConstitutionMod =0, Sub_IntelligenceMod =0, Sub_WisdomMod =0, Sub_CharismaMod =0;
 let ice_Wizerd = false, fier_Wizerd = false, Necromanser = false, tank = false, barberian = false, archerer = false;
-    Class = 0;
-    subclass = 0;
+    Class = undefined;
+    subclass = undefined;
 function prestart(){
         Strength = 10;
         Dexterity = 10; 
@@ -95,18 +95,18 @@ function selecter(choice) {
             }
 
             if (choice == 25) {
-                if (Class ==0) {
+                if (Class == undefined) {
                 Wizerd_select();
                 return;
                 }
-                if (Class == 1) {
+                if (Class == 'Wizerd') {
                 document.getElementById("P1.5").innerHTML = " Ice";
                 ice_Wizerd = true;
                 buttonremover();
 
                 return;
                 }
-                if (Class == 2) {
+                if (Class == 'fighter') {
                 document.getElementById("P1.5").innerHTML = " Tank";
                 tank = true;
                 buttonremover();
@@ -115,17 +115,17 @@ function selecter(choice) {
             }
 
             if (choice == 26) {
-            if (Class ==0) {
+            if (Class ==undefined) {
                 Fighter_select();
                 return;
             }
-            if (Class == 1) {
+            if (Class == 'Wizerd') {
                 document.getElementById("P1.5").innerHTML = " Fire";
                 buttonremover();
 
                 return;
             }
-            if (Class == 2) {
+            if (Class == 'fighter') {
                 document.getElementById("P1.5").innerHTML = " Barberian";
                 buttonremover();
 
@@ -134,12 +134,12 @@ function selecter(choice) {
             }
 
             if (choice == 27) {
-                if (Class == 1) {
+                if (Class == 'Wizerd') {
                 document.getElementById("P1.5").innerHTML = " Necromanser";
                 buttonremover();
                                 return;
                 }
-                if (Class == 2) {
+                if (Class == 'fighter') {
                 document.getElementById("P1.5").innerHTML = " Archerer";
                 buttonremover();
                                 return;
@@ -162,7 +162,7 @@ function Wizerd_select(){
                 Wizerd_stats();
                 stats_uppduate();
                 HI1.attributes.getNamedItem("style").value="";
-                Class = 1;
+                Class = 'Wizerd';
 
             }
 function Fighter_select(){
@@ -176,7 +176,7 @@ function Fighter_select(){
                 Fighter_stats();
                 stats_uppduate();
                 HI1.attributes.getNamedItem("style").value="";
-                Class = 2;
+                Class = 'fighter';
 
             }    
 function stats_uppduate() {
@@ -327,9 +327,9 @@ function Wizerd_stats(){
         Gold = 0;
         XP_Requirements = 2000;
         Skill_points = 0;   
-        SpellSlots = 0;
+        SpellSlots = 10;
         document.getElementById("spellslotsshow").style.display="";
-        
+        document.getElementById("spellslots").innerHTML=SpellSlots;
         }        
 
 
