@@ -9,6 +9,7 @@ let class_select1 = document.getElementById("class_select1");
 let XP_Requirements, Other_Bonuses, MaxHP, PClass, piercing, bludgeoning, slashing, fier, ice, nectotic ,SpellSlots, regain, healing, damige, Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma, HP, Armer_Class, Action_Point, Level, XP, Gold, Level_Availability;
 let StrengthMod, DexterityMod, ConstitutionMod, IntelligenceMod, WisdomMod, CharismaMod, Skill_points, Class, subclass;
 let Sub_SthrengthMod =0, Sub_DexterityMod =0, Sub_ConstitutionMod =0, Sub_IntelligenceMod =0, Sub_WisdomMod =0, Sub_CharismaMod =0;
+let ice_Wizerd = false, fier_Wizerd = false, Necromanser = false, tank = false, barberian = false, archerer = false;
     Class = 0;
     subclass = 0;
 function prestart(){
@@ -88,7 +89,7 @@ function selecter(choice) {
             
 
             if (choice ==24) {
-                XP += 2000;
+                XP += XP_Requirements;
                 stats_uppduate();
                 LevelUp();                
             }
@@ -100,13 +101,16 @@ function selecter(choice) {
                 }
                 if (Class == 1) {
                 document.getElementById("P1.5").innerHTML = " Ice";
-                buttonremover()
+                ice_Wizerd = true;
+                buttonremover();
+
                 return;
                 }
                 if (Class == 2) {
                 document.getElementById("P1.5").innerHTML = " Tank";
-                buttonremover()
-                return;
+                tank = true;
+                buttonremover();
+                                return;
                 }
             }
 
@@ -117,12 +121,14 @@ function selecter(choice) {
             }
             if (Class == 1) {
                 document.getElementById("P1.5").innerHTML = " Fire";
-                buttonremover()
+                buttonremover();
+
                 return;
             }
             if (Class == 2) {
                 document.getElementById("P1.5").innerHTML = " Barberian";
-                buttonremover()
+                buttonremover();
+
                 return;                
             }
             }
@@ -130,17 +136,18 @@ function selecter(choice) {
             if (choice == 27) {
                 if (Class == 1) {
                 document.getElementById("P1.5").innerHTML = " Necromanser";
-                buttonremover()
-                return;
+                buttonremover();
+                                return;
                 }
                 if (Class == 2) {
                 document.getElementById("P1.5").innerHTML = " Archerer";
-                buttonremover()
-                return;
+                buttonremover();
+                                return;
                 }
             }
         }
-function buttonremover() {
+function buttonremover()
+{
             class_select1.attributes.getNamedItem("style").value="display: none;";
         }
         //comenly used functions.
@@ -224,12 +231,12 @@ function level_up_request(){
             }
             Level_Availability = 1;
             }else{
-                alert("can not Level UP you need: " + (XP_Requirements-XP) +" XP to Level UP")
+                alert("can not Level UP you need: " + (XP_Requirements-XP) +" XP to Level UP to Level "+ (Level+1)+".")
             }           
         }        
 function resetButtonone(){          
             Skill_points -= 1;
-            if (Skill_points>=0) {
+            if (Skill_points==0) {
                 Level_Availability = 0;
             document.getElementById("B1").innerHTML="tester 1";
             document.getElementById("B2").innerHTML="tester 2";
