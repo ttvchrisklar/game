@@ -1,17 +1,17 @@
 let b1 = document.getElementById("B1");
-       let HI1 = document.getElementById("HI1");
-       let LUR = document.getElementById("LUR");
-       let classsub1 = document.getElementById("classsub1");
-       let classsub2 = document.getElementById("classsub2");
-       let classsub3= document.getElementById("classsub3");
-       let preclasssub3 = document.getElementById("preclasssub3");
-       let class_select1 = document.getElementById("class_select1");       
-        let XP_Requirements, Other_Bonuses, MaxHP, PClass, piercing, bludgeoning, slashing, fier, ice, nectotic ,SpellSlots, regain, healing, damige, Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma, HP, Armer_Class, Action_Point, Level, XP, Gold, Level_Availability;
-        let StrengthMod, DexterityMod, ConstitutionMod, IntelligenceMod, WisdomMod, CharismaMod, Skill_points, Class, subclass;
-        let Sub_SthrengthMod, Sub_DexterityMod, Sub_ConstitutionMod, Sub_IntelligenceMod, Sub_WisdomMod, Sub_CharismaMod;
-        Class = 0;
-        subclass = 0;
-        function prestart(){
+let HI1 = document.getElementById("HI1");
+let LUR = document.getElementById("LUR");
+let classsub1 = document.getElementById("classsub1");
+let classsub2 = document.getElementById("classsub2");
+let classsub3= document.getElementById("classsub3");
+let preclasssub3 = document.getElementById("preclasssub3");
+let class_select1 = document.getElementById("class_select1");       
+let XP_Requirements, Other_Bonuses, MaxHP, PClass, piercing, bludgeoning, slashing, fier, ice, nectotic ,SpellSlots, regain, healing, damige, Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma, HP, Armer_Class, Action_Point, Level, XP, Gold, Level_Availability;
+let StrengthMod, DexterityMod, ConstitutionMod, IntelligenceMod, WisdomMod, CharismaMod, Skill_points, Class, subclass;
+let Sub_SthrengthMod, Sub_DexterityMod, Sub_ConstitutionMod, Sub_IntelligenceMod, Sub_WisdomMod, Sub_CharismaMod;
+    Class = 0;
+    subclass = 0;
+function prestart(){
         Strength = 10;
         Dexterity = 10; 
         Constitution = 10; 
@@ -34,7 +34,7 @@ let b1 = document.getElementById("B1");
         CharismaMod =1 ;  
         }
         //this is whar i do my button selections and other uppdate requests.
-        function selecter(choice) {
+function selecter(choice) {
             console.log(choice);
             if (choice == 1) {
                 if (Level_Availability == 1){
@@ -145,11 +145,11 @@ let b1 = document.getElementById("B1");
                 }
             }
         }
-        function buttonremover() {
+function buttonremover() {
             class_select1.attributes.getNamedItem("style").value="display: none;";
         }
         //comenly used functions.
-        function Wizerd_select(){
+function Wizerd_select(){
                 document.getElementById("P1").innerHTML ="Wizerd";
                 document.getElementById("P1.25").innerHTML =" || ";
                 preclasssub3.attributes.getNamedItem("style").value =""
@@ -163,7 +163,7 @@ let b1 = document.getElementById("B1");
                 Class = 1;
 
             }
-        function Fighter_select(){
+function Fighter_select(){
                 document.getElementById("P1").innerHTML ="Fighter";
                 document.getElementById("P1.25").innerHTML =" || ";
                 preclasssub3.attributes.getNamedItem("style").value ="";
@@ -177,7 +177,7 @@ let b1 = document.getElementById("B1");
                 Class = 2;
 
             }    
-        function stats_uppduate() {
+function stats_uppduate() {
         document.getElementById("HP").innerHTML = "Max HP: " + MaxHP + " || " +"Curent HP: " + HP+".";
         document.getElementById("AC").innerHTML = "AC: " + Armer_Class +".";
         document.getElementById("Strength").innerHTML = "Strength: " + Strength +" || "+"Strength Mod: " +StrengthMod+".";
@@ -190,7 +190,7 @@ let b1 = document.getElementById("B1");
         document.getElementById("Level").innerHTML = "Level: "+ Level+"/600" + " || " + "+" + Skill_points + ".";          
         }
 
-        function LevelUp() {
+function LevelUp() {
         if (XP >= XP_Requirements) {
             XP -= XP_Requirements;
             Skill_points += 1;         
@@ -200,7 +200,7 @@ let b1 = document.getElementById("B1");
         stats_uppduate();
         }
         
-        function level_up_request(){
+function level_up_request(){
             if(Skill_points >= 1)
             {  
             document.getElementById("B1").innerHTML= "Strength";
@@ -232,7 +232,7 @@ let b1 = document.getElementById("B1");
                 alert("can not Level UP you need: " + (XP_Requirements-XP) +" XP to Level UP")
             }           
         }        
-        function resetButtonone(){          
+function resetButtonone(){          
             Skill_points -= 1;
             if (Skill_points>=0) {
                 Level_Availability = 0;
@@ -248,7 +248,7 @@ let b1 = document.getElementById("B1");
         
         //main Wizerd class this is wear ewrything is going to be colectet for the sub-class and other starts.
 
-        function Wizerd_stats(){
+function Wizerd_stats(){
         Strength = 8;
         Dexterity = 8; 
         Constitution = 8; 
@@ -287,7 +287,7 @@ let b1 = document.getElementById("B1");
 
         //main fighter class this is wear ewrything is going to be colectet for the sub-class and other starts.
 
-        function Fighter_stats(){
+function Fighter_stats(){
         Strength = 12;
         Dexterity = 12; 
         Constitution = 12; 
