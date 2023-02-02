@@ -8,10 +8,9 @@ let preclasssub3 = document.getElementById("preclasssub3");
 let class_select1 = document.getElementById("class_select1");       
 let XP_Requirements, Other_Bonuses, MaxHP, PClass, piercing, bludgeoning, slashing, fier, ice, nectotic ,SpellSlots, regain, healing, damige, Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma, HP, Armer_Class, Action_Point, Level, XP, Gold, Level_Availability;
 let StrengthMod, DexterityMod, ConstitutionMod, IntelligenceMod, WisdomMod, CharismaMod, Skill_points, Class, subclass;
-let Sub_SthrengthMod = 0, Sub_DexterityMod = 0, Sub_ConstitutionMod = 0, Sub_IntelligenceMod = 0, Sub_WisdomMod = 0, Sub_CharismaMod = 0;
-let leveluprequest = 0;    
-Class = undefined;
-subclass = undefined;
+let Sub_SthrengthMod =0, Sub_DexterityMod =0, Sub_ConstitutionMod =0, Sub_IntelligenceMod =0, Sub_WisdomMod =0, Sub_CharismaMod =0;
+    Class = 0;
+    subclass = 0;
 function prestart(){
         Strength = 10;
         Dexterity = 10; 
@@ -89,7 +88,7 @@ function selecter(choice) {
             
 
             if (choice ==24) {
-                XP += 2000;
+                XP += XP_Requirements;
                 stats_uppduate();
                 LevelUp();                
             }
@@ -101,13 +100,16 @@ function selecter(choice) {
                 }
                 if (Class == "Wizerd") {
                 document.getElementById("P1.5").innerHTML = " Ice";
-                buttonremover()
+                ice_Wizerd = true;
+                buttonremover();
+
                 return;
                 }
                 if (Class == "Fighter") {
                 document.getElementById("P1.5").innerHTML = " Tank";
-                buttonremover()
-                return;
+                tank = true;
+                buttonremover();
+                                return;
                 }
             }
 
@@ -118,12 +120,14 @@ function selecter(choice) {
             }
             if (Class == "Wizerd") {
                 document.getElementById("P1.5").innerHTML = " Fire";
-                buttonremover()
+                buttonremover();
+
                 return;
             }
             if (Class == "Fighter") {
                 document.getElementById("P1.5").innerHTML = " Barberian";
-                buttonremover()
+                buttonremover();
+
                 return;                
             }
             }
@@ -131,8 +135,8 @@ function selecter(choice) {
             if (choice == 27) {
                 if (Class == "Wizerd") {
                 document.getElementById("P1.5").innerHTML = " Necromanser";
-                buttonremover()
-                return;
+                buttonremover();
+                                return;
                 }
                 if (Class == "Fighter") {
                 document.getElementById("P1.5").innerHTML = " Archerer";
@@ -146,7 +150,8 @@ function selecter(choice) {
                 level_up_request();           
             }
         }
-function buttonremover() {
+function buttonremover()
+{
             class_select1.attributes.getNamedItem("style").value="display: none;";
         }
         //comenly used functions.
@@ -231,22 +236,19 @@ function level_up_request(){
             }
             Level_Availability = 1;
             }else{
-                alert("can not Level UP you need: " + (XP_Requirements-XP) +" XP to Level UP")
-            }
-        }else if(leveluprequest == 2){
-            leveluprequest = 0;
-            resetbuttons();
-        }         
-    }        
-function Abilletesscorebuttons(){          
+                alert("can not Level UP you need: " + (XP_Requirements-XP) +" XP to Level UP to Level "+ (Level+1)+".")
+            }           
+        } 
+    }       
+function Skill_points_mines(){          
             Skill_points -= 1;
-            if (Skill_points == 0) {
+            if (Skill_points==0) {
                 Level_Availability = 0;
             }            
             stats_uppduate();
         }
 
-function resetbuttons(){
+function Abilletesscorebuttons(){
     document.getElementById("B1").innerHTML="tester 1";
     document.getElementById("B2").innerHTML="tester 2";
     document.getElementById("B3").innerHTML="tester 3";
@@ -334,6 +336,9 @@ function Wizerd_stats(){
         Gold = 0;
         XP_Requirements = 2000;
         Skill_points = 0;   
+        SpellSlots = 0;
+        document.getElementById("spellslotsshow").style.display="";
+        
         }        
 
 
