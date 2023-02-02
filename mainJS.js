@@ -12,12 +12,13 @@ let Sub_SthrengthMod =0, Sub_DexterityMod =0, Sub_ConstitutionMod =0, Sub_Intell
 let max_spellslots, leveluprequest=0;    
 Class = "undefined";
 subclass = "undefined";
-
+//into cean 
 function introdone(){
     document.getElementById('class_select1').style.display="";
     document.getElementById("intro").style.display="none";
     document.getElementById("headerbuttons").style.display="";
 }
+//if the stats arnt seet
 function prestart(){
         Strength = 10;
         Dexterity = 10; 
