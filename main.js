@@ -40,10 +40,8 @@ function selecter(choice) {
             if (choice == 1) {                
                 if (Level_Availability == 1){
                     if (Strength == 100) 
-                    {}else{  
-                        console.log("line:44");              
-                    Strength_increase();          
-                    
+                    {}else{             
+                    Strength_increase();                  
                     }                
                 }          
             }
@@ -163,7 +161,7 @@ function Wizerd_select(){
                 preclasssub3.attributes.getNamedItem("style").value =""
                 document.getElementById("classsub1").innerHTML = "Ice wizerd";
                 document.getElementById("classsub2").innerHTML = "Fire wizerd";
-                document.getElementById("classsub3").innerHTML = "Necromanser";
+                document.getElementById("classsub3").innerHTML = "Necroman";
                 prestart();
                 Wizerd_stats();
                 stats_uppduate();
@@ -211,7 +209,7 @@ function LevelUp() {
         
 function level_up_request(){
     if (leveluprequest == 1){
-            if(Skill_points >= 1)
+            if(Skill_points != 0)
             {  
             document.getElementById("B1").innerHTML= "Strength";
             document.getElementById("B2").innerHTML= "Dexterity";
@@ -244,84 +242,82 @@ function level_up_request(){
         } 
     }       
 function Skill_points_mines(){          
-            Skill_points -= 1;
-            if (Skill_points==0) {
+           if (Skill_points !=0){
+            Skill_points -=1;}
+           if(Skill_points != 1){ 
+            document.getElementById("B1").innerHTML="tester 1";
+            document.getElementById("B2").innerHTML="tester 2";
+            document.getElementById("B3").innerHTML="tester 3";
+            document.getElementById("B4").innerHTML="tester 4";
+            document.getElementById("B5").innerHTML="tester 5";
+            document.getElementById("B6").innerHTML="tester 6";
+            stats_uppduate();
                 Level_Availability = 0;
-                Abilletesscorebuttons();
             }            
             stats_uppduate();
         }
 
-function Abilletesscorebuttons(){
-    document.getElementById("B1").innerHTML="tester 1";
-    document.getElementById("B2").innerHTML="tester 2";
-    document.getElementById("B3").innerHTML="tester 3";
-    document.getElementById("B4").innerHTML="tester 4";
-    document.getElementById("B5").innerHTML="tester 5";
-    document.getElementById("B6").innerHTML="tester 6";
-    stats_uppduate();
-}
 
 
 function Strength_increase(){
     Strength += 1;
     Sub_SthrengthMod += 1;
-    Skill_points -=1;
+    Skill_points_mines();
     if (Sub_SthrengthMod == 2) {
     StrengthMod += 1; 
     Sub_SthrengthMod = 0;       
     }
-    Abilletesscorebuttons();
+    stats_uppduate();
 }
 function Dexterity_increase(){
     Dexterity += 1;
     Sub_DexterityMod += 1;
-    Skill_points -=1;
+    Skill_points_mines();
     if (Sub_DexterityMod == 2) {
         DexterityMod += 1; 
     Sub_DexterityMod = 0;       
     }
-    Abilletesscorebuttons();
+    stats_uppduate();
 }
 function Constitution_increase(){
     Constitution += 1;
     Sub_ConstitutionMod += 1;
-    Skill_points -=1;
+    Skill_points_mines();
     if (Sub_ConstitutionMod == 2) {
     ConstitutionMod += 1; 
     Sub_ConstitutionMod = 0;       
     }
-    Abilletesscorebuttons();
+    stats_uppduate();
 }
 function Wisdom_increase(){
     Wisdom += 1;
     Sub_WisdomMod += 1;
-    Skill_points -=1;
+    Skill_points_mines();
     if (Sub_WisdomMod == 2) {
         WisdomMod += 1; 
     Sub_WisdomMod = 0;       
     }
-    Abilletesscorebuttons();
+    stats_uppduate();
 }
 function Intelligence_increase(){
     Intelligence += 1;
     Sub_IntelligenceMod += 1;
-    Skill_points -=1;
+    Skill_points_mines();
     if (Sub_IntelligenceMod == 2) {
         IntelligenceMod += 1;
         Sub_IntelligenceMod = 0;        
     }
-    Abilletesscorebuttons();
+    stats_uppduate();
 }
 function Charisma_increase(){
     Charisma += 1;
     Sub_CharismaMod += 1;
-    Skill_points -=1;
+    Skill_points_mines();
     if (Sub_CharismaMod == 1) {
         CharismaMod += 1;
         Sub_CharismaMod = 0;         
     }
-    Abilletesscorebuttons();
+    stats_uppduate();
 }        
 //main Wizerd class this is wear ewrything is going to be colectet for the sub-class and other starts.
 
