@@ -168,7 +168,9 @@ function Wizerd_select(){
                 HI1.attributes.getNamedItem("style").value="";
                 document.getElementById("spellslots").innerHTML="spellslots: " + SpellSlots + "/" + max_spellslots+".";
                 Class = "Wizerd";
+                document.getElementById("stats").style.display="";
             }
+            
 function Fighter_select(){
                 document.getElementById("P1").innerHTML ="Fighter";
                 document.getElementById("P1.25").innerHTML =" || ";
@@ -181,7 +183,7 @@ function Fighter_select(){
                 stats_uppduate();
                 HI1.attributes.getNamedItem("style").value="";
                 Class = "Fighter";
-
+                document.getElementById("stats").style.display="";
             }    
 function stats_uppduate() {
         document.getElementById("HP").innerHTML = "Max HP: " + MaxHP + " || " +"Curent HP: " + HP+".";
