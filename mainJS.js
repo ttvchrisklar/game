@@ -242,7 +242,7 @@ function level_up_request(){
         } 
     }       
 function Skill_points_main(){          
-           if (Skill_points >=0){
+           if (Skill_points >=1){
             Skill_points -=1;}
            if(Skill_points == 0){ 
             document.getElementById("B1").innerHTML="tester 1";
