@@ -26,7 +26,7 @@ function prestart(){
         Intelligence = 10; 
         Wisdom = 10; 
         Charisma = 10;
-        HP = 10; //HP is also calcalated difrently for ech class for Fighter its, hp=conMOD+(Level*12) and for Wizerd, hp=conmod+(Level*8).
+        HP = 10; //HP is also calcalated difrently for ech class for Fighter its, hp=conMOD+(Level*12) and for Wizard, hp=conmod+(Level*8).
         MaxHP = HP;
         Armer_Class = 10; // Armer Class also konown as AC, AC is calculatecd diffrent its, AC=(10 + DexMOD + other boneses).
         Level = 1; 
@@ -102,12 +102,12 @@ function selecter(choice) {
 
             if (choice == 25) {
                 if (Class == "undefined") {
-                Wizerd_select();
+                Wizard_select();
                 return;
                 }
-                if (Class == "Wizerd") {
+                if (Class == "Wizard") {
                 document.getElementById("P1.5").innerHTML = " Ice";
-                ice_Wizerd = true;
+                ice_Wizard = true;
                 buttonremover();
 
                 return;
@@ -125,7 +125,7 @@ function selecter(choice) {
                 Fighter_select();
                 return;
             }
-            if (Class == "Wizerd") {
+            if (Class == "Wizard") {
                 document.getElementById("P1.5").innerHTML = " Fire";
                 buttonremover();
 
@@ -140,7 +140,7 @@ function selecter(choice) {
             }
 
             if (choice == 27) {
-                if (Class == "Wizerd") {
+                if (Class == "Wizard") {
                 document.getElementById("P1.5").innerHTML = " Necromanser";
                 buttonremover();
                                 return;
@@ -162,19 +162,19 @@ function buttonremover()
             class_select1.attributes.getNamedItem("style").value="display: none;";
         }
         //comenly used functions.
-function Wizerd_select(){
-                document.getElementById("P1").innerHTML ="Wizerd";
+function Wizard_select(){
+                document.getElementById("P1").innerHTML ="Wizard";
                 document.getElementById("P1.25").innerHTML =" || ";
                 preclasssub3.attributes.getNamedItem("style").value =""
-                document.getElementById("classsub1").innerHTML = "Ice wizerd";
-                document.getElementById("classsub2").innerHTML = "Fire wizerd";
+                document.getElementById("classsub1").innerHTML = "Ice Wizard";
+                document.getElementById("classsub2").innerHTML = "Fire Wizard";
                 document.getElementById("classsub3").innerHTML = "Necroman";
                 prestart();
-                Wizerd_stats();
+                Wizard_stats();
                 stats_uppduate();
                 HI1.attributes.getNamedItem("style").value="";
                 document.getElementById("spellslots").innerHTML="spellslots: " + SpellSlots + "/" + max_spellslots+".";
-                Class = "Wizerd";
+                Class = "Wizard";
                 document.getElementById("stats").style.display="";
             }
 
@@ -328,9 +328,9 @@ function Charisma_increase(){
     }
     stats_uppduate();
 }        
-//main Wizerd class this is wear ewrything is going to be colectet for the sub-class and other starts.
+//main Wizard class this is wear ewrything is going to be colectet for the sub-class and other starts.
 
-function Wizerd_stats(){
+function Wizard_stats(){
         Strength = 8;
         Dexterity = 8; 
         Constitution = 8; 
@@ -360,17 +360,17 @@ function Wizerd_stats(){
         }        
 
 
-        //this is whear i will maike the spells and all the math for the ice wizerd.
+        //this is whear i will maike the spells and all the math for the ice Wizard.
         
 
 
    
-        //this is whear i will maike the spells and all the math for the Fire wizerd.
+        //this is whear i will maike the spells and all the math for the Fire Wizard.
 
  
     
    
-        //this is whear i will maike the spells and all the math for the necromanser wizerd.
+        //this is whear i will maike the spells and all the math for the necromanser Wizard.
 
         //main fighter class this is wear ewrything is going to be colectet for the sub-class and other starts.
 
