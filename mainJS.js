@@ -241,10 +241,10 @@ function level_up_request(){
             }           
         } 
     }       
-function Skill_points_mines(){          
-           if (Skill_points !=0){
+function Skill_points_main(){          
+           if (Skill_points >=0){
             Skill_points -=1;}
-           if(Skill_points != 1){ 
+           if(Skill_points == 0){ 
             document.getElementById("B1").innerHTML="tester 1";
             document.getElementById("B2").innerHTML="tester 2";
             document.getElementById("B3").innerHTML="tester 3";
@@ -262,7 +262,7 @@ function Skill_points_mines(){
 function Strength_increase(){
     Strength += 1;
     Sub_SthrengthMod += 1;
-    Skill_points_mines();
+    Skill_points_main();
     if (Sub_SthrengthMod == 2) {
     StrengthMod += 1; 
     Sub_SthrengthMod = 0;       
@@ -272,7 +272,7 @@ function Strength_increase(){
 function Dexterity_increase(){
     Dexterity += 1;
     Sub_DexterityMod += 1;
-    Skill_points_mines();
+    Skill_points_main();
     if (Sub_DexterityMod == 2) {
         DexterityMod += 1; 
     Sub_DexterityMod = 0;       
@@ -282,7 +282,7 @@ function Dexterity_increase(){
 function Constitution_increase(){
     Constitution += 1;
     Sub_ConstitutionMod += 1;
-    Skill_points_mines();
+    Skill_points_main();
     if (Sub_ConstitutionMod == 2) {
     ConstitutionMod += 1; 
     Sub_ConstitutionMod = 0;       
@@ -292,7 +292,7 @@ function Constitution_increase(){
 function Wisdom_increase(){
     Wisdom += 1;
     Sub_WisdomMod += 1;
-    Skill_points_mines();
+    Skill_points_main();
     if (Sub_WisdomMod == 2) {
         WisdomMod += 1; 
     Sub_WisdomMod = 0;       
@@ -302,7 +302,7 @@ function Wisdom_increase(){
 function Intelligence_increase(){
     Intelligence += 1;
     Sub_IntelligenceMod += 1;
-    Skill_points_mines();
+    Skill_points_main();
     if (Sub_IntelligenceMod == 2) {
         IntelligenceMod += 1;
         Sub_IntelligenceMod = 0;        
@@ -312,7 +312,7 @@ function Intelligence_increase(){
 function Charisma_increase(){
     Charisma += 1;
     Sub_CharismaMod += 1;
-    Skill_points_mines();
+    Skill_points_main();
     if (Sub_CharismaMod == 1) {
         CharismaMod += 1;
         Sub_CharismaMod = 0;         
