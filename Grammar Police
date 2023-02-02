@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="author" content="Chris">
-    <meta name="description" content="this is my probebly my bigest project yett.">     
+    <meta name="description" content="this is my prOther_Bonusesebly my biggest project yet.">     
     <link rel="stylesheet" href="style.css">
     <title>The Big Project</title>
 </head>
@@ -84,10 +84,10 @@
 </header>
 <body>
         <h1> The Begining, Of The End.</h1>
-        <p id="intro" style="" class="center">hello!! <br> this is <strong>my</strong> game! <br> if you don't know what I want to do whit this game of mine
-            <br>I want to perfect my JavaScript skills and some HTML and CSS skills, <br> this project is mailny mine but i have goten help from:<br>
+        <p id="intro" style="" class="center">Hello!! <br> this is <strong>my</strong> game! <br> If you don't know what I want to do whit this game of mine
+            <br>I want to perfect my JavaScript skills and some HTML and CSS skills, <br> this project is mainly mine but i have gotten help from:<br>
         <a href="https://www.twitch.tv/itsoik" target="_blank">itsoik</a>!<br> and <br><a href="https://www.twitch.tv/matissetec" target="_blank">matissetec</a>!<br>
-        go and check them out over on twitch!<br> thay are so amazing and helpfull <br> click the button under me to start the game!!<br>|<br>v<br>
+        go and check them out over on twitch!<br> They are so amazing and helpfull. <br> Click the button under me to start the game!!<br>|<br>v<br>
     <button class="button" onclick="introdone()">CLICK ME!!</button></p>
         
         <div class="center" id="class_select1" style="display: none;">
@@ -121,13 +121,13 @@
 </body>
 
     <!--
-    this game is what i want to try my hardestr to perfect and get my ideas in to a game, and have fun wile doing it. 
+    This game is what i want to try my hardest to perfect and get my ideas into a game, and have fun wile doing it. 
     
-    this is a "ramake of my text baisd rpg that i gave up on".
+    this is a "remake of my text based rpg that i gave up on".
 
-    []= chek box if ther is a "v" its done if "x" then no, if [x/y] or [y/x] i have begun on it.
+    []= chek box if there is a "v" its done if "x" then no, if [x/y] or [y/x] i have begun on it.
     
-    (x) priority system. rhe lower the nuber the higer is the priority.
+    (x) priority system. the lower the number the higher is the priority.
 
     1: a story. [x](9) {idk if i will do this}
 
@@ -137,23 +137,23 @@
 
     4: diffrent diffecoltys.[x](6)
 
-    5: 2 diffrent classes for the player.[v](1)
+    5: 2 different classes for the player.[v](1)
 
         1: Wizard.[v] 
 
-        2: figther.[v]
+        2: Figther.[v]
 
-    6: difrent sub-classes for the classes[x](2)
+    6: Difrent sub-classes for the classes[x](2)
 
-        1: Wizard: ice magic adept.[x/v]
+        1: Wizard: Ice magic adept.[x/v]
 
             -5 spells and 3 catrips. [x/v]
 
-        2: Wizard: Fier magic adept.[x/v]
+        2: Wizard: Fire magic adept.[x/v]
 
             -5 spells and 3 catrips.[x/v]
 
-        3: Wizard: necromanzer.[x/v]
+        3: Wizard: Necromancer.[x/v]
 
             -5 spells and 3 catrips.[x/v]
 
