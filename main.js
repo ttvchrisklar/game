@@ -8,9 +8,10 @@ let preclasssub3 = document.getElementById("preclasssub3");
 let class_select1 = document.getElementById("class_select1");       
 let XP_Requirements, Other_Bonuses, MaxHP, PClass, piercing, bludgeoning, slashing, fier, ice, nectotic ,SpellSlots, regain, healing, damige, Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma, HP, Armer_Class, Action_Point, Level, XP, Gold, Level_Availability;
 let StrengthMod, DexterityMod, ConstitutionMod, IntelligenceMod, WisdomMod, CharismaMod, Skill_points, Class, subclass;
-let Sub_SthrengthMod =0, Sub_DexterityMod =0, Sub_ConstitutionMod =0, Sub_IntelligenceMod =0, Sub_WisdomMod =0, Sub_CharismaMod =0;
-    Class = 0;
-    subclass = 0;
+let Sub_SthrengthMod = 0, Sub_DexterityMod = 0, Sub_ConstitutionMod = 0, Sub_IntelligenceMod = 0, Sub_WisdomMod = 0, Sub_CharismaMod = 0;
+let leveluprequest = 0;    
+Class = 0;
+subclass = 0;
 function prestart(){
         Strength = 10;
         Dexterity = 10; 
@@ -139,6 +140,10 @@ function selecter(choice) {
                 return;
                 }
             }
+            if (choice ==37) {
+                leveluprequest+=1;
+                level_up_request();           
+            }
         }
 function buttonremover() {
             class_select1.attributes.getNamedItem("style").value="display: none;";
@@ -196,6 +201,7 @@ function LevelUp() {
         }
         
 function level_up_request(){
+    if (leveluprequest == 1){
             if(Skill_points >= 1)
             {  
             document.getElementById("B1").innerHTML= "Strength";
@@ -225,21 +231,29 @@ function level_up_request(){
             Level_Availability = 1;
             }else{
                 alert("can not Level UP you need: " + (XP_Requirements-XP) +" XP to Level UP")
-            }           
-        }        
-function resetButtonone(){          
+            }
+        }else if(leveluprequest == 2){
+            leveluprequest = 0;
+            resetbuttons();
+        }         
+    }        
+function Abilletesscorebuttons(){          
             Skill_points -= 1;
-            if (Skill_points>=0) {
+            if (Skill_points == 0) {
                 Level_Availability = 0;
-            document.getElementById("B1").innerHTML="tester 1";
-            document.getElementById("B2").innerHTML="tester 2";
-            document.getElementById("B3").innerHTML="tester 3";
-            document.getElementById("B4").innerHTML="tester 4";
-            document.getElementById("B5").innerHTML="tester 5";
-            document.getElementById("B6").innerHTML="tester 6";
             }            
             stats_uppduate();
         }
+
+function resetbuttons(){
+    document.getElementById("B1").innerHTML="tester 1";
+    document.getElementById("B2").innerHTML="tester 2";
+    document.getElementById("B3").innerHTML="tester 3";
+    document.getElementById("B4").innerHTML="tester 4";
+    document.getElementById("B5").innerHTML="tester 5";
+    document.getElementById("B6").innerHTML="tester 6";
+}
+
 
 function Strength_increase(){
     Strength += 1;
@@ -248,7 +262,7 @@ function Strength_increase(){
     StrengthMod += 1; 
     Sub_SthrengthMod = 0;       
     }
-    resetButtonone();
+    Abilletesscorebuttons();
 }
 function Dexterity_increase(){
     Dexterity += 1;
@@ -257,7 +271,7 @@ function Dexterity_increase(){
         DexterityMod += 1; 
     Sub_DexterityMod = 0;       
     }
-    resetButtonone();
+    Abilletesscorebuttons();
 }
 function Constitution_increase(){
     Constitution += 1;
@@ -266,7 +280,7 @@ function Constitution_increase(){
     ConstitutionMod += 1; 
     Sub_ConstitutionMod = 0;       
     }
-    resetButtonone();
+    Abilletesscorebuttons();
 }
 function Wisdom_increase(){
     Wisdom += 1;
@@ -275,7 +289,7 @@ function Wisdom_increase(){
         WisdomMod += 1; 
     Sub_WisdomMod = 0;       
     }
-    resetButtonone();
+    Abilletesscorebuttons();
 }
 function Intelligence_increase(){
     Intelligence += 1;
@@ -284,7 +298,7 @@ function Intelligence_increase(){
         IntelligenceMod += 1;
         Sub_IntelligenceMod = 0;        
     }
-    resetButtonone();
+    Abilletesscorebuttons();
 }
 function Charisma_increase(){
     Charisma += 1;
@@ -293,10 +307,9 @@ function Charisma_increase(){
         CharismaMod += 1;
         Sub_CharismaMod = 0;         
     }
-    resetButtonone();
-}
-        
-        //main Wizerd class this is wear ewrything is going to be colectet for the sub-class and other starts.
+    Abilletesscorebuttons();
+}        
+//main Wizerd class this is wear ewrything is going to be colectet for the sub-class and other starts.
 
 function Wizerd_stats(){
         Strength = 8;
