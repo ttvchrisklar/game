@@ -9,8 +9,9 @@ let class_select1 = document.getElementById("class_select1");
 let XP_Requirements, Other_Bonuses, MaxHP, PClass, piercing, bludgeoning, slashing, fier, ice, nectotic ,SpellSlots, regain, healing, damige, Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma, HP, Armer_Class, Action_Point, Level, XP, Gold, Level_Availability;
 let StrengthMod, DexterityMod, ConstitutionMod, IntelligenceMod, WisdomMod, CharismaMod, Skill_points, Class, subclass;
 let Sub_SthrengthMod =0, Sub_DexterityMod =0, Sub_ConstitutionMod =0, Sub_IntelligenceMod =0, Sub_WisdomMod =0, Sub_CharismaMod =0;
-    Class = 0;
-    subclass = 0;
+let max_spellslots, leveluprequest=0;    
+Class = "undefined";
+subclass = "undefined";
 function prestart(){
         Strength = 10;
         Dexterity = 10; 
@@ -36,10 +37,11 @@ function prestart(){
         //this is whar i do my button selections and other uppdate requests.
 function selecter(choice) {
             console.log(choice);
-            if (choice == 1) {
+            if (choice == 1) {                
                 if (Level_Availability == 1){
                     if (Strength == 100) 
-                    {}else{                
+                    {}else{  
+                        console.log("line:44");              
                     Strength_increase();          
                     
                     }                
@@ -94,7 +96,7 @@ function selecter(choice) {
             }
 
             if (choice == 25) {
-                if (Class == undefined) {
+                if (Class == "undefined") {
                 Wizerd_select();
                 return;
                 }
@@ -114,7 +116,7 @@ function selecter(choice) {
             }
 
             if (choice == 26) {
-            if (Class ==undefined) {
+            if (Class =="undefined") {
                 Fighter_select();
                 return;
             }
@@ -146,7 +148,7 @@ function selecter(choice) {
                 }
             }
             if (choice ==37) {
-                leveluprequest+=1;
+                leveluprequest=1;
                 level_up_request();           
             }
         }
@@ -166,8 +168,8 @@ function Wizerd_select(){
                 Wizerd_stats();
                 stats_uppduate();
                 HI1.attributes.getNamedItem("style").value="";
+                document.getElementById("spellslots").innerHTML="spellslots: " + SpellSlots + "/" + max_spellslots+".";
                 Class = "Wizerd";
-
             }
 function Fighter_select(){
                 document.getElementById("P1").innerHTML ="Fighter";
@@ -193,7 +195,8 @@ function stats_uppduate() {
         document.getElementById("Intelligence").innerHTML = "Intelligence: " + Intelligence + " || "+"Intelligence Mod: " +IntelligenceMod+".";
         document.getElementById("Charisma").innerHTML = "Charisma: " + Charisma + " || "+"Charisma Mod: " +CharismaMod+".";
         document.getElementById("XP").innerHTML = "XP: "+ XP +" / "+ XP_Requirements +".";
-        document.getElementById("Level").innerHTML = "Level: "+ Level+"/600" + " || " + "+" + Skill_points + ".";          
+        document.getElementById("Level").innerHTML = "Level: "+ Level+"/600" + " || " + "+" + Skill_points + ".";
+        document.getElementById("spellslots").innerHTML="spellslots: " + SpellSlots + "/" + max_spellslots+".";        
         }
 
 function LevelUp() {
@@ -244,6 +247,7 @@ function Skill_points_mines(){
             Skill_points -= 1;
             if (Skill_points==0) {
                 Level_Availability = 0;
+                Abilletesscorebuttons();
             }            
             stats_uppduate();
         }
@@ -255,12 +259,14 @@ function Abilletesscorebuttons(){
     document.getElementById("B4").innerHTML="tester 4";
     document.getElementById("B5").innerHTML="tester 5";
     document.getElementById("B6").innerHTML="tester 6";
+    stats_uppduate();
 }
 
 
 function Strength_increase(){
     Strength += 1;
     Sub_SthrengthMod += 1;
+    Skill_points -=1;
     if (Sub_SthrengthMod == 2) {
     StrengthMod += 1; 
     Sub_SthrengthMod = 0;       
@@ -270,6 +276,7 @@ function Strength_increase(){
 function Dexterity_increase(){
     Dexterity += 1;
     Sub_DexterityMod += 1;
+    Skill_points -=1;
     if (Sub_DexterityMod == 2) {
         DexterityMod += 1; 
     Sub_DexterityMod = 0;       
@@ -279,6 +286,7 @@ function Dexterity_increase(){
 function Constitution_increase(){
     Constitution += 1;
     Sub_ConstitutionMod += 1;
+    Skill_points -=1;
     if (Sub_ConstitutionMod == 2) {
     ConstitutionMod += 1; 
     Sub_ConstitutionMod = 0;       
@@ -288,6 +296,7 @@ function Constitution_increase(){
 function Wisdom_increase(){
     Wisdom += 1;
     Sub_WisdomMod += 1;
+    Skill_points -=1;
     if (Sub_WisdomMod == 2) {
         WisdomMod += 1; 
     Sub_WisdomMod = 0;       
@@ -297,6 +306,7 @@ function Wisdom_increase(){
 function Intelligence_increase(){
     Intelligence += 1;
     Sub_IntelligenceMod += 1;
+    Skill_points -=1;
     if (Sub_IntelligenceMod == 2) {
         IntelligenceMod += 1;
         Sub_IntelligenceMod = 0;        
@@ -306,6 +316,7 @@ function Intelligence_increase(){
 function Charisma_increase(){
     Charisma += 1;
     Sub_CharismaMod += 1;
+    Skill_points -=1;
     if (Sub_CharismaMod == 1) {
         CharismaMod += 1;
         Sub_CharismaMod = 0;         
@@ -321,12 +332,12 @@ function Wizerd_stats(){
         Intelligence = 12; 
         Wisdom = 12; 
         Charisma = 12;
-        StrengthMod = 2;
-        DexterityMod = 2;
-        ConstitutionMod = 2;
-        IntelligenceMod = 4;
-        WisdomMod = 4;
-        CharismaMod = 4;
+        StrengthMod = 4;
+        DexterityMod = 4;
+        ConstitutionMod = 4;
+        IntelligenceMod = 6;
+        WisdomMod = 6;
+        CharismaMod = 6;
         Other_Bonuses = 0;
         HP = ConstitutionMod + (Level*8); 
         MaxHP = ConstitutionMod + (Level*8);
@@ -336,8 +347,10 @@ function Wizerd_stats(){
         Gold = 0;
         XP_Requirements = 2000;
         Skill_points = 0;   
-        SpellSlots = 0;
+        SpellSlots = 5;
+        max_spellslots = SpellSlots;
         document.getElementById("spellslotsshow").style.display="";
+
         
         }        
 
@@ -363,12 +376,12 @@ function Fighter_stats(){
         Intelligence = 8; 
         Wisdom = 8; 
         Charisma = 8;
-        StrengthMod = 3;
-        DexterityMod = 3;
-        ConstitutionMod = 3;
-        IntelligenceMod = 2;
-        WisdomMod = 2;
-        CharismaMod = 2;
+        StrengthMod = 6;
+        DexterityMod = 6;
+        ConstitutionMod = 6;
+        IntelligenceMod = 4;
+        WisdomMod = 4;
+        CharismaMod = 4;
         Other_Bonuses = 0;
         HP = ConstitutionMod + (Level*12); 
         MaxHP = ConstitutionMod + (Level*12);
