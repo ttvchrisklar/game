@@ -1,36 +1,24 @@
 .button {
-  position: relative;
+  display: inline-block;
+  padding: 15px 15px;
+  font-size: 12px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
   background-color: #4CAF50;
   border: none;
-  font-size: 12px;
-  color: #FFFFFF;
-  padding: 10px;
-  width: 80px;
-  text-align: center;
-  transition-duration: 0.1s;
-  text-decoration: none;
-  overflow:hidden;
-  cursor: pointer;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
 }
 
-.button:after {
-  content: "";
-  background: #f1f1f1;
-  display: block;
-  position: absolute;
-  padding-top: 300%;
-  padding-left: 350%;
-  margin-left: -20px !important;
-  margin-top: -120%;
-  opacity: 0;
-  transition: all 0.8s;
-}
+.button:hover {background-color: #3e8e41}
 
-.button:active:after {
-  padding: 0;
-  margin: 0;
-  opacity: 1;
-  transition: 0s;
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }
 
 .dropdown {
@@ -66,4 +54,7 @@ h1{
 
 .center{
   text-align: center;
+}
+.headerbuttons{
+text-align:right;
 }

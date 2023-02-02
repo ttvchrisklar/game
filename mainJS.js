@@ -12,6 +12,12 @@ let Sub_SthrengthMod =0, Sub_DexterityMod =0, Sub_ConstitutionMod =0, Sub_Intell
 let max_spellslots, leveluprequest=0;    
 Class = "undefined";
 subclass = "undefined";
+
+function introdone(){
+    document.getElementById('class_select1').style.display="";
+    document.getElementById("intro").style.display="none";
+    document.getElementById("headerbuttons").style.display="";
+}
 function prestart(){
         Strength = 10;
         Dexterity = 10; 
@@ -170,7 +176,7 @@ function Wizerd_select(){
                 Class = "Wizerd";
                 document.getElementById("stats").style.display="";
             }
-            
+
 function Fighter_select(){
                 document.getElementById("P1").innerHTML ="Fighter";
                 document.getElementById("P1.25").innerHTML =" || ";
