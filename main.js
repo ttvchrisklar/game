@@ -10,8 +10,8 @@ let XP_Requirements, Other_Bonuses, MaxHP, PClass, piercing, bludgeoning, slashi
 let StrengthMod, DexterityMod, ConstitutionMod, IntelligenceMod, WisdomMod, CharismaMod, Skill_points, Class, subclass;
 let Sub_SthrengthMod = 0, Sub_DexterityMod = 0, Sub_ConstitutionMod = 0, Sub_IntelligenceMod = 0, Sub_WisdomMod = 0, Sub_CharismaMod = 0;
 let leveluprequest = 0;    
-Class = 0;
-subclass = 0;
+Class = undefined;
+subclass = undefined;
 function prestart(){
         Strength = 10;
         Dexterity = 10; 
@@ -95,16 +95,16 @@ function selecter(choice) {
             }
 
             if (choice == 25) {
-                if (Class ==0) {
+                if (Class == undefined) {
                 Wizerd_select();
                 return;
                 }
-                if (Class == 1) {
+                if (Class == "Wizerd") {
                 document.getElementById("P1.5").innerHTML = " Ice";
                 buttonremover()
                 return;
                 }
-                if (Class == 2) {
+                if (Class == "Fighter") {
                 document.getElementById("P1.5").innerHTML = " Tank";
                 buttonremover()
                 return;
@@ -112,16 +112,16 @@ function selecter(choice) {
             }
 
             if (choice == 26) {
-            if (Class ==0) {
+            if (Class ==undefined) {
                 Fighter_select();
                 return;
             }
-            if (Class == 1) {
+            if (Class == "Wizerd") {
                 document.getElementById("P1.5").innerHTML = " Fire";
                 buttonremover()
                 return;
             }
-            if (Class == 2) {
+            if (Class == "Fighter") {
                 document.getElementById("P1.5").innerHTML = " Barberian";
                 buttonremover()
                 return;                
@@ -129,13 +129,14 @@ function selecter(choice) {
             }
 
             if (choice == 27) {
-                if (Class == 1) {
+                if (Class == "Wizerd") {
                 document.getElementById("P1.5").innerHTML = " Necromanser";
                 buttonremover()
                 return;
                 }
-                if (Class == 2) {
+                if (Class == "Fighter") {
                 document.getElementById("P1.5").innerHTML = " Archerer";
+                subclass = "Archerer";
                 buttonremover()
                 return;
                 }
@@ -160,7 +161,7 @@ function Wizerd_select(){
                 Wizerd_stats();
                 stats_uppduate();
                 HI1.attributes.getNamedItem("style").value="";
-                Class = 1;
+                Class = "Wizerd";
 
             }
 function Fighter_select(){
@@ -174,7 +175,7 @@ function Fighter_select(){
                 Fighter_stats();
                 stats_uppduate();
                 HI1.attributes.getNamedItem("style").value="";
-                Class = 2;
+                Class = "Fighter";
 
             }    
 function stats_uppduate() {
