@@ -348,9 +348,13 @@ function Charisma_increase(){
 }  
 
 function resting(){
-    if (Class == "Fighter") {
-        HP = MaxHP;
+    HP = MaxHP;
+    if (Class == "Fighter") {        
     }
+    if (Class == "Wizard") { 
+        SpellSlots = max_spellslots;       
+    }
+    stats_uppduate();
 }
 //main Wizard class this is wear ewrything is going to be colectet for the sub-class and other starts.
 
@@ -382,12 +386,7 @@ function Wizard_stats(){
         document.getElementById("spellslots").innerHTML=SpellSlots;
         }        
 
-    function Spellrestore(){
-        if(SpellSlots == 1){
-            SpellSlots == max_spellslots;
-            stats_uppduate();
-        }
-    }
+    
         //this is whear i will maike the spells and all the math for the ice Wizard.
         
 
