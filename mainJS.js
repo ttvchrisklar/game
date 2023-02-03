@@ -198,6 +198,13 @@ function Fighter_select(){
                 document.getElementById("headerbuttons").style.display="";
             }    
 function stats_uppduate() {
+    if (Class=="Wizard"){
+        HP = ConstitutionMod + (Math.floor(Level/2)*8);
+    }
+    if (Class=="Fighter"){
+        HP = ConstitutionMod + (Math.floor(Level/2)*12);
+    } 
+    MaxHP = HP;
         document.getElementById("HP").innerHTML = "Max HP: " + MaxHP + " || " +"Curent HP: " + HP+".";
         document.getElementById("AC").innerHTML = "AC: " + Armer_Class +".";
         document.getElementById("Strength").innerHTML = "Strength: " + Strength +" || "+"Strength Mod: " +StrengthMod+".";
@@ -303,8 +310,6 @@ function Constitution_increase(){
     Constitution += 1;
     Sub_ConstitutionMod += 1;
     Skill_points_main();
-    HP = ConstitutionMod + (Level*8); 
-    MaxHP = HP;
     if (Sub_ConstitutionMod == 2) {
     ConstitutionMod += 1; 
     Sub_ConstitutionMod = 0;       
