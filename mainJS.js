@@ -118,6 +118,7 @@ function selecter(choice) {
                 if (Class == "Fighter") {
                 document.getElementById("P1.5").innerHTML = " Tank";
                 subclass = "tank";
+                tank();
                 buttonremover();
                 return;
                 }
@@ -201,12 +202,15 @@ function Fighter_select(){
 function stats_uppduate() {
     if(combat==false){
         if (Class=="Wizard"){
-        HP = ConstitutionMod + (Math.floor(Level/2)*8);
+        HP = ConstitutionMod + (Level*8);
         MaxHP = HP;
     }
     if (Class=="Fighter"){
-        HP = ConstitutionMod + (Math.floor(Level/2)*12);
+        HP = ConstitutionMod + (Level*12);
         MaxHP = HP;
+        if (subclass=="tank"){
+            GraterArmer();
+        }
     }
  }    
         document.getElementById("HP").innerHTML = "Max HP: " + MaxHP + " || " +"Curent HP: " + HP+".";
@@ -229,10 +233,10 @@ function LevelUp() {
             Level += 1;         
             XP_Requirements = 1000*(Level+1);
             if (Class=="Wizard"){
-                HP = ConstitutionMod + (Math.floor(Level/2)*8);
+                HP = ConstitutionMod + (Level*8);
             }
             if (Class=="Fighter"){
-                HP = ConstitutionMod + (Math.floor(Level/2)*12);
+                HP = ConstitutionMod + (Level*12);
             }             
             MaxHP = HP;        
         }
@@ -421,7 +425,7 @@ function Fighter_stats(){
         Other_Bonuses = 0;
         HP = ConstitutionMod + (Level*12); 
         MaxHP = ConstitutionMod + (Level*12);
-        Armer_Class = 10 + (DexterityMod+Other_Bonuses); 
+        Armer_Class = 10 + (DexterityMod + Other_Bonuses); 
         Level = 1; 
         XP = 0;
         Gold = 0;
@@ -432,13 +436,19 @@ function Fighter_stats(){
      
         //this is wear the stats and abiletys for the tank sub-class for fighter.
         function tank(){
-
+            GraterArmer();
+            stats_uppduate();
         }
- 
-
+        function GraterArmer(){
+            Other_Bonuses = Math.floor(Constitution/12);
+            Armer_Class = 10 + (DexterityMod + Other_Bonuses + Math.floor(ConstitutionMod / 4));            
+        }
+        // end of tank sub class.
+       
         //this is wear the stats and abiletys for the barberian sub-class for fighter.
-
-  
-
-          
+        
+        // end of barberian sub class.          
+        
         //this is wear the stats and abiletys for the archerer sub-class for fighter.
+
+        // end of archerer sub class.
