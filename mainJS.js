@@ -9,14 +9,13 @@ let class_select1 = document.getElementById("class_select1");
 let XP_Requirements, Other_Bonuses, MaxHP, PClass, piercing, bludgeoning, slashing, fire, ice, nectotic ,SpellSlots, regain, healing, damige, Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma, HP, Armer_Class, Action_Point, Level, XP, Gold, Level_Availability;
 let StrengthMod, DexterityMod, ConstitutionMod, IntelligenceMod, WisdomMod, CharismaMod, Skill_points, Class, subclass;
 let Sub_SthrengthMod =0, Sub_DexterityMod =0, Sub_ConstitutionMod =0, Sub_IntelligenceMod =0, Sub_WisdomMod =0, Sub_CharismaMod =0;
-let max_spellslots, leveluprequest=0;    
+let max_spellslots, leveluprequest=0, canrest = false;    
 Class = "undefined";
 subclass = "undefined";
 //into cean 
 function introdone(){
     document.getElementById('class_select1').style.display="";
     document.getElementById("intro").style.display="none";
-    document.getElementById("headerbuttons").style.display="";
 }
 //if the stats arnt seet
 function prestart(){
@@ -93,7 +92,11 @@ function selecter(choice) {
                 }
                 }           
             
-
+            if (choice == 7){
+                if (canrest == true){
+                    resting()
+                }
+            }
             if (choice ==24) {
                 XP += XP_Requirements;
                 stats_uppduate();
@@ -107,16 +110,15 @@ function selecter(choice) {
                 }
                 if (Class == "Wizard") {
                 document.getElementById("P1.5").innerHTML = " Ice";
-                ice_Wizard = true;
+                subclass = "Ice_Wizard";
                 buttonremover();
-
                 return;
                 }
                 if (Class == "Fighter") {
                 document.getElementById("P1.5").innerHTML = " Tank";
-                tank = true;
+                subclass = "tank";
                 buttonremover();
-                                return;
+                return;
                 }
             }
 
@@ -127,14 +129,14 @@ function selecter(choice) {
             }
             if (Class == "Wizard") {
                 document.getElementById("P1.5").innerHTML = " Fire";
+                subclass = "Fire_Wizard";
                 buttonremover();
-
                 return;
             }
             if (Class == "Fighter") {
                 document.getElementById("P1.5").innerHTML = " Barberian";
+                subclass = "Barberian";
                 buttonremover();
-
                 return;                
             }
             }
@@ -142,6 +144,7 @@ function selecter(choice) {
             if (choice == 27) {
                 if (Class == "Wizard") {
                 document.getElementById("P1.5").innerHTML = " Necromanser";
+                subclass = "Necromanser";
                 buttonremover();
                                 return;
                 }
@@ -159,8 +162,8 @@ function selecter(choice) {
         }
 function buttonremover()
 {
-            class_select1.attributes.getNamedItem("style").value="display: none;";
-        }
+class_select1.attributes.getNamedItem("style").value="display: none;";
+}
         //comenly used functions.
 function Wizard_select(){
                 document.getElementById("P1").innerHTML ="Wizard";
@@ -176,6 +179,7 @@ function Wizard_select(){
                 document.getElementById("spellslots").innerHTML="spellslots: " + SpellSlots + "/" + max_spellslots+".";
                 Class = "Wizard";
                 document.getElementById("stats").style.display="";
+                document.getElementById("headerbuttons").style.display="";
             }
 
 function Fighter_select(){
@@ -191,6 +195,7 @@ function Fighter_select(){
                 HI1.attributes.getNamedItem("style").value="";
                 Class = "Fighter";
                 document.getElementById("stats").style.display="";
+                document.getElementById("headerbuttons").style.display="";
             }    
 function stats_uppduate() {
         document.getElementById("HP").innerHTML = "Max HP: " + MaxHP + " || " +"Curent HP: " + HP+".";
@@ -211,11 +216,17 @@ function LevelUp() {
             XP -= XP_Requirements;
             Skill_points += 1;         
             Level += 1;         
-            XP_Requirements = 1000*(Level+1);        
+            XP_Requirements = 1000*(Level+1);
+            if (Class=="Wizard"){
+                HP = ConstitutionMod + (Math.floor(Level/2)*8);
+            }
+            if (Class=="Fighter"){
+                HP = ConstitutionMod + (Math.floor(Level/2)*12);
+            }             
+            MaxHP = HP;        
         }
         stats_uppduate();
         }
-        
 function level_up_request(){
     if (leveluprequest == 1){
             if(Skill_points != 0)
@@ -292,6 +303,8 @@ function Constitution_increase(){
     Constitution += 1;
     Sub_ConstitutionMod += 1;
     Skill_points_main();
+    HP = ConstitutionMod + (Level*8); 
+    MaxHP = HP;
     if (Sub_ConstitutionMod == 2) {
     ConstitutionMod += 1; 
     Sub_ConstitutionMod = 0;       
@@ -327,7 +340,13 @@ function Charisma_increase(){
         Sub_CharismaMod = 0;         
     }
     stats_uppduate();
-}        
+}  
+
+function resting(){
+    if (Class == "Fighter") {
+        HP = MaxHP;
+    }
+}
 //main Wizard class this is wear ewrything is going to be colectet for the sub-class and other starts.
 
 function Wizard_stats(){
@@ -358,7 +377,12 @@ function Wizard_stats(){
         document.getElementById("spellslots").innerHTML=SpellSlots;
         }        
 
-
+    function Spellrestore(){
+        if(SpellSlots == 1){
+            SpellSlots == max_spellslots;
+            stats_uppduate();
+        }
+    }
         //this is whear i will maike the spells and all the math for the ice Wizard.
         
 
