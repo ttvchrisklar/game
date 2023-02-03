@@ -1,4 +1,4 @@
-let b1 = document.getElementById("B1");
+let b1 = document.getElementById("B1"), Stats = document.getElementById("stats");
 let HI1 = document.getElementById("HI1");
 let LUR = document.getElementById("LUR");
 let classsub1 = document.getElementById("classsub1");
@@ -12,6 +12,7 @@ let Sub_SthrengthMod =0, Sub_DexterityMod =0, Sub_ConstitutionMod =0, Sub_Intell
 let max_spellslots, leveluprequest=0, canrest = false;    
 Class = "undefined";
 subclass = "undefined";
+combat = false;
 //into cean 
 function introdone(){
     document.getElementById('class_select1').style.display="";
@@ -198,13 +199,16 @@ function Fighter_select(){
                 document.getElementById("headerbuttons").style.display="";
             }    
 function stats_uppduate() {
-    if (Class=="Wizard"){
+    if(combat==false){
+        if (Class=="Wizard"){
         HP = ConstitutionMod + (Math.floor(Level/2)*8);
+        MaxHP = HP;
     }
     if (Class=="Fighter"){
         HP = ConstitutionMod + (Math.floor(Level/2)*12);
-    } 
-    MaxHP = HP;
+        MaxHP = HP;
+    }
+ }    
         document.getElementById("HP").innerHTML = "Max HP: " + MaxHP + " || " +"Curent HP: " + HP+".";
         document.getElementById("AC").innerHTML = "AC: " + Armer_Class +".";
         document.getElementById("Strength").innerHTML = "Strength: " + Strength +" || "+"Strength Mod: " +StrengthMod+".";
@@ -236,7 +240,7 @@ function LevelUp() {
         }
 function level_up_request(){
     if (leveluprequest == 1){
-            if(Skill_points != 0)
+            if(Skill_points > 0)
             {  
             document.getElementById("B1").innerHTML= "Strength";
             document.getElementById("B2").innerHTML= "Dexterity";
@@ -427,7 +431,9 @@ function Fighter_stats(){
    
      
         //this is wear the stats and abiletys for the tank sub-class for fighter.
+        function tank(){
 
+        }
  
 
         //this is wear the stats and abiletys for the barberian sub-class for fighter.
