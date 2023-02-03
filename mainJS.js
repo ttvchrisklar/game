@@ -20,12 +20,12 @@ function introdone(){
 }
 //if the stats arnt seet
 function prestart(){
-        Strength = 10;
-        Dexterity = 10; 
-        Constitution = 10; 
-        Intelligence = 10; 
-        Wisdom = 10; 
-        Charisma = 10;
+        Strength = 2;
+        Dexterity = 2; 
+        Constitution = 2; 
+        Intelligence = 2; 
+        Wisdom = 2; 
+        Charisma = 2;
         HP = 10; //HP is also calcalated difrently for ech class for Fighter its, hp=conMOD+(Level*12) and for Wizard, hp=conmod+(Level*8).
         MaxHP = HP;
         Armer_Class = 10; // Armer Class also konown as AC, AC is calculatecd diffrent its, AC=(10 + DexMOD + other boneses).
@@ -352,10 +352,9 @@ function Wizard_stats(){
         Gold = 0;
         XP_Requirements = 2000;
         Skill_points = 0;   
-        SpellSlots = 5;
+        SpellSlots = 10;
         max_spellslots = SpellSlots;
         document.getElementById("spellslotsshow").style.display="";
-
         document.getElementById("spellslots").innerHTML=SpellSlots;
         }        
 
