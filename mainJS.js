@@ -100,6 +100,70 @@ function selecter(choice) {
                     resting()
                 }
             }
+            if (choice == 8){
+                
+            }
+
+            if (choice == 9){
+                
+            }
+
+            if (choice == 10){
+                
+            }
+
+            if (choice == 11){
+                
+            }
+
+            if (choice == 12){
+                
+            }
+
+            if (choice == 13){
+                
+            }
+
+            if (choice == 14){
+                
+            }
+
+            if (choice == 15){
+              
+            }
+
+            if (choice == 16){
+                
+            }
+
+            if (choice == 17){
+                
+            }
+
+            if (choice == 18){
+                
+            }
+
+            if (choice == 19){
+                
+            }
+
+            if (choice == 20){
+                
+            }
+
+            if (choice == 21){
+                
+            }
+
+            if (choice == 22){
+                
+            }
+
+            if (choice == 23){
+                
+            }
+
             if (choice ==24) {
                 XP += XP_Requirements;
                 stats_uppduate();
@@ -119,8 +183,8 @@ function selecter(choice) {
                 }
                 if (Class == "Fighter") {
                 document.getElementById("P1.5").innerHTML = " Tank";
-                subclass = "tank";
-                tank();
+                subclass = "Tank";
+                Tank();
                 buttonremover();
                 return;
                 }
@@ -160,8 +224,41 @@ function selecter(choice) {
                 }
             }
             if (choice == 28){
-                document.getElementById("div1").innerHTML= `${text}` ;
+                
             }
+
+            if (choice == 29){
+                
+            }
+
+            if (choice == 30){
+                
+            }
+
+            if (choice == 31){
+                
+            }
+
+            if (choice == 32){
+                
+            }
+
+            if (choice == 33){
+                
+            }
+
+            if (choice == 34){
+                
+            }
+
+            if (choice == 35){
+                
+            }
+
+            if (choice == 36){
+                
+            }
+
             if (choice ==37) {
                 leveluprequest=1;
                 level_up_request();           
@@ -172,6 +269,8 @@ function buttonremover()
 class_select1.attributes.getNamedItem("style").value="display: none;";
 }
         //comenly used functions.
+
+        // this is wher theplayer selects the Wizard class.
 function Wizard_select(){
                 document.getElementById("P1").innerHTML ="Wizard";
                 document.getElementById("P1.25").innerHTML =" || ";
@@ -189,6 +288,7 @@ function Wizard_select(){
                 document.getElementById("headerbuttons").style.display="";
             }
 
+            // this is wher the player selects the Fighter class.
 function Fighter_select(){
                 document.getElementById("P1").innerHTML ="Fighter";
                 document.getElementById("P1.25").innerHTML =" || ";
@@ -203,21 +303,12 @@ function Fighter_select(){
                 Class = "Fighter";
                 document.getElementById("stats").style.display="";
                 document.getElementById("headerbuttons").style.display="";
-            }    
-function stats_uppduate() {
-    if(combat==false){
-        if (Class=="Wizard"){
-        HP = ConstitutionMod + (Level*8);
-        MaxHP = HP;
-    }
-    if (Class=="Fighter"){
-        HP = ConstitutionMod + (Level*12);
-        MaxHP = HP;
-        if (subclass=="tank"){
-            GraterArmer();
-        }
-    }
- }    
+            } 
+
+function stats_uppduate() {   
+ if (subclass=="Tank"){
+    GraterArmer();
+}
         document.getElementById("HP").innerHTML = "Max HP: " + MaxHP + " || " +"Curent HP: " + HP+".";
         document.getElementById("AC").innerHTML = "AC: " + Armer_Class +".";
         document.getElementById("Strength").innerHTML = "Strength: " + Strength +" || "+"Strength Mod: " +StrengthMod+".";
@@ -361,12 +452,18 @@ function Charisma_increase(){
 }  
 
 function resting(){
-    HP = MaxHP;
-    if (Class == "Fighter") {        
+    if(combat==false){
+        if (Class=="Wizard"){
+        HP = ConstitutionMod + (Level*8);
+        MaxHP = HP;
+        SpellSlots = max_spellslots;
     }
-    if (Class == "Wizard") { 
-        SpellSlots = max_spellslots;       
+    if (Class=="Fighter"){
+        HP = ConstitutionMod + (Level*12);
+        MaxHP = HP;
+        if (subclass=="Tank"){}
     }
+ } 
     stats_uppduate();
 }
 //main Wizard class this is wear ewrything is going to be colectet for the sub-class and other starts.
@@ -439,8 +536,8 @@ function Fighter_stats(){
         }  
    
      
-        //this is wear the stats and abiletys for the tank sub-class for fighter.
-        function tank(){
+        //this is wear the stats and abiletys for the Tank sub-class for fighter.
+        function Tank(){
             GraterArmer();
             stats_uppduate();
         }
@@ -448,7 +545,7 @@ function Fighter_stats(){
             Other_Bonuses = Math.floor(Constitution/12);
             Armer_Class = 10 + (DexterityMod + Other_Bonuses + Math.floor(ConstitutionMod / 4));            
         }
-        // end of tank sub class.
+        // end of Tank sub class.
        
         //this is wear the stats and abiletys for the barberian sub-class for fighter.
         
