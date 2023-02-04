@@ -17,8 +17,8 @@ subclass = "undefined";
 combat = false;
 //into cean 
 function introdone(){
-    document.getElementById('class_select1').style.display="";
     document.getElementById("intro").style.display="none";
+    document.getElementById('class_select1').style.display="";    
 }
 //if the stats arnt seet
 function prestart(){
