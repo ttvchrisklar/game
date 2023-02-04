@@ -101,7 +101,7 @@ function selecter(choice) {
                 }
             }
             if (choice == 8){
-                
+                document.getElementById("div1").innerHTML = `${text}`;
             }
 
             if (choice == 9){
@@ -252,7 +252,7 @@ function selecter(choice) {
             }
 
             if (choice == 35){
-                
+                console.log("hello");
             }
 
             if (choice == 36){
@@ -548,9 +548,14 @@ function Fighter_stats(){
         // end of Tank sub class.
        
         //this is wear the stats and abiletys for the barberian sub-class for fighter.
-        
+        function barberian(){
+
+        }
         // end of barberian sub class.          
         
         //this is wear the stats and abiletys for the archerer sub-class for fighter.
 
         // end of archerer sub class.
+
+        //combat system.
+        
