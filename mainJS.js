@@ -9,7 +9,9 @@ let class_select1 = document.getElementById("class_select1");
 let XP_Requirements, Other_Bonuses, MaxHP, PClass, piercing, bludgeoning, slashing, fire, ice, nectotic ,SpellSlots, regain, healing, damige, Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma, HP, Armer_Class, Action_Point, Level, XP, Gold, Level_Availability;
 let StrengthMod, DexterityMod, ConstitutionMod, IntelligenceMod, WisdomMod, CharismaMod, Skill_points, Class, subclass;
 let Sub_SthrengthMod =0, Sub_DexterityMod =0, Sub_ConstitutionMod =0, Sub_IntelligenceMod =0, Sub_WisdomMod =0, Sub_CharismaMod =0;
-let max_spellslots, leveluprequest=0, canrest = false;    
+let max_spellslots, leveluprequest=0, canrest = false;
+let text;
+text = '<p style="font-size: 20px;color: blue; "> test <button class="button" onclick="selecter(35)">omg</button> </p>';    
 Class = "undefined";
 subclass = "undefined";
 combat = false;
@@ -156,6 +158,9 @@ function selecter(choice) {
                 buttonremover()
                 return;
                 }
+            }
+            if (choice == 28){
+                document.getElementById("div1").innerHTML= `${text}` ;
             }
             if (choice ==37) {
                 leveluprequest=1;
