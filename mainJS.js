@@ -9,7 +9,7 @@ let class_select1 = document.getElementById("class_select1");
 let XP_Requirements, Other_Bonuses, MaxHP, PClass, piercing, bludgeoning, slashing, fire, ice, nectotic ,SpellSlots, regain, healing, damige, Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma, HP, Armer_Class, Action_Point, Level, XP, Gold, Level_Availability;
 let StrengthMod, DexterityMod, ConstitutionMod, IntelligenceMod, WisdomMod, CharismaMod, Skill_points, Class, subclass;
 let Sub_SthrengthMod =0, Sub_DexterityMod =0, Sub_ConstitutionMod =0, Sub_IntelligenceMod =0, Sub_WisdomMod =0, Sub_CharismaMod =0;
-let max_spellslots, leveluprequest=0, canrest = false;
+let max_spellslots, leveluprequest=0, canrest = false, DamigeResistens, CanWearArmor =undefined;
 let text;
 text = '<p style="font-size: 20px;color: blue; "> test <button class="button" onclick="selecter(35)">omg</button> </p>';    
 Class = "undefined";
@@ -101,7 +101,7 @@ function selecter(choice) {
                 }
             }
             if (choice == 8){
-                document.getElementById("div1").innerHTML = `${text}`;
+                document.getElementById("div1").innerText = `${text}`;
             }
 
             if (choice == 9){
@@ -176,13 +176,13 @@ function selecter(choice) {
                 return;
                 }
                 if (Class == "Wizard") {
-                document.getElementById("P1.5").innerHTML = " Ice";
+                document.getElementById("P1.5").innerText = " Ice";
                 subclass = "Ice_Wizard";
                 buttonremover();
                 return;
                 }
                 if (Class == "Fighter") {
-                document.getElementById("P1.5").innerHTML = " Tank";
+                document.getElementById("P1.5").innerText = " Tank";
                 subclass = "Tank";
                 Tank();
                 buttonremover();
@@ -196,13 +196,13 @@ function selecter(choice) {
                 return;
             }
             if (Class == "Wizard") {
-                document.getElementById("P1.5").innerHTML = " Fire";
+                document.getElementById("P1.5").innerText = " Fire";
                 subclass = "Fire_Wizard";
                 buttonremover();
                 return;
             }
             if (Class == "Fighter") {
-                document.getElementById("P1.5").innerHTML = " Barberian";
+                document.getElementById("P1.5").innerText = " Barberian";
                 subclass = "Barberian";
                 buttonremover();
                 return;                
@@ -211,13 +211,13 @@ function selecter(choice) {
 
             if (choice == 27) {
                 if (Class == "Wizard") {
-                document.getElementById("P1.5").innerHTML = " Necromanser";
+                document.getElementById("P1.5").innerText = " Necromanser";
                 subclass = "Necromanser";
                 buttonremover();
                                 return;
                 }
                 if (Class == "Fighter") {
-                document.getElementById("P1.5").innerHTML = " Archerer";
+                document.getElementById("P1.5").innerText = " Archerer";
                 subclass = "Archerer";
                 buttonremover()
                 return;
@@ -272,17 +272,17 @@ class_select1.attributes.getNamedItem("style").value="display: none;";
 
         // this is wher theplayer selects the Wizard class.
 function Wizard_select(){
-                document.getElementById("P1").innerHTML ="Wizard";
-                document.getElementById("P1.25").innerHTML =" || ";
+                document.getElementById("P1").innerText ="Wizard";
+                document.getElementById("P1.25").innerText =" || ";
                 preclasssub3.attributes.getNamedItem("style").value =""
-                document.getElementById("classsub1").innerHTML = "Ice Wizard";
-                document.getElementById("classsub2").innerHTML = "Fire Wizard";
-                document.getElementById("classsub3").innerHTML = "Necroman";
+                document.getElementById("classsub1").innerText = "Ice Wizard";
+                document.getElementById("classsub2").innerText = "Fire Wizard";
+                document.getElementById("classsub3").innerText = "Necroman";
                 prestart();
                 Wizard_stats();
                 stats_uppduate();
                 HI1.attributes.getNamedItem("style").value="";
-                document.getElementById("spellslots").innerHTML="spellslots: " + SpellSlots + "/" + max_spellslots+".";
+                document.getElementById("spellslots").innerText="spellslots: " + SpellSlots + "/" + max_spellslots+".";
                 Class = "Wizard";
                 document.getElementById("stats").style.display="";
                 document.getElementById("headerbuttons").style.display="";
@@ -290,12 +290,12 @@ function Wizard_select(){
 
             // this is wher the player selects the Fighter class.
 function Fighter_select(){
-                document.getElementById("P1").innerHTML ="Fighter";
-                document.getElementById("P1.25").innerHTML =" || ";
+                document.getElementById("P1").innerText ="Fighter";
+                document.getElementById("P1.25").innerText =" || ";
                 preclasssub3.attributes.getNamedItem("style").value ="";
-                document.getElementById("classsub1").innerHTML = "Tank";
-                document.getElementById("classsub2").innerHTML = "Barberian";
-                document.getElementById("classsub3").innerHTML = "Archerer";
+                document.getElementById("classsub1").innerText = "Tank";
+                document.getElementById("classsub2").innerText = "Barberian";
+                document.getElementById("classsub3").innerText = "Archerer";
                 prestart();
                 Fighter_stats();
                 stats_uppduate();
@@ -309,17 +309,17 @@ function stats_uppduate() {
  if (subclass=="Tank"){
     GraterArmer();
 }
-        document.getElementById("HP").innerHTML = "Max HP: " + MaxHP + " || " +"Curent HP: " + HP+".";
-        document.getElementById("AC").innerHTML = "AC: " + Armer_Class +".";
-        document.getElementById("Strength").innerHTML = "Strength: " + Strength +" || "+"Strength Mod: " +StrengthMod+".";
-        document.getElementById("Dexterity").innerHTML = "Dexterity: " + Dexterity +" || "+"Dexterity Mod: " +DexterityMod+".";
-        document.getElementById("Constitution").innerHTML = "Constitution: " + Constitution + " || "+"Constitution Mod: " +ConstitutionMod+".";
-        document.getElementById("Wisdom").innerHTML = "Wisdom: " + Wisdom + " || "+"Wisdom Mod: " +WisdomMod+".";
-        document.getElementById("Intelligence").innerHTML = "Intelligence: " + Intelligence + " || "+"Intelligence Mod: " +IntelligenceMod+".";
-        document.getElementById("Charisma").innerHTML = "Charisma: " + Charisma + " || "+"Charisma Mod: " +CharismaMod+".";
-        document.getElementById("XP").innerHTML = "XP: "+ XP +" / "+ XP_Requirements +".";
-        document.getElementById("Level").innerHTML = "Level: "+ Level+"/600" + " || " + "+" + Skill_points + ".";
-        document.getElementById("spellslots").innerHTML="spellslots: " + SpellSlots + "/" + max_spellslots+".";        
+        document.getElementById("HP").innerText = "Max HP: " + MaxHP + " || " +"Curent HP: " + HP+".";
+        document.getElementById("AC").innerText = "AC: " + Armer_Class +".";
+        document.getElementById("Strength").innerText = "Strength: " + Strength +" || "+"Strength Mod: " +StrengthMod+".";
+        document.getElementById("Dexterity").innerText = "Dexterity: " + Dexterity +" || "+"Dexterity Mod: " +DexterityMod+".";
+        document.getElementById("Constitution").innerText = "Constitution: " + Constitution + " || "+"Constitution Mod: " +ConstitutionMod+".";
+        document.getElementById("Wisdom").innerText = "Wisdom: " + Wisdom + " || "+"Wisdom Mod: " +WisdomMod+".";
+        document.getElementById("Intelligence").innerText = "Intelligence: " + Intelligence + " || "+"Intelligence Mod: " +IntelligenceMod+".";
+        document.getElementById("Charisma").innerText = "Charisma: " + Charisma + " || "+"Charisma Mod: " +CharismaMod+".";
+        document.getElementById("XP").innerText = "XP: "+ XP +" / "+ XP_Requirements +".";
+        document.getElementById("Level").innerText = "Level: "+ Level+"/600" + " || " + "+" + Skill_points + ".";
+        document.getElementById("spellslots").innerText="spellslots: " + SpellSlots + "/" + max_spellslots+".";        
         }
 
 function LevelUp() {
@@ -342,29 +342,29 @@ function level_up_request(){
     if (leveluprequest == 1){
             if(Skill_points > 0)
             {  
-            document.getElementById("B1").innerHTML= "Strength";
-            document.getElementById("B2").innerHTML= "Dexterity";
-            document.getElementById("B3").innerHTML= "Constitution";
-            document.getElementById("B4").innerHTML= "Wisdom";
-            document.getElementById("B5").innerHTML= "Intelligence";
-            document.getElementById("B6").innerHTML= "Charisma";
+            document.getElementById("B1").innerText= "Strength";
+            document.getElementById("B2").innerText= "Dexterity";
+            document.getElementById("B3").innerText= "Constitution";
+            document.getElementById("B4").innerText= "Wisdom";
+            document.getElementById("B5").innerText= "Intelligence";
+            document.getElementById("B6").innerText= "Charisma";
             if (Strength==100) {
-            document.getElementById("B1").innerHTML= "Strength is maxed";
+            document.getElementById("B1").innerText= "Strength is maxed";
             }
             if (Dexterity==100) {
-                document.getElementById("B2").innerHTML= "Dexterity is maxed";
+                document.getElementById("B2").innerText= "Dexterity is maxed";
             }
             if (Constitution==100) {
-                document.getElementById("B3").innerHTML= "Constitution is maxed";
+                document.getElementById("B3").innerText= "Constitution is maxed";
             }
             if (Wisdom==100) {
-                document.getElementById("B4").innerHTML= "Wisdom is maxed";
+                document.getElementById("B4").innerText= "Wisdom is maxed";
             }
             if (Intelligence==100) {
-                document.getElementById("B5").innerHTML= "Intelligence is maxed";
+                document.getElementById("B5").innerText= "Intelligence is maxed";
             }
             if (Charisma==100) {
-                document.getElementById("B6").innerHTML= "Charisma is maxed";
+                document.getElementById("B6").innerText= "Charisma is maxed";
             }
             Level_Availability = 1;
             }else{
@@ -376,12 +376,12 @@ function Skill_points_main(){
            if (Skill_points >=1){
             Skill_points -=1;}
            if(Skill_points == 0){ 
-            document.getElementById("B1").innerHTML="tester 1";
-            document.getElementById("B2").innerHTML="tester 2";
-            document.getElementById("B3").innerHTML="tester 3";
-            document.getElementById("B4").innerHTML="tester 4";
-            document.getElementById("B5").innerHTML="tester 5";
-            document.getElementById("B6").innerHTML="tester 6";
+            document.getElementById("B1").innerText="tester 1";
+            document.getElementById("B2").innerText="tester 2";
+            document.getElementById("B3").innerText="tester 3";
+            document.getElementById("B4").innerText="tester 4";
+            document.getElementById("B5").innerText="tester 5";
+            document.getElementById("B6").innerText="tester 6";
             stats_uppduate();
                 Level_Availability = 0;
             }            
@@ -493,7 +493,8 @@ function Wizard_stats(){
         SpellSlots = 10;
         max_spellslots = SpellSlots;
         document.getElementById("spellslotsshow").style.display="";
-        document.getElementById("spellslots").innerHTML=SpellSlots;
+        document.getElementById("spellslots").innerText = SpellSlots;
+        DamigeResistens = 0;
         }        
 
     
@@ -532,7 +533,8 @@ function Fighter_stats(){
         XP = 0;
         Gold = 0;
         XP_Requirements = 2000;
-        Skill_points = 0;          
+        Skill_points = 0; 
+        DamigeResistens = 0;         
         }  
    
      
@@ -543,13 +545,18 @@ function Fighter_stats(){
         }
         function GraterArmer(){
             Other_Bonuses = Math.floor(Constitution/12);
-            Armer_Class = 10 + (DexterityMod + Other_Bonuses + Math.floor(ConstitutionMod / 4));            
+            Armer_Class = 10 + (DexterityMod + Other_Bonuses);            
         }
         // end of Tank sub class.
        
         //this is wear the stats and abiletys for the barberian sub-class for fighter.
         function barberian(){
-
+            DamigeResistens = 2;
+        }
+        function graterresilions(){
+            Other_Bonuses = ConstitutionMod;
+            Armer_Class = 10 + (DexterityMod + Other_Bonuses);
+            CanWearArmor = false; 
         }
         // end of barberian sub class.          
         
