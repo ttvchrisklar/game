@@ -9,7 +9,7 @@ let class_select1 = document.getElementById("class_select1");
 let XP_Requirements, Other_Bonuses, MaxHP, PClass, piercing, bludgeoning, slashing, fire, ice, nectotic ,SpellSlots, regain, healing, damige, Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma, HP, Armer_Class, Action_Point, Level, XP, Gold, Level_Availability;
 let StrengthMod, DexterityMod, ConstitutionMod, IntelligenceMod, WisdomMod, CharismaMod, Skill_points, Class, subclass;
 let Sub_SthrengthMod =0, Sub_DexterityMod =0, Sub_ConstitutionMod =0, Sub_IntelligenceMod =0, Sub_WisdomMod =0, Sub_CharismaMod =0;
-let max_spellslots, leveluprequest=0, canrest = false, DamigeResistens, CanWearArmor =undefined;
+let max_spellslots, leveluprequest=0, canrest = false, DamigeResistens, CanWearArmor =undefined, CanWealdShild = undefined;
 let text;
 text = '<p style="font-size: 20px;color: blue; "> test <button class="button" onclick="selecter(35)">omg</button> </p>';    
 Class = "undefined";
@@ -550,6 +550,7 @@ function Fighter_stats(){
         // end of Tank sub class.
        
         //this is wear the stats and abiletys for the barberian sub-class for fighter.
+        //thay cant ware armer but can wild a shild
         function barberian(){
             DamigeResistens = 2;
         }
@@ -557,6 +558,7 @@ function Fighter_stats(){
             Other_Bonuses = ConstitutionMod;
             Armer_Class = 10 + (DexterityMod + Other_Bonuses);
             CanWearArmor = false; 
+            CanWealdShild = true;
         }
         // end of barberian sub class.          
         
