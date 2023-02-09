@@ -6,7 +6,7 @@ let classsub2 = document.getElementById("classsub2");
 let classsub3= document.getElementById("classsub3");
 let preclasssub3 = document.getElementById("preclasssub3");
 let class_select1 = document.getElementById("class_select1");       
-let XP_Requirements, Other_Bonuses, MaxHP, PClass, piercing, bludgeoning, slashing, fire, ice, nectotic ,SpellSlots, regain, healing, damige, Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma, HP, Armer_Class, Action_Point, Level, XP, Gold, Level_Availability;
+let XP_Requirements, Other_Bonuses, MaxHP, PClass, piercing, bludgeoning, slashing, fire, ice, nectotic ,SpellSlots, regain, healing, damige_delt, damige_taken, Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma, HP, Armer_Class, Action_Point, Level, XP, Gold, Level_Availability;
 let StrengthMod, DexterityMod, ConstitutionMod, IntelligenceMod, WisdomMod, CharismaMod, Skill_points, Class, subclass;
 let Sub_SthrengthMod =0, Sub_DexterityMod =0, Sub_ConstitutionMod =0, Sub_IntelligenceMod =0, Sub_WisdomMod =0, Sub_CharismaMod =0;
 let max_spellslots, leveluprequest=0, canrest = false, DamigeResistens, CanWearArmor =undefined, CanWealdShild = undefined;
@@ -204,6 +204,7 @@ function selecter(choice) {
             if (Class == "Fighter") {
                 document.getElementById("P1.5").innerText = " Barberian";
                 subclass = "Barberian";
+                barberian();
                 buttonremover();
                 return;                
             }
@@ -224,7 +225,7 @@ function selecter(choice) {
                 }
             }
             if (choice == 28){
-                
+                Damige_Taken(15);
             }
 
             if (choice == 29){
@@ -466,6 +467,16 @@ function resting(){
  } 
     stats_uppduate();
 }
+
+function Damige_Taken(damige_taken){
+    if (DamigeResistens != 0){
+     HP -= Math.floor(damige_taken/DamigeResistens);
+    console.log(Math.floor(damige_taken/DamigeResistens));}
+    else { HP -= damige_taken;
+    }
+    stats_uppduate();
+    
+}
 //main Wizard class this is wear ewrything is going to be colectet for the sub-class and other starts.
 
 function Wizard_stats(){
@@ -495,6 +506,7 @@ function Wizard_stats(){
         document.getElementById("spellslotsshow").style.display="";
         document.getElementById("spellslots").innerText = SpellSlots;
         DamigeResistens = 0;
+        CanWealdShild = false;
         }        
 
     
@@ -544,7 +556,7 @@ function Fighter_stats(){
             stats_uppduate();
         }
         function GraterArmer(){
-            Other_Bonuses = Math.floor(Constitution/12);
+            Other_Bonuses = Math.floor(ConstitutionMod/2);
             Armer_Class = 10 + (DexterityMod + Other_Bonuses);            
         }
         // end of Tank sub class.
@@ -553,12 +565,15 @@ function Fighter_stats(){
         //thay cant ware armer but can wild a shild
         function barberian(){
             DamigeResistens = 2;
+            graterresilions();
+            stats_uppduate();
         }
         function graterresilions(){
-            Other_Bonuses = ConstitutionMod;
+            Other_Bonuses = Math.floor(ConstitutionMod/4);
             Armer_Class = 10 + (DexterityMod + Other_Bonuses);
             CanWearArmor = false; 
             CanWealdShild = true;
+            console.log(Other_Bonuses,Armer_Class);
         }
         // end of barberian sub class.          
         
