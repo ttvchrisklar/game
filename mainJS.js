@@ -9,7 +9,7 @@ let class_select1 = document.getElementById("class_select1");
 let XP_Requirements, Other_Bonuses, MaxHP, PClass, piercing, bludgeoning, slashing, fire, ice, nectotic ,SpellSlots, regain, healing, damige_delt, damige_taken, Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma, HP, Armer_Class, Action_Point, Level, XP, Gold, Level_Availability;
 let StrengthMod, DexterityMod, ConstitutionMod, IntelligenceMod, WisdomMod, CharismaMod, Skill_points, Class, subclass;
 let Sub_SthrengthMod =0, Sub_DexterityMod =0, Sub_ConstitutionMod =0, Sub_IntelligenceMod =0, Sub_WisdomMod =0, Sub_CharismaMod =0;
-let max_spellslots, leveluprequest=0, canrest = false, DamigeResistens, CanWearArmor =undefined, CanWealdShild = undefined;
+let max_spellslots, leveluprequest=0, canrest = false, DamigeResistens, CanWearArmor =undefined, CanWealdShild = undefined, damige_type=undefined;
 let text;
 text = '<p style="font-size: 20px;color: blue; "> test <button class="button" onclick="selecter(35)">omg</button> </p>';    
 Class = "undefined";
@@ -468,6 +468,12 @@ function resting(){
     stats_uppduate();
 }
 
+function Damige_Delt(damige_delt, damige_type){
+    if (damige_type="ice") {
+        
+    }
+}
+
 function Damige_Taken(damige_taken){
     if (DamigeResistens != 0){
      HP -= Math.floor(damige_taken/DamigeResistens);
@@ -582,4 +588,8 @@ function Fighter_stats(){
         // end of archerer sub class.
 
         //combat system.
+
+        // enemys
+        let EOther_Bonuses, EMaxHP, EPClass, Epiercing, Ebludgeoning, Eslashing, Efire, Eice, Enectotic ,ESpellSlots, Eregain, Ehealing, Edamige_delt, Edamige_taken, EStrength, EDexterity, EConstitution, EIntelligence, EWisdom, ECharisma, EHP, EArmer_Class, EAction_Point, EXP, EGold;
+        let EStrengthMod, EDexterityMod, EConstitutionMod, EIntelligenceMod, EWisdomMod, ECharismaMod;
         
