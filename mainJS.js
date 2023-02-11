@@ -11,7 +11,7 @@ let StrengthMod, DexterityMod, ConstitutionMod, IntelligenceMod, WisdomMod, Char
 let Sub_SthrengthMod =0, Sub_DexterityMod =0, Sub_ConstitutionMod =0, Sub_IntelligenceMod =0, Sub_WisdomMod =0, Sub_CharismaMod =0;
 let max_spellslots, leveluprequest=0, canrest = false, DamigeResistens, CanWearArmor =undefined, CanWealdShild = undefined, damige_type=undefined, turn=undefined;
 let text;
-text = '<p style="font-size: 20px;color: blue; "> test <button class="button" onclick="selecter(35)">omg</button> </p>';    
+text = '<p style="color: blue;"> test <button class="button" onclick="selecter(35)">omg</button> </p>';    
 Class = "undefined";
 subclass = "undefined";
 combat = false;
@@ -36,12 +36,12 @@ function prestart(){
         Gold = 0;
         XP_Requirements = 2000;
         Skill_points = 0; //Skill_points = over Level.
-        StrengthMod =1 ;
-        DexterityMod =1 ;
-        ConstitutionMod =1 ;
-        IntelligenceMod =1 ;
-        WisdomMod =1 ;
-        CharismaMod =1 ;  
+        StrengthMod = 1 ;
+        DexterityMod = 1 ;
+        ConstitutionMod = 1 ;
+        IntelligenceMod = 1 ;
+        WisdomMod = 1 ;
+        CharismaMod = 1 ;  
         }
         //this is whar i do my button selections and other uppdate requests.
 function selecter(choice) {
@@ -101,7 +101,7 @@ function selecter(choice) {
                 }
             }
             if (choice == 8){
-                document.getElementById("div1").innerText = `${text}`;
+                document.getElementById("div1").innerHTML = `${text}`;
             }
 
             if (choice == 9){
@@ -225,7 +225,7 @@ function selecter(choice) {
                 }
             }
             if (choice == 28){
-                Damige_Taken(15);
+                Damige_Taken(5);
             }
 
             if (choice == 29){
@@ -278,7 +278,7 @@ function Wizard_select(){
                 preclasssub3.attributes.getNamedItem("style").value =""
                 document.getElementById("classsub1").innerText = "Ice Wizard";
                 document.getElementById("classsub2").innerText = "Fire Wizard";
-                document.getElementById("classsub3").innerText = "Necroman";
+                document.getElementById("classsub3").innerText = "Necromanser";
                 prestart();
                 Wizard_stats();
                 stats_uppduate();
@@ -369,22 +369,21 @@ function level_up_request(){
             }
             Level_Availability = 1;
             }else{
-                alert("can not Level UP you need: " + (XP_Requirements-XP) +" XP to Level UP to Level "+ (Level+1)+".")
+                alert("can not Level UP you need: " + (XP_Requirements - XP) +" XP to Level UP to Level "+ (Level+1)+".")
             }           
         } 
     }       
 function Skill_points_main(){          
            if (Skill_points >=1){
             Skill_points -=1;}
-           if(Skill_points == 0){ 
+           else{ 
             document.getElementById("B1").innerText="tester 1";
             document.getElementById("B2").innerText="tester 2";
             document.getElementById("B3").innerText="tester 3";
             document.getElementById("B4").innerText="tester 4";
             document.getElementById("B5").innerText="tester 5";
             document.getElementById("B6").innerText="tester 6";
-            stats_uppduate();
-                Level_Availability = 0;
+            Level_Availability = 0;
             }            
             stats_uppduate();
         }
@@ -455,33 +454,40 @@ function Charisma_increase(){
 function resting(){
     if(combat==false){
         if (Class=="Wizard"){
-        HP = ConstitutionMod + (Level*8);
-        MaxHP = HP;
+        HP = MaxHP;
         SpellSlots = max_spellslots;
     }
     if (Class=="Fighter"){
-        HP = ConstitutionMod + (Level*12);
-        MaxHP = HP;
-        if (subclass=="Tank"){}
+        HP = MaxHP;
+        if (subclass=="Tank"){
+
+        }
     }
  } 
     stats_uppduate();
 }
 
-function Damige_Delt(damige_delt, damige_type){
-    if (damige_type="ice") {
-        
-    }
-}
 
-function Damige_Taken(damige_taken){
-    if (DamigeResistens != 0){
-     HP -= Math.floor(damige_taken/DamigeResistens);
-    console.log(Math.floor(damige_taken/DamigeResistens));}
-    else { HP -= damige_taken;
+
+function Damige_Taken(Edamige){
+    if (DamigeResistens == 0){
+        HP -= Edamige; 
+        console.log(HP -= Edamige);
+     }
+     if (DamigeResistens < 0){
+        HP += Math.floor(Edamige*DamigeResistens);
+        console.log(Math.floor(Edamige*DamigeResistens));
+     }
+     if (DamigeResistens > 0){ 
+        HP -= Math.floor(Edamige/DamigeResistens);
+    console.log(Math.floor(Edamige/DamigeResistens));
     }
-    stats_uppduate();
-    
+    if (HP <=0) {
+        HP = 0;
+        const death = '<p style="color: red; font-size: 50px; "> you have been killed in battle.</p>';
+        document.getElementById("div1").innerHTML = `${death}`;
+    }
+    stats_uppduate();    
 }
 //main Wizard class this is wear ewrything is going to be colectet for the sub-class and other starts.
 
@@ -511,7 +517,7 @@ function Wizard_stats(){
         max_spellslots = SpellSlots;
         document.getElementById("spellslotsshow").style.display="";
         document.getElementById("spellslots").innerText = SpellSlots;
-        DamigeResistens = 0;
+        DamigeResistens = -2;
         CanWealdShild = false;
         }        
 
@@ -591,7 +597,7 @@ function Fighter_stats(){
 
         // enemys
         let EHP,EMAXHP, EAC, EStrength, EDexterity, EConstitution, EIntelligence, EWisdom, ECharisma, EStrengthMod, EDexterityMod, EConstitutionMod, EIntelligenceMod, EWisdomMod, ECharismaMod, Edamige, Enemy_type, Enemy_Nuber;
-        
+        let BEHP;
         
         
         // the end of the enemy script part
