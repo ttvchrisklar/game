@@ -6,10 +6,10 @@ let classsub2 = document.getElementById("classsub2");
 let classsub3= document.getElementById("classsub3");
 let preclasssub3 = document.getElementById("preclasssub3");
 let class_select1 = document.getElementById("class_select1");       
-let XP_Requirements, Other_Bonuses, MaxHP, PClass, piercing, bludgeoning, slashing, fire, ice, nectotic ,SpellSlots, regain, healing, damige_delt, damige_taken, Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma, HP, Armer_Class, Action_Point, Level, XP, Gold, Level_Availability;
+let XP_Requirements, Other_Bonuses, MaxHP, PClass, piercing, bludgeoning, slashing, fire, ice, nectotic ,SpellSlots, regain, healing, damige, Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma, HP, Armer_Class, Action_Point, Level, XP, Gold, Level_Availability;
 let StrengthMod, DexterityMod, ConstitutionMod, IntelligenceMod, WisdomMod, CharismaMod, Skill_points, Class, subclass;
 let Sub_SthrengthMod =0, Sub_DexterityMod =0, Sub_ConstitutionMod =0, Sub_IntelligenceMod =0, Sub_WisdomMod =0, Sub_CharismaMod =0;
-let max_spellslots, leveluprequest=0, canrest = false, DamigeResistens, CanWearArmor =undefined, CanWealdShild = undefined, damige_type=undefined;
+let max_spellslots, leveluprequest=0, canrest = false, DamigeResistens, CanWearArmor =undefined, CanWealdShild = undefined, damige_type=undefined, turn=undefined;
 let text;
 text = '<p style="font-size: 20px;color: blue; "> test <button class="button" onclick="selecter(35)">omg</button> </p>';    
 Class = "undefined";
@@ -590,4 +590,8 @@ function Fighter_stats(){
         //combat system.
 
         // enemys
+        let EHP,EMAXHP, EAC, EStrength, EDexterity, EConstitution, EIntelligence, EWisdom, ECharisma, EStrengthMod, EDexterityMod, EConstitutionMod, EIntelligenceMod, EWisdomMod, ECharismaMod, Edamige, Enemy_type, Enemy_Nuber;
         
+        
+        
+        // the end of the enemy script part
