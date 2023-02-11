@@ -590,6 +590,4 @@ function Fighter_stats(){
         //combat system.
 
         // enemys
-        let EOther_Bonuses, EMaxHP, EPClass, Epiercing, Ebludgeoning, Eslashing, Efire, Eice, Enectotic ,ESpellSlots, Eregain, Ehealing, Edamige_delt, Edamige_taken, EStrength, EDexterity, EConstitution, EIntelligence, EWisdom, ECharisma, EHP, EArmer_Class, EAction_Point, EXP, EGold;
-        let EStrengthMod, EDexterityMod, EConstitutionMod, EIntelligenceMod, EWisdomMod, ECharismaMod;
         
