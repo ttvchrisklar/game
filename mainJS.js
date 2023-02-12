@@ -11,6 +11,7 @@ let StrengthMod, DexterityMod, ConstitutionMod, IntelligenceMod, WisdomMod, Char
 let Sub_SthrengthMod =0, Sub_DexterityMod =0, Sub_ConstitutionMod =0, Sub_IntelligenceMod =0, Sub_WisdomMod =0, Sub_CharismaMod =0;
 let max_spellslots, leveluprequest=0, canrest = false, DamigeResistens, CanWearArmor =undefined, CanWealdShild = undefined, damige_type=undefined, turn=undefined;
 let text;
+const death = '<p style="color: red; font-size: 200px;text-align: center;">you died! <br> ;(</p>';
 text = '<p style="color: blue;"> test <button class="button" onclick="selecter(35)">omg</button> </p>';    
 Class = "undefined";
 subclass = "undefined";
@@ -472,7 +473,7 @@ function resting(){
 function Damige_Taken(Edamige){
     if (DamigeResistens == 0){
         HP -= Edamige; 
-        console.log(HP -= Edamige);
+        console.log(HP, Edamige);
      }
      if (DamigeResistens < 0){
         HP += Math.floor(Edamige*DamigeResistens);
@@ -484,7 +485,10 @@ function Damige_Taken(Edamige){
     }
     if (HP <=0) {
         HP = 0;
-        const death = '<p style="color: red; font-size: 50px; "> you have been killed in battle.</p>';
+        document.getElementById("headerbuttons").style = "display: none;";
+        document.getElementById("stats").style = "display: none;";
+        document.getElementById("P0").style = "display: none;";
+        document.getElementById("H1").style = "display: none;";
         document.getElementById("div1").innerHTML = `${death}`;
     }
     stats_uppduate();    
@@ -517,7 +521,7 @@ function Wizard_stats(){
         max_spellslots = SpellSlots;
         document.getElementById("spellslotsshow").style.display="";
         document.getElementById("spellslots").innerText = SpellSlots;
-        DamigeResistens = -2;
+        DamigeResistens = 0;
         CanWealdShild = false;
         }        
 
