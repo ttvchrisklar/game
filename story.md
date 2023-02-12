@@ -1,1 +1,0 @@
-you are an adventurer going on a quest to get stronger, yuo will face strong enemys many good people and many bad people on your jurny,  
