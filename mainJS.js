@@ -11,7 +11,7 @@ let StrengthMod, DexterityMod, ConstitutionMod, IntelligenceMod, WisdomMod, Char
 let Sub_SthrengthMod =0, Sub_DexterityMod =0, Sub_ConstitutionMod =0, Sub_IntelligenceMod =0, Sub_WisdomMod =0, Sub_CharismaMod =0;
 let max_spellslots, leveluprequest=0, canrest = false, DamigeResistens, CanWearArmor =undefined, CanWealdShild = undefined, damige_type=undefined, turn=undefined;
 let text;
-const death = '<p style="color: red; font-size: 200px;text-align: center;">you died! <br> ;(<br> <button class="button" onclick="setscreen()">test</button></p>';
+const death = '<p style="color: red; font-size: 200px;text-align: center;">you died! <br> ;(<br> <button class="button" onclick="setscreen()">get revived</button></p>';
 text = '<p style="color: blue;"> test <button class="button" onclick="selecter(35)">omg</button> </p>';    
 Class = "undefined";
 subclass = "undefined";
