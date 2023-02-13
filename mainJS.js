@@ -11,7 +11,7 @@ let StrengthMod, DexterityMod, ConstitutionMod, IntelligenceMod, WisdomMod, Char
 let Sub_SthrengthMod =0, Sub_DexterityMod =0, Sub_ConstitutionMod =0, Sub_IntelligenceMod =0, Sub_WisdomMod =0, Sub_CharismaMod =0;
 let max_spellslots, leveluprequest=0, canrest = false, DamigeResistens, CanWearArmor =undefined, CanWealdShild = undefined, damige_type=undefined, turn=undefined;
 let text;
-const death = '<p style="color: red; font-size: 200px;text-align: center;">you died! <br> ;(</p>';
+const death = '<p style="color: red; font-size: 200px;text-align: center;">you died! <br> ;(<br> <button class="button" onclick="setscreen()">test</button></p>';
 text = '<p style="color: blue;"> test <button class="button" onclick="selecter(35)">omg</button> </p>';    
 Class = "undefined";
 subclass = "undefined";
@@ -20,6 +20,14 @@ combat = false;
 function introdone(){
     document.getElementById("intro").style.display="none";
     document.getElementById('class_select1').style.display="";    
+}
+function setscreen(){
+    document.getElementById("headerbuttons").style = "";
+    document.getElementById("stats").style = "";
+    document.getElementById("P0").style = "";
+    document.getElementById("H1").style = "";
+    document.getElementById("div1").innerHTML = "";
+    resting();
 }
 //if the stats arnt seet
 function prestart(){
@@ -58,7 +66,7 @@ function selecter(choice) {
 
             if (choice == 2) {
                 if (Level_Availability == 1){
-                    if(Dexterity==100)
+                    if(Dexterity == 100)
                     {}else
                     {Dexterity_increase();}
             }           
@@ -66,7 +74,7 @@ function selecter(choice) {
 
             if (choice == 3) {
                 if (Level_Availability == 1){
-                    if(Constitution==100)
+                    if(Constitution == 100)
                     {}else
                     {Constitution_increase();}
                     }           
@@ -74,7 +82,7 @@ function selecter(choice) {
 
             if (choice == 4) {
                 if (Level_Availability == 1){
-                    if(Wisdom==100)
+                    if(Wisdom == 100)
                     {}else
                     {Wisdom_increase();}
                     }           
@@ -82,14 +90,14 @@ function selecter(choice) {
 
             if (choice == 5) {
                 if (Level_Availability == 1){
-                if(Intelligence==100){}else
+                if(Intelligence == 100){}else
                 {Intelligence_increase();}
             }           
             } 
 
             if (choice == 6) {
             if (Level_Availability == 1){
-                if(Charisma==100)
+                if(Charisma == 100)
                 {}else
                 {  
                 Charisma_increase();}
@@ -165,7 +173,7 @@ function selecter(choice) {
                 
             }
 
-            if (choice ==24) {
+            if (choice == 24) {
                 XP += XP_Requirements;
                 stats_uppduate();
                 LevelUp();                
@@ -261,7 +269,7 @@ function selecter(choice) {
                 
             }
 
-            if (choice ==37) {
+            if (choice == 37) {
                 leveluprequest=1;
                 level_up_request();           
             }
@@ -308,7 +316,7 @@ function Fighter_select(){
             } 
 
 function stats_uppduate() {   
- if (subclass=="Tank"){
+ if (subclass == "Tank"){
     GraterArmer();
 }
         document.getElementById("HP").innerText = "Max HP: " + MaxHP + " || " +"Curent HP: " + HP+".";
@@ -330,10 +338,10 @@ function LevelUp() {
             Skill_points += 1;         
             Level += 1;         
             XP_Requirements = 1000*(Level+1);
-            if (Class=="Wizard"){
+            if (Class == "Wizard"){
                 HP = ConstitutionMod + (Level*8);
             }
-            if (Class=="Fighter"){
+            if (Class == "Fighter"){
                 HP = ConstitutionMod + (Level*12);
             }             
             MaxHP = HP;        
@@ -350,22 +358,22 @@ function level_up_request(){
             document.getElementById("B4").innerText= "Wisdom";
             document.getElementById("B5").innerText= "Intelligence";
             document.getElementById("B6").innerText= "Charisma";
-            if (Strength==100) {
+            if (Strength == 100) {
             document.getElementById("B1").innerText= "Strength is maxed";
             }
-            if (Dexterity==100) {
+            if (Dexterity == 100) {
                 document.getElementById("B2").innerText= "Dexterity is maxed";
             }
             if (Constitution==100) {
                 document.getElementById("B3").innerText= "Constitution is maxed";
             }
-            if (Wisdom==100) {
+            if (Wisdom == 100) {
                 document.getElementById("B4").innerText= "Wisdom is maxed";
             }
-            if (Intelligence==100) {
+            if (Intelligence == 100) {
                 document.getElementById("B5").innerText= "Intelligence is maxed";
             }
-            if (Charisma==100) {
+            if (Charisma == 100) {
                 document.getElementById("B6").innerText= "Charisma is maxed";
             }
             Level_Availability = 1;
@@ -375,8 +383,8 @@ function level_up_request(){
         } 
     }       
 function Skill_points_main(){          
-           if (Skill_points >=1){
-            Skill_points -=1;}
+           if (Skill_points >= 1){
+            Skill_points -= 1;}
            else{ 
             document.getElementById("B1").innerText="tester 1";
             document.getElementById("B2").innerText="tester 2";
@@ -453,14 +461,14 @@ function Charisma_increase(){
 }  
 
 function resting(){
-    if(combat==false){
-        if (Class=="Wizard"){
+    if(combat == false){
+        if (Class == "Wizard"){
         HP = MaxHP;
         SpellSlots = max_spellslots;
     }
-    if (Class=="Fighter"){
+    if (Class == "Fighter"){
         HP = MaxHP;
-        if (subclass=="Tank"){
+        if (subclass == "Tank"){
 
         }
     }
@@ -483,7 +491,7 @@ function Damige_Taken(Edamige){
         HP -= Math.floor(Edamige/DamigeResistens);
     console.log(Math.floor(Edamige/DamigeResistens));
     }
-    if (HP <=0) {
+    if (HP <= 0) {
         HP = 0;
         document.getElementById("headerbuttons").style = "display: none;";
         document.getElementById("stats").style = "display: none;";
