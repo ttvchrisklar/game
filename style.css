@@ -1,60 +1,60 @@
 .button {
-  display: inline-block;
-  padding: 15px 15px;
-  font-size: 12px;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  outline: none;
-  color: #fff;
-  background-color: #4CAF50;
-  border: none;
-  border-radius: 15px;
-  box-shadow: 0 9px #999;
+    display: inline-block;
+    padding: 15px 15px;
+    font-size: 12px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #4caf50;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
 }
 
-.button:hover {background-color: #3e8e41}
+.button:hover {
+    background-color: #3e8e41;
+}
 
 .button:active {
-  background-color: #3e8e41;
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
 }
 
 .dropdown {
-position: relative;
-display: inline-block;
-
+    position: relative;
+    display: inline-block;
 }
 
 .dropdown-content {
-display: none;
-position: absolute;
-background-color: black;
-min-width: 30px;
-box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-padding: 0px 0px;
-z-index: 1;
-
+    display: none;
+    position: absolute;
+    background-color: black;
+    min-width: 30px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    padding: 0px 0px;
+    z-index: 1;
 }
 
 .dropdown:hover .dropdown-content {
-display: block;
+    display: block;
 }
 
-body{
-background-color: black; 
-font-size: 20px;
-color: white;           
+body {
+    background-color: black;
+    font-size: 20px;
+    color: white;
 }
 
-h1{
-  text-align: center;
+h1 {
+    text-align: center;
 }
 
-.center{
-  text-align: center;
+.center {
+    text-align: center;
 }
-.headerbuttons{
-text-align:right;
+.headerbuttons {
+    text-align: right;
 }
