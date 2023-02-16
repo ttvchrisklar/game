@@ -62,9 +62,7 @@ let XP_Requirements,
     CanWealdShild,
     damige_type,
     turn;
-    Class = "undefined",
-    subclass = "undefined",
-    combat = false;
+(Class = "undefined"), (subclass = "undefined"), (combat = false);
 //into cean
 function introdone() {
     document.getElementById("intro").style.display = "none";
@@ -639,6 +637,5 @@ function graterresilions() {
 //combat system.
 
 // enemys
-
 
 // the end of the enemy script part
