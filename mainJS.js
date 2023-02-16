@@ -1,15 +1,21 @@
-const Stats = document.getElementById("stats");
-const HI1 = document.getElementById("HI1");
-const LUR = document.getElementById("LUR");
-const classsub1 = document.getElementById("classsub1");
-const classsub2 = document.getElementById("classsub2");
-const classsub3 = document.getElementById("classsub3");
-const preclasssub3 = document.getElementById("preclasssub3");
-const class_select1 = document.getElementById("class_select1");
+const Stats = document.getElementById("stats"),
+    HI1 = document.getElementById("HI1"),
+    LUR = document.getElementById("LUR"),
+    classsub1 = document.getElementById("classsub1"),
+    classsub2 = document.getElementById("classsub2"),
+    classsub3 = document.getElementById("classsub3"),
+    preclasssub3 = document.getElementById("preclasssub3"),
+    class_select1 = document.getElementById("class_select1"),
+    B1 = document.getElementById("B1"),
+    B2 = document.getElementById("B2"),
+    B3 = document.getElementById("B3"),
+    B4 = document.getElementById("B4"),
+    B5 = document.getElementById("B5"),
+    B6 = document.getElementById("B6"),
+    death = '<p style="color: red; font-size: 200px;text-align: center;">you died! <br> ;(<br> <button class="button" onclick="setscreen()">get revived</button></p>';
 let XP_Requirements,
     Other_Bonuses,
     MaxHP,
-    PClass,
     piercing,
     bludgeoning,
     slashing,
@@ -32,29 +38,33 @@ let XP_Requirements,
     Level,
     XP,
     Gold,
-    Level_Availability;
-let StrengthMod, DexterityMod, ConstitutionMod, IntelligenceMod, WisdomMod, CharismaMod, Skill_points, Class, subclass;
-let Sub_SthrengthMod = 0,
+    Level_Availability,
+    StrengthMod,
+    DexterityMod,
+    ConstitutionMod,
+    IntelligenceMod,
+    WisdomMod,
+    CharismaMod,
+    Skill_points,
+    Class,
+    subclass,
+    Sub_SthrengthMod = 0,
     Sub_DexterityMod = 0,
     Sub_ConstitutionMod = 0,
     Sub_IntelligenceMod = 0,
     Sub_WisdomMod = 0,
-    Sub_CharismaMod = 0;
-let max_spellslots,
+    Sub_CharismaMod = 0,
+    max_spellslots,
     leveluprequest = 0,
     canrest = false,
     DamigeResistens,
-    CanWearArmor = undefined,
-    CanWealdShild = undefined,
-    damige_type = undefined,
-    turn = undefined;
-let text;
-const B1 = document.getElementById("B1");
-const death = '<p style="color: red; font-size: 200px;text-align: center;">you died! <br> ;(<br> <button class="button" onclick="setscreen()">get revived</button></p>';
-text = '<p style="color: blue;"> test <button class="button" onclick="selecter(35)">omg</button> </p>';
-Class = "undefined";
-subclass = "undefined";
-combat = false;
+    CanWearArmor,
+    CanWealdShild,
+    damige_type,
+    turn;
+    Class = "undefined",
+    subclass = "undefined",
+    combat = false;
 //into cean
 function introdone() {
     document.getElementById("intro").style.display = "none";
@@ -95,225 +105,219 @@ function prestart() {
 function selecter(presdButton) {
     console.log(presdButton.id);
     switch (presdButton.id) {
+        case "LUR":
+            leveluprequest = 1;
+            level_up_request();
+            break;
+
+        case "B1":
+            if (Level_Availability == 1) {
+                if (Strength != 100) {
+                    Strength_increase();
+                }
+            }
+            break;
+
+        case "B2":
+            if (Level_Availability == 1) {
+                if (Dexterity != 100) {
+                    Dexterity_increase();
+                }
+            }
+            break;
+
+        case "B3":
+            if (Level_Availability == 1) {
+                if (Constitution != 100) {
+                } else {
+                    Constitution_increase();
+                }
+            }
+            break;
+
+        case "B4":
+            if (Level_Availability == 1) {
+                if (Wisdom != 100) {
+                    Wisdom_increase();
+                }
+            }
+            break;
+
+        case "B5":
+            if (Level_Availability == 1) {
+                if (Intelligence != 100) {
+                    Intelligence_increase();
+                }
+            }
+
+            break;
+
+        case "B6":
+            if (Level_Availability == 1) {
+                if (Charisma != 100) {
+                    Charisma_increase();
+                }
+            }
+            break;
+
+        case "B7":
+            if (canrest == true) {
+                resting();
+            }
+            break;
+
+        case "B8":
+            break;
+
+        case "B9":
+            break;
+
+        case "B10":
+            break;
+
+        case "B11":
+            break;
+
+        case "B12":
+            break;
+
+        case "B13":
+            break;
+
+        case "B14":
+            break;
+
+        case "B15":
+            break;
+
+        case "B16":
+            break;
+
+        case "B17":
+            break;
+
+        case "B18":
+            break;
+
+        case "B19":
+            break;
+
+        case "B20":
+            break;
+
+        case "B21":
+            break;
+
+        case "B22":
+            break;
+
+        case "B23":
+            break;
+
+        case "B24":
+            XP += XP_Requirements;
+            stats_uppduate();
+            LevelUp();
+            break;
+
+        case "B25":
+            break;
+
+        case "B26":
+            break;
+
+        case "B27":
+            break;
+
+        case "B28":
+            Damige_Taken(5);
+            break;
+
+        case "B29":
+            break;
+
+        case "B30":
+            break;
+
+        case "B31":
+            break;
+
+        case "B32":
+            break;
+
+        case "B33":
+            break;
+
+        case "B34":
+            break;
+
+        case "B35":
+            break;
+
+        case "B36":
+            break;
+
+        case "B37":
+            break;
+
+        case "classsub1":
+            if (Class == "undefined") {
+                Wizard_select();
+                return;
+            }
+            if (Class == "Wizard") {
+                document.getElementById("P1.5").innerText = " Ice";
+                subclass = "Ice_Wizard";
+                buttonremover();
+                return;
+            }
+            if (Class == "Fighter") {
+                document.getElementById("P1.5").innerText = " Tank";
+                subclass = "Tank";
+                tank();
+                buttonremover();
+                return;
+            }
+            break;
+
+        case "classsub2":
+            if (Class == "undefined") {
+                Fighter_select();
+                return;
+            }
+            if (Class == "Wizard") {
+                document.getElementById("P1.5").innerText = " Fire";
+                subclass = "Fire_Wizard";
+                buttonremover();
+                return;
+            }
+            if (Class == "Fighter") {
+                document.getElementById("P1.5").innerText = " Barberian";
+                subclass = "Barberian";
+                barberian();
+                buttonremover();
+                return;
+            }
+            break;
+
+        case "classsub3":
+            if (Class == "Wizard") {
+                document.getElementById("P1.5").innerText = " Necromanser";
+                subclass = "Necromanser";
+                buttonremover();
+                return;
+            }
+            if (Class == "Fighter") {
+                document.getElementById("P1.5").innerText = " Archerer";
+                subclass = "Archerer";
+                buttonremover();
+                return;
+            }
+            break;
+
+        default:
+            console.log("not a diffind button", presdButton.id);
     }
-    // if (choice == 1) {
-    //     if (Level_Availability == 1){
-    //         if (Strength != 100)
-    //         {
-    //         Strength_increase();
-    //         }
-    //     }
-    // }
-
-    // if (choice == 2) {
-    //     if (Level_Availability == 1){
-    //         if(Dexterity != 100)
-    //         {
-    //         Dexterity_increase();}
-    // }
-    // }
-
-    // if (choice == 3) {
-    //     if (Level_Availability == 1){
-    //         if(Constitution == 100)
-    //         {}else
-    //         {Constitution_increase();}
-    //         }
-    // }
-
-    // if (choice == 4) {
-    //     if (Level_Availability == 1){
-    //         if(Wisdom == 100)
-    //         {}else
-    //         {Wisdom_increase();}
-    //         }
-    // }
-
-    // if (choice == 5) {
-    //     if (Level_Availability == 1){
-    //     if(Intelligence == 100){}else
-    //     {Intelligence_increase();}
-    // }
-    // }
-
-    // if (choice == 6) {
-    // if (Level_Availability == 1){
-    //     if(Charisma == 100)
-    //     {}else
-    //     {
-    //     Charisma_increase();}
-    //     }
-    //     }
-
-    // if (choice == 7){
-    //     if (canrest == true){
-    //         resting()
-    //     }
-    // }
-    // if (choice == 8){
-    //     document.getElementById("div1").innerHTML = `${text}`;
-    // }
-
-    // if (choice == 9){
-
-    // }
-
-    // if (choice == 10){
-
-    // }
-
-    // if (choice == 11){
-
-    // }
-
-    // if (choice == 12){
-
-    // }
-
-    // if (choice == 13){
-
-    // }
-
-    // if (choice == 14){
-
-    // }
-
-    // if (choice == 15){
-
-    // }
-
-    // if (choice == 16){
-
-    // }
-
-    // if (choice == 17){
-
-    // }
-
-    // if (choice == 18){
-
-    // }
-
-    // if (choice == 19){
-
-    // }
-
-    // if (choice == 20){
-
-    // }
-
-    // if (choice == 21){
-
-    // }
-
-    // if (choice == 22){
-
-    // }
-
-    // if (choice == 23){
-
-    // }
-
-    // if (choice == 24) {
-    //     XP += XP_Requirements;
-    //     stats_uppduate();
-    //     LevelUp();
-    // }
-
-    // if (choice == 25) {
-    //     if (Class == "undefined") {
-    //     Wizard_select();
-    //     return;
-    //     }
-    //     if (Class == "Wizard") {
-    //     document.getElementById("P1.5").innerText = " Ice";
-    //     subclass = "Ice_Wizard";
-    //     buttonremover();
-    //     return;
-    //     }
-    //     if (Class == "Fighter") {
-    //     document.getElementById("P1.5").innerText = " Tank";
-    //     subclass = "Tank";
-    //     Tank();
-    //     buttonremover();
-    //     return;
-    //     }
-    // }
-
-    // if (choice == 26) {
-    // if (Class =="undefined") {
-    //     Fighter_select();
-    //     return;
-    // }
-    // if (Class == "Wizard") {
-    //     document.getElementById("P1.5").innerText = " Fire";
-    //     subclass = "Fire_Wizard";
-    //     buttonremover();
-    //     return;
-    // }
-    // if (Class == "Fighter") {
-    //     document.getElementById("P1.5").innerText = " Barberian";
-    //     subclass = "Barberian";
-    //     barberian();
-    //     buttonremover();
-    //     return;
-    // }
-    // }
-
-    // if (choice == 27) {
-    //     if (Class == "Wizard") {
-    //     document.getElementById("P1.5").innerText = " Necromanser";
-    //     subclass = "Necromanser";
-    //     buttonremover();
-    //                     return;
-    //     }
-    //     if (Class == "Fighter") {
-    //     document.getElementById("P1.5").innerText = " Archerer";
-    //     subclass = "Archerer";
-    //     buttonremover()
-    //     return;
-    //     }
-    // }
-    // if (choice == 28){
-    //     Damige_Taken(5);
-    // }
-
-    // if (choice == 29){
-
-    // }
-
-    // if (choice == 30){
-
-    // }
-
-    // if (choice == 31){
-
-    // }
-
-    // if (choice == 32){
-
-    // }
-
-    // if (choice == 33){
-
-    // }
-
-    // if (choice == 34){
-
-    // }
-
-    // if (choice == 35){
-    //     console.log("hello");
-    // }
-
-    // if (choice == 36){
-
-    // }
-
-    // if (choice == 37) {
-    //     leveluprequest=1;
-    //     level_up_request();
-    // }
 }
 function buttonremover() {
     class_select1.attributes.getNamedItem("style").value = "display: none;";
@@ -356,8 +360,13 @@ function Fighter_select() {
 }
 
 function stats_uppduate() {
-    if (subclass == "Tank") {
-        GraterArmer();
+    switch (subclass) {
+        case "Tank":
+            tank();
+            break;
+        case "barberian":
+            barberian();
+            break;
     }
     document.getElementById("HP").innerText = "Max HP: " + MaxHP + " || " + "Curent HP: " + HP + ".";
     document.getElementById("AC").innerText = "AC: " + Armer_Class + ".";
@@ -368,7 +377,7 @@ function stats_uppduate() {
     document.getElementById("Intelligence").innerText = "Intelligence: " + Intelligence + " || " + "Intelligence Mod: " + IntelligenceMod + ".";
     document.getElementById("Charisma").innerText = "Charisma: " + Charisma + " || " + "Charisma Mod: " + CharismaMod + ".";
     document.getElementById("XP").innerText = "XP: " + XP + " / " + XP_Requirements + ".";
-    document.getElementById("Level").innerText = "Level: " + Level + "/600" + " || " + "+" + Skill_points + ".";
+    document.getElementById("Level").innerText = "Level: " + Level + " / 600" + " || " + "+" + Skill_points + ".";
     document.getElementById("spellslots").innerText = "spellslots: " + SpellSlots + "/" + max_spellslots + ".";
 }
 
@@ -391,29 +400,29 @@ function LevelUp() {
 function level_up_request() {
     if (leveluprequest == 1) {
         if (Skill_points > 0) {
-            document.getElementById("B1").innerText = "Strength";
-            document.getElementById("B2").innerText = "Dexterity";
-            document.getElementById("B3").innerText = "Constitution";
-            document.getElementById("B4").innerText = "Wisdom";
-            document.getElementById("B5").innerText = "Intelligence";
-            document.getElementById("B6").innerText = "Charisma";
+            B1.innerText = "Strength";
+            B2.innerText = "Dexterity";
+            B3.innerText = "Constitution";
+            B4.innerText = "Wisdom";
+            B5.innerText = "Intelligence";
+            B6.innerText = "Charisma";
             if (Strength == 100) {
-                document.getElementById("B1").innerText = "Strength is maxed";
+                B1.innerText = "Strength is maxed";
             }
             if (Dexterity == 100) {
-                document.getElementById("B2").innerText = "Dexterity is maxed";
+                B2.innerText = "Dexterity is maxed";
             }
             if (Constitution == 100) {
-                document.getElementById("B3").innerText = "Constitution is maxed";
+                B3.innerText = "Constitution is maxed";
             }
             if (Wisdom == 100) {
-                document.getElementById("B4").innerText = "Wisdom is maxed";
+                B4.innerText = "Wisdom is maxed";
             }
             if (Intelligence == 100) {
-                document.getElementById("B5").innerText = "Intelligence is maxed";
+                B5.innerText = "Intelligence is maxed";
             }
             if (Charisma == 100) {
-                document.getElementById("B6").innerText = "Charisma is maxed";
+                B6.innerText = "Charisma is maxed";
             }
             Level_Availability = 1;
         } else {
@@ -425,12 +434,12 @@ function Skill_points_main() {
     if (Skill_points >= 1) {
         Skill_points -= 1;
     } else {
-        document.getElementById("B1").innerText = "tester 1";
-        document.getElementById("B2").innerText = "tester 2";
-        document.getElementById("B3").innerText = "tester 3";
-        document.getElementById("B4").innerText = "tester 4";
-        document.getElementById("B5").innerText = "tester 5";
-        document.getElementById("B6").innerText = "tester 6";
+        B1.innerText = "tester 1";
+        B2.innerText = "tester 2";
+        B3.innerText = "tester 3";
+        B4.innerText = "tester 4";
+        B5.innerText = "tester 5";
+        B6.innerText = "tester 6";
         Level_Availability = 0;
     }
     stats_uppduate();
@@ -505,8 +514,6 @@ function resting() {
         }
         if (Class == "Fighter") {
             HP = MaxHP;
-            if (subclass == "Tank") {
-            }
         }
     }
     stats_uppduate();
@@ -601,9 +608,8 @@ function Fighter_stats() {
 }
 
 //this is wear the stats and abiletys for the Tank sub-class for fighter.
-function Tank() {
+function tank() {
     GraterArmer();
-    stats_uppduate();
 }
 function GraterArmer() {
     Other_Bonuses = Math.floor(ConstitutionMod / 2);
@@ -614,11 +620,10 @@ function GraterArmer() {
 //this is wear the stats and abiletys for the barberian sub-class for fighter.
 //thay cant ware armer but can wild a shild
 function barberian() {
-    DamigeResistens = 2;
     graterresilions();
-    stats_uppduate();
 }
 function graterresilions() {
+    DamigeResistens = 2;
     Other_Bonuses = Math.floor(ConstitutionMod / 4);
     Armer_Class = 10 + (DexterityMod + Other_Bonuses);
     CanWearArmor = false;
@@ -634,7 +639,6 @@ function graterresilions() {
 //combat system.
 
 // enemys
-let EHP, EMAXHP, EAC, EStrength, EDexterity, EConstitution, EIntelligence, EWisdom, ECharisma, EStrengthMod, EDexterityMod, EConstitutionMod, EIntelligenceMod, EWisdomMod, ECharismaMod, Edamige, Enemy_type, Enemy_Nuber;
-let BEHP;
+
 
 // the end of the enemy script part

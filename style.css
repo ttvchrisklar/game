@@ -1,6 +1,6 @@
 .button {
     display: inline-block;
-    padding: 15px 15px;
+    padding: 10px 10px;
     font-size: 12px;
     cursor: pointer;
     text-align: center;
@@ -11,6 +11,7 @@
     border: none;
     border-radius: 15px;
     box-shadow: 0 9px #999;
+    width: auto;
 }
 
 .button:hover {
@@ -31,11 +32,13 @@
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: black;
+    background-color: rgba(90, 88, 88, 0.222);
     min-width: 30px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    padding: 0px 0px;
+    padding: 10px;
     z-index: 1;
+    border-radius: 20px;
+    width: auto;
+    text-align: center;
 }
 
 .dropdown:hover .dropdown-content {
