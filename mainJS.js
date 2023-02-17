@@ -12,7 +12,18 @@ const Stats = document.getElementById("stats"),
     B4 = document.getElementById("B4"),
     B5 = document.getElementById("B5"),
     B6 = document.getElementById("B6"),
-    death = '<p style="color: red; font-size: 200px;text-align: center;">you died! <br> ;(<br> <button class="button" onclick="setscreen()">get revived</button></p>';
+    T_HP = document.getElementById("HP"),
+    T_AC = document.getElementById("AC"),
+    T_Strength = document.getElementById("Strength"),
+    T_Dexterity = document.getElementById("Dexterity"),
+    T_Constitution = document.getElementById("Constitution"),
+    T_Wisdom = document.getElementById("Wisdom"),
+    T_Intelligence = document.getElementById("Intelligence"),
+    T_Charisma = document.getElementById("Charisma"),
+    T_XP = document.getElementById("XP"),
+    T_Level = document.getElementById("Level"),
+    T_Spellslots = document.getElementById("spellslots");
+death = '<p style="color: red; font-size: 200px;text-align: center;">you died! <br> ;(<br> <button class="button" onclick="setscreen()">get revived</button></p>';
 let XP_Requirements,
     Other_Bonuses,
     MaxHP,
@@ -62,7 +73,7 @@ let XP_Requirements,
     CanWealdShild,
     damige_type,
     turn;
-(Class = "undefined"), (subclass = "undefined"), (combat = false);
+var player;
 //into cean
 function introdone() {
     document.getElementById("intro").style.display = "none";
@@ -77,28 +88,7 @@ function setscreen() {
     resting();
 }
 //if the stats arnt seet
-function prestart() {
-    Strength = 2;
-    Dexterity = 2;
-    Constitution = 2;
-    Intelligence = 2;
-    Wisdom = 2;
-    Charisma = 2;
-    HP = 10; //HP is also calcalated difrently for ech class for Fighter its, hp=conMOD+(Level*12) and for Wizard, hp=conmod+(Level*8).
-    MaxHP = HP;
-    Armer_Class = 10; // Armer Class also konown as AC, AC is calculatecd diffrent its, AC=(10 + DexMOD + other boneses).
-    Level = 1;
-    XP = 0;
-    Gold = 0;
-    XP_Requirements = 2000;
-    Skill_points = 0; //Skill_points = over Level.
-    StrengthMod = 1;
-    DexterityMod = 1;
-    ConstitutionMod = 1;
-    IntelligenceMod = 1;
-    WisdomMod = 1;
-    CharismaMod = 1;
-}
+function prestart() {}
 //this is whar i do my button selections and other uppdate requests.
 function selecter(presdButton) {
     console.log(presdButton.id);
@@ -214,7 +204,7 @@ function selecter(presdButton) {
 
         case "B24":
             XP += XP_Requirements;
-            stats_uppduate();
+            stat_update();
             LevelUp();
             break;
 
@@ -259,13 +249,14 @@ function selecter(presdButton) {
             break;
 
         case "classsub1":
-            if (Class == "undefined") {
+            if (Class == undefined) {
                 Wizard_select();
                 return;
             }
             if (Class == "Wizard") {
                 document.getElementById("P1.5").innerText = " Ice";
-                subclass = "Ice_Wizard";
+                player = new Player("Ice_Wizard");
+                player.stat_update();
                 buttonremover();
                 return;
             }
@@ -279,7 +270,7 @@ function selecter(presdButton) {
             break;
 
         case "classsub2":
-            if (Class == "undefined") {
+            if (Class == undefined) {
                 Fighter_select();
                 return;
             }
@@ -317,6 +308,7 @@ function selecter(presdButton) {
             console.log("not a diffind button", presdButton.id);
     }
 }
+
 function buttonremover() {
     class_select1.attributes.getNamedItem("style").value = "display: none;";
 }
@@ -330,11 +322,8 @@ function Wizard_select() {
     document.getElementById("classsub1").innerText = "Ice Wizard";
     document.getElementById("classsub2").innerText = "Fire Wizard";
     document.getElementById("classsub3").innerText = "Necromanser";
-    prestart();
-    Wizard_stats();
-    stats_uppduate();
+    document.getElementById("spellslotsshow").style.display = "";
     HI1.attributes.getNamedItem("style").value = "";
-    document.getElementById("spellslots").innerText = "spellslots: " + SpellSlots + "/" + max_spellslots + ".";
     Class = "Wizard";
     document.getElementById("stats").style.display = "";
     document.getElementById("headerbuttons").style.display = "";
@@ -350,33 +339,11 @@ function Fighter_select() {
     document.getElementById("classsub3").innerText = "Archerer";
     prestart();
     Fighter_stats();
-    stats_uppduate();
+    stat_update();
     HI1.attributes.getNamedItem("style").value = "";
     Class = "Fighter";
     document.getElementById("stats").style.display = "";
     document.getElementById("headerbuttons").style.display = "";
-}
-
-function stats_uppduate() {
-    switch (subclass) {
-        case "Tank":
-            tank();
-            break;
-        case "barberian":
-            barberian();
-            break;
-    }
-    document.getElementById("HP").innerText = "Max HP: " + MaxHP + " || " + "Curent HP: " + HP + ".";
-    document.getElementById("AC").innerText = "AC: " + Armer_Class + ".";
-    document.getElementById("Strength").innerText = "Strength: " + Strength + " || " + "Strength Mod: " + StrengthMod + ".";
-    document.getElementById("Dexterity").innerText = "Dexterity: " + Dexterity + " || " + "Dexterity Mod: " + DexterityMod + ".";
-    document.getElementById("Constitution").innerText = "Constitution: " + Constitution + " || " + "Constitution Mod: " + ConstitutionMod + ".";
-    document.getElementById("Wisdom").innerText = "Wisdom: " + Wisdom + " || " + "Wisdom Mod: " + WisdomMod + ".";
-    document.getElementById("Intelligence").innerText = "Intelligence: " + Intelligence + " || " + "Intelligence Mod: " + IntelligenceMod + ".";
-    document.getElementById("Charisma").innerText = "Charisma: " + Charisma + " || " + "Charisma Mod: " + CharismaMod + ".";
-    document.getElementById("XP").innerText = "XP: " + XP + " / " + XP_Requirements + ".";
-    document.getElementById("Level").innerText = "Level: " + Level + " / 600" + " || " + "+" + Skill_points + ".";
-    document.getElementById("spellslots").innerText = "spellslots: " + SpellSlots + "/" + max_spellslots + ".";
 }
 
 function LevelUp() {
@@ -393,44 +360,44 @@ function LevelUp() {
         }
         MaxHP = HP;
     }
-    stats_uppduate();
+    stat_update();
 }
 function level_up_request() {
     if (leveluprequest == 1) {
-        if (Skill_points > 0) {
+        if (player.Skill_points > 0) {
             B1.innerText = "Strength";
             B2.innerText = "Dexterity";
             B3.innerText = "Constitution";
             B4.innerText = "Wisdom";
             B5.innerText = "Intelligence";
             B6.innerText = "Charisma";
-            if (Strength == 100) {
+            if (player.Strength == 100) {
                 B1.innerText = "Strength is maxed";
             }
-            if (Dexterity == 100) {
+            if (player.Dexterity == 100) {
                 B2.innerText = "Dexterity is maxed";
             }
-            if (Constitution == 100) {
+            if (player.Constitution == 100) {
                 B3.innerText = "Constitution is maxed";
             }
-            if (Wisdom == 100) {
+            if (player.Wisdom == 100) {
                 B4.innerText = "Wisdom is maxed";
             }
-            if (Intelligence == 100) {
+            if (player.Intelligence == 100) {
                 B5.innerText = "Intelligence is maxed";
             }
-            if (Charisma == 100) {
+            if (player.Charisma == 100) {
                 B6.innerText = "Charisma is maxed";
             }
             Level_Availability = 1;
         } else {
-            alert("can not Level UP you need: " + (XP_Requirements - XP) + " XP to Level UP to Level " + (Level + 1) + ".");
+            alert("can not Level UP you need: " + (player.XP_Requirements - player.XP) + " XP to Level UP to Level " + (player.Level + 1) + ".");
         }
     }
 }
 function Skill_points_main() {
-    if (Skill_points >= 1) {
-        Skill_points -= 1;
+    if (player.Skill_points >= 1) {
+        player.Skill_points -= 1;
     } else {
         B1.innerText = "tester 1";
         B2.innerText = "tester 2";
@@ -440,7 +407,7 @@ function Skill_points_main() {
         B6.innerText = "tester 6";
         Level_Availability = 0;
     }
-    stats_uppduate();
+    stat_update();
 }
 
 function Strength_increase() {
@@ -451,7 +418,7 @@ function Strength_increase() {
         StrengthMod += 1;
         Sub_SthrengthMod = 0;
     }
-    stats_uppduate();
+    stat_update();
 }
 function Dexterity_increase() {
     Dexterity += 1;
@@ -461,7 +428,7 @@ function Dexterity_increase() {
         DexterityMod += 1;
         Sub_DexterityMod = 0;
     }
-    stats_uppduate();
+    stat_update();
 }
 function Constitution_increase() {
     Constitution += 1;
@@ -471,7 +438,7 @@ function Constitution_increase() {
         ConstitutionMod += 1;
         Sub_ConstitutionMod = 0;
     }
-    stats_uppduate();
+    stat_update();
 }
 function Wisdom_increase() {
     Wisdom += 1;
@@ -481,7 +448,7 @@ function Wisdom_increase() {
         WisdomMod += 1;
         Sub_WisdomMod = 0;
     }
-    stats_uppduate();
+    stat_update();
 }
 function Intelligence_increase() {
     Intelligence += 1;
@@ -491,7 +458,7 @@ function Intelligence_increase() {
         IntelligenceMod += 1;
         Sub_IntelligenceMod = 0;
     }
-    stats_uppduate();
+    stat_update();
 }
 function Charisma_increase() {
     Charisma += 1;
@@ -501,7 +468,7 @@ function Charisma_increase() {
         CharismaMod += 1;
         Sub_CharismaMod = 0;
     }
-    stats_uppduate();
+    stat_update();
 }
 
 function resting() {
@@ -514,7 +481,7 @@ function resting() {
             HP = MaxHP;
         }
     }
-    stats_uppduate();
+    stat_update();
 }
 
 function Damige_Taken(Edamige) {
@@ -538,39 +505,9 @@ function Damige_Taken(Edamige) {
         document.getElementById("H1").style = "display: none;";
         document.getElementById("div1").innerHTML = `${death}`;
     }
-    stats_uppduate();
+    stat_update();
 }
 //main Wizard class this is wear ewrything is going to be colectet for the sub-class and other starts.
-
-function Wizard_stats() {
-    Strength = 8;
-    Dexterity = 8;
-    Constitution = 8;
-    Intelligence = 12;
-    Wisdom = 12;
-    Charisma = 12;
-    StrengthMod = 4;
-    DexterityMod = 4;
-    ConstitutionMod = 4;
-    IntelligenceMod = 6;
-    WisdomMod = 6;
-    CharismaMod = 6;
-    Other_Bonuses = 0;
-    HP = ConstitutionMod + Level * 8;
-    MaxHP = ConstitutionMod + Level * 8;
-    Armer_Class = 10 + (DexterityMod + Other_Bonuses);
-    Level = 1;
-    XP = 0;
-    Gold = 0;
-    XP_Requirements = 2000;
-    Skill_points = 0;
-    SpellSlots = 10;
-    max_spellslots = SpellSlots;
-    document.getElementById("spellslotsshow").style.display = "";
-    document.getElementById("spellslots").innerText = SpellSlots;
-    DamigeResistens = 0;
-    CanWealdShild = false;
-}
 
 //this is whear i will maike the spells and all the math for the ice Wizard.
 
@@ -580,54 +517,8 @@ function Wizard_stats() {
 
 //main fighter class this is wear ewrything is going to be colectet for the sub-class and other starts.
 
-function Fighter_stats() {
-    Strength = 12;
-    Dexterity = 12;
-    Constitution = 12;
-    Intelligence = 8;
-    Wisdom = 8;
-    Charisma = 8;
-    StrengthMod = 6;
-    DexterityMod = 6;
-    ConstitutionMod = 6;
-    IntelligenceMod = 4;
-    WisdomMod = 4;
-    CharismaMod = 4;
-    Other_Bonuses = 0;
-    HP = ConstitutionMod + Level * 12;
-    MaxHP = ConstitutionMod + Level * 12;
-    Armer_Class = 10 + (DexterityMod + Other_Bonuses);
-    Level = 1;
-    XP = 0;
-    Gold = 0;
-    XP_Requirements = 2000;
-    Skill_points = 0;
-    DamigeResistens = 0;
-}
-
 //this is wear the stats and abiletys for the Tank sub-class for fighter.
-function tank() {
-    GraterArmer();
-}
-function GraterArmer() {
-    Other_Bonuses = Math.floor(ConstitutionMod / 2);
-    Armer_Class = 10 + (DexterityMod + Other_Bonuses);
-}
-// end of Tank sub class.
 
-//this is wear the stats and abiletys for the barberian sub-class for fighter.
-//thay cant ware armer but can wild a shild
-function barberian() {
-    graterresilions();
-}
-function graterresilions() {
-    DamigeResistens = 2;
-    Other_Bonuses = Math.floor(ConstitutionMod / 4);
-    Armer_Class = 10 + (DexterityMod + Other_Bonuses);
-    CanWearArmor = false;
-    CanWealdShild = true;
-    console.log(Other_Bonuses, Armer_Class);
-}
 // end of barberian sub class.
 
 //this is wear the stats and abiletys for the archerer sub-class for fighter.
@@ -639,3 +530,194 @@ function graterresilions() {
 // enemys
 
 // the end of the enemy script part
+class Player {
+    subclass;
+    Strength;
+    Dexterity;
+    Constitution;
+    Intelligence;
+    Wisdom;
+    Charisma;
+    StrengthMod;
+    DexterityMod;
+    ConstitutionMod;
+    IntelligenceMod;
+    WisdomMod;
+    CharismaMod;
+    Other_Bonuses;
+    HP; //HP is also calcalated difrently for ech class for Fighter its, hp=conMOD+(Level*12) and for Wizard, hp=conmod+(Level*8).
+    MaxHP = this.HP;
+    Armer_Class = 10 + this.Other_Bonuses; // Armer Class also konown as AC, AC is calculatecd diffrent its, AC=(10 + DexMOD + other boneses).
+    Level = 1;
+    XP = 0;
+    Gold = 0;
+    XP_Requirements = 2000;
+    Skill_points = 0; //Skill_points = over Level.
+    SpellSlots;
+    max_spellslots;
+    CanWearArmor;
+    CanWealdShild;
+    CanWealdWands;
+
+    constructor(subclass) {
+        this.subclass = subclass;
+        switch (subclass) {
+            case "Ice_Wizard":
+                this.Strength = 8;
+                this.Dexterity = 8;
+                this.Constitution = 8;
+                this.Intelligence = 12;
+                this.Wisdom = 12;
+                this.Charisma = 12;
+                this.StrengthMod = 4;
+                this.DexterityMod = 4;
+                this.ConstitutionMod = 4;
+                this.IntelligenceMod = 6;
+                this.WisdomMod = 6;
+                this.CharismaMod = 6;
+                this.Other_Bonuses = 0;
+                this.HP = this.ConstitutionMod + this.Level * 8;
+                this.MaxHP = this.HP;
+                this.Armer_Class = 10 + (this.DexterityMod + this.Other_Bonuses);
+                this.SpellSlots = 10;
+                this.max_spellslots = this.SpellSlots;
+                this.CanWealdShild = false;
+                this.CanWealdWands = true;
+                this.CanWearArmor = false;
+                break;
+
+            case "Fire_Wizard":
+                this.Strength = 8;
+                this.Dexterity = 8;
+                this.Constitution = 8;
+                this.Intelligence = 12;
+                this.Wisdom = 12;
+                this.Charisma = 12;
+                this.StrengthMod = 4;
+                this.DexterityMod = 4;
+                this.ConstitutionMod = 4;
+                this.IntelligenceMod = 6;
+                this.WisdomMod = 6;
+                this.CharismaMod = 6;
+                this.Other_Bonuses = 0;
+                this.HP = this.ConstitutionMod + this.Level * 8;
+                this.MaxHP = this.HP;
+                this.Armer_Class = 10 + (this.DexterityMod + this.Other_Bonuses);
+                this.SpellSlots = 10;
+                this.max_spellslots = this.SpellSlots;
+                this.CanWealdShild = false;
+                this.CanWealdWands = true;
+                this.CanWearArmor = false;
+                break;
+
+            case "Necromanser":
+                this.Strength = 8;
+                this.Dexterity = 8;
+                this.Constitution = 8;
+                this.Intelligence = 12;
+                this.Wisdom = 12;
+                this.Charisma = 12;
+                this.StrengthMod = 4;
+                this.DexterityMod = 4;
+                this.ConstitutionMod = 4;
+                this.IntelligenceMod = 6;
+                this.WisdomMod = 6;
+                this.CharismaMod = 6;
+                this.Other_Bonuses = 0;
+                this.HP = this.ConstitutionMod + this.Level * 8;
+                this.MaxHP = this.HP;
+                this.Armer_Class = 10 + (this.DexterityMod + this.Other_Bonuses);
+                this.SpellSlots = 10;
+                this.max_spellslots = this.SpellSlots;
+                this.CanWealdShild = false;
+                this.CanWealdWands = true;
+                this.CanWearArmor = false;
+                break;
+
+            case "Tank":
+                this.Strength = 12;
+                this.Dexterity = 12;
+                this.Constitution = 12;
+                this.Intelligence = 8;
+                this.Wisdom = 8;
+                this.Charisma = 8;
+                this.StrengthMod = 6;
+                this.DexterityMod = 6;
+                this.ConstitutionMod = 6;
+                this.IntelligenceMod = 4;
+                this.WisdomMod = 4;
+                this.CharismaMod = 4;
+                this.Other_Bonuses = Math.floor(this.ConstitutionMod / 2);
+                this.HP = this.ConstitutionMod + this.Level * 12;
+                this.MaxHP = this.HP;
+                this.Armer_Class = 10 + (this.DexterityMod + this.Other_Bonuses);
+                this.DamigeResistens = 0;
+                this.CanWealdWands = false;
+                break;
+
+            case "barberian":
+                this.Strength = 12;
+                this.Dexterity = 12;
+                this.Constitution = 12;
+                this.Intelligence = 8;
+                this.Wisdom = 8;
+                this.Charisma = 8;
+                this.StrengthMod = 6;
+                this.DexterityMod = 6;
+                this.ConstitutionMod = 6;
+                this.IntelligenceMod = 4;
+                this.WisdomMod = 4;
+                this.CharismaMod = 4;
+                this.Other_Bonuses = Math.floor(this.ConstitutionMod / 4);
+                this.HP = this.ConstitutionMod + this.Level * 12;
+                this.MaxHP = this.HP;
+                this.Armer_Class = 10 + (this.DexterityMod + this.Other_Bonuses);
+                this.DamigeResistens = 2;
+                this.CanWearArmor = false;
+                this.CanWealdShild = true;
+                this.CanWealdWands = false;
+                break;
+
+            case "archerer":
+                this.Strength = 12;
+                this.Dexterity = 12;
+                this.Constitution = 12;
+                this.Intelligence = 8;
+                this.Wisdom = 8;
+                this.Charisma = 8;
+                this.StrengthMod = 6;
+                this.DexterityMod = 6;
+                this.ConstitutionMod = 6;
+                this.IntelligenceMod = 4;
+                this.WisdomMod = 4;
+                this.CharismaMod = 4;
+                this.Other_Bonuses = 0;
+                this.HP = this.ConstitutionMod + this.Level * 12;
+                this.MaxHP = this.HP;
+                this.Armer_Class = 10 + (this.DexterityMod + this.Other_Bonuses);
+                this.DamigeResistens = 0;
+                this.CanWealdWands = false;
+                break;
+
+            default:
+                console.log("subclass not selected");
+        }
+    }
+    stat_update() {
+        T_HP.innerText = "Max HP: " + player.MaxHP + " || " + "Curent HP: " + player.HP + ".";
+        T_AC.innerText = "AC: " + player.Armer_Class + ".";
+        T_Strength.innerText = "Strength: " + player.Strength + " || " + "Strength Mod: " + player.StrengthMod + ".";
+        T_Dexterity.innerText = "Dexterity: " + player.Dexterity + " || " + "Dexterity Mod: " + player.DexterityMod + ".";
+        T_Constitution.innerText = "Constitution: " + player.Constitution + " || " + "Constitution Mod: " + player.ConstitutionMod + ".";
+        T_Wisdom.innerText = "Wisdom: " + player.Wisdom + " || " + "Wisdom Mod: " + player.WisdomMod + ".";
+        T_Intelligence.innerText = "Intelligence: " + player.Intelligence + " || " + "Intelligence Mod: " + player.IntelligenceMod + ".";
+        T_Charisma.innerText = "Charisma: " + player.Charisma + " || " + "Charisma Mod: " + player.CharismaMod + ".";
+        T_XP.innerText = "XP: " + player.XP + " / " + player.XP_Requirements + ".";
+        T_Level.innerText = "Level: " + player.Level + " / 600" + " || " + "+" + player.Skill_points + ".";
+        if ((Class = "Wizard")) {
+            T_Spellslots.innerText = "spellslots: " + player.SpellSlots + "/" + player.max_spellslots + ".";
+        }
+        console.log(Class);
+        console.log(player.subclass);
+    }
+}
