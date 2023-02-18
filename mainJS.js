@@ -22,7 +22,8 @@ const Stats = document.getElementById("stats"),
     T_Charisma = document.getElementById("Charisma"),
     T_XP = document.getElementById("XP"),
     T_Level = document.getElementById("Level"),
-    T_Spellslots = document.getElementById("spellslots");
+    T_Spellslots = document.getElementById("spellslots"),
+    spellslotsshow = document.getElementById("spellslotsshow");
 death = '<p style="color: red; font-size: 200px;text-align: center;">you died! <br> ;(<br> <button class="button" onclick="setscreen()">get revived</button></p>';
 let XP_Requirements,
     Other_Bonuses,
@@ -94,56 +95,56 @@ function selecter(presdButton) {
     console.log(presdButton.id);
     switch (presdButton.id) {
         case "LUR":
-            leveluprequest = 1;
-            level_up_request();
+            player.leveluprequest = 1;
+            player.level_up_request(player.leveluprequest);
             break;
 
         case "B1":
-            if (Level_Availability == 1) {
-                if (Strength != 100) {
-                    Strength_increase();
+            if (player.Level_Availability == 1) {
+                if (player.Strength != 100) {
+                    player.Strength_increase();
                 }
             }
             break;
 
         case "B2":
-            if (Level_Availability == 1) {
-                if (Dexterity != 100) {
-                    Dexterity_increase();
+            if (player.Level_Availability == 1) {
+                if (player.Dexterity != 100) {
+                    player.Dexterity_increase();
                 }
             }
             break;
 
         case "B3":
-            if (Level_Availability == 1) {
-                if (Constitution != 100) {
+            if (player.Level_Availability == 1) {
+                if (player.Constitution != 100) {
                 } else {
-                    Constitution_increase();
+                    player.Constitution_increase();
                 }
             }
             break;
 
         case "B4":
-            if (Level_Availability == 1) {
-                if (Wisdom != 100) {
-                    Wisdom_increase();
+            if (player.Level_Availability == 1) {
+                if (player.Wisdom != 100) {
+                    player.Wisdom_increase();
                 }
             }
             break;
 
         case "B5":
-            if (Level_Availability == 1) {
-                if (Intelligence != 100) {
-                    Intelligence_increase();
+            if (player.Level_Availability == 1) {
+                if (player.Intelligence != 100) {
+                    player.Intelligence_increase();
                 }
             }
 
             break;
 
         case "B6":
-            if (Level_Availability == 1) {
-                if (Charisma != 100) {
-                    Charisma_increase();
+            if (player.Level_Availability == 1) {
+                if (player.Charisma != 100) {
+                    player.Charisma_increase();
                 }
             }
             break;
@@ -203,9 +204,8 @@ function selecter(presdButton) {
             break;
 
         case "B24":
-            XP += XP_Requirements;
-            stat_update();
-            LevelUp();
+            player.XP += player.XP_Requirements;
+            player.LevelUp();
             break;
 
         case "B25":
@@ -218,7 +218,7 @@ function selecter(presdButton) {
             break;
 
         case "B28":
-            Damige_Taken(5);
+            player.Damige_Taken(5);
             break;
 
         case "B29":
@@ -262,8 +262,8 @@ function selecter(presdButton) {
             }
             if (Class == "Fighter") {
                 document.getElementById("P1.5").innerText = " Tank";
-                subclass = "Tank";
-                tank();
+                player = new Player("Tank");
+                player.stat_update();
                 buttonremover();
                 return;
             }
@@ -276,14 +276,15 @@ function selecter(presdButton) {
             }
             if (Class == "Wizard") {
                 document.getElementById("P1.5").innerText = " Fire";
-                subclass = "Fire_Wizard";
+                player = new Player("Fire_Wizard");
+                player.stat_update();
                 buttonremover();
                 return;
             }
             if (Class == "Fighter") {
                 document.getElementById("P1.5").innerText = " Barberian";
-                subclass = "Barberian";
-                barberian();
+                player = new Player("Barberian");
+                player.stat_update();
                 buttonremover();
                 return;
             }
@@ -292,13 +293,15 @@ function selecter(presdButton) {
         case "classsub3":
             if (Class == "Wizard") {
                 document.getElementById("P1.5").innerText = " Necromanser";
-                subclass = "Necromanser";
+                player = new Player("Necromanser");
+                player.stat_update();
                 buttonremover();
                 return;
             }
             if (Class == "Fighter") {
-                document.getElementById("P1.5").innerText = " Archerer";
-                subclass = "Archerer";
+                document.getElementById("P1.5").innerText = " Weapons_Master";
+                player = new Player("Weapons_Master");
+                player.stat_update();
                 buttonremover();
                 return;
             }
@@ -319,11 +322,11 @@ function Wizard_select() {
     document.getElementById("P1").innerText = "Wizard";
     document.getElementById("P1.25").innerText = " || ";
     preclasssub3.attributes.getNamedItem("style").value = "";
-    document.getElementById("classsub1").innerText = "Ice Wizard";
-    document.getElementById("classsub2").innerText = "Fire Wizard";
-    document.getElementById("classsub3").innerText = "Necromanser";
-    document.getElementById("spellslotsshow").style.display = "";
-    HI1.attributes.getNamedItem("style").value = "";
+    classsub1.innerText = "Ice Wizard";
+    classsub2.innerText = "Fire Wizard";
+    classsub3.innerText = "Necromanser";
+    spellslotsshow.style.display = "";
+    HI1.style.display = "";
     Class = "Wizard";
     document.getElementById("stats").style.display = "";
     document.getElementById("headerbuttons").style.display = "";
@@ -337,194 +340,11 @@ function Fighter_select() {
     document.getElementById("classsub1").innerText = "Tank";
     document.getElementById("classsub2").innerText = "Barberian";
     document.getElementById("classsub3").innerText = "Archerer";
-    prestart();
-    Fighter_stats();
-    stat_update();
     HI1.attributes.getNamedItem("style").value = "";
     Class = "Fighter";
     document.getElementById("stats").style.display = "";
     document.getElementById("headerbuttons").style.display = "";
 }
-
-function LevelUp() {
-    if (XP >= XP_Requirements) {
-        XP -= XP_Requirements;
-        Skill_points += 1;
-        Level += 1;
-        XP_Requirements = 1000 * (Level + 1);
-        if (Class == "Wizard") {
-            HP = ConstitutionMod + Level * 8;
-        }
-        if (Class == "Fighter") {
-            HP = ConstitutionMod + Level * 12;
-        }
-        MaxHP = HP;
-    }
-    stat_update();
-}
-function level_up_request() {
-    if (leveluprequest == 1) {
-        if (player.Skill_points > 0) {
-            B1.innerText = "Strength";
-            B2.innerText = "Dexterity";
-            B3.innerText = "Constitution";
-            B4.innerText = "Wisdom";
-            B5.innerText = "Intelligence";
-            B6.innerText = "Charisma";
-            if (player.Strength == 100) {
-                B1.innerText = "Strength is maxed";
-            }
-            if (player.Dexterity == 100) {
-                B2.innerText = "Dexterity is maxed";
-            }
-            if (player.Constitution == 100) {
-                B3.innerText = "Constitution is maxed";
-            }
-            if (player.Wisdom == 100) {
-                B4.innerText = "Wisdom is maxed";
-            }
-            if (player.Intelligence == 100) {
-                B5.innerText = "Intelligence is maxed";
-            }
-            if (player.Charisma == 100) {
-                B6.innerText = "Charisma is maxed";
-            }
-            Level_Availability = 1;
-        } else {
-            alert("can not Level UP you need: " + (player.XP_Requirements - player.XP) + " XP to Level UP to Level " + (player.Level + 1) + ".");
-        }
-    }
-}
-function Skill_points_main() {
-    if (player.Skill_points >= 1) {
-        player.Skill_points -= 1;
-    } else {
-        B1.innerText = "tester 1";
-        B2.innerText = "tester 2";
-        B3.innerText = "tester 3";
-        B4.innerText = "tester 4";
-        B5.innerText = "tester 5";
-        B6.innerText = "tester 6";
-        Level_Availability = 0;
-    }
-    stat_update();
-}
-
-function Strength_increase() {
-    Strength += 1;
-    Sub_SthrengthMod += 1;
-    Skill_points_main();
-    if (Sub_SthrengthMod == 2) {
-        StrengthMod += 1;
-        Sub_SthrengthMod = 0;
-    }
-    stat_update();
-}
-function Dexterity_increase() {
-    Dexterity += 1;
-    Sub_DexterityMod += 1;
-    Skill_points_main();
-    if (Sub_DexterityMod == 2) {
-        DexterityMod += 1;
-        Sub_DexterityMod = 0;
-    }
-    stat_update();
-}
-function Constitution_increase() {
-    Constitution += 1;
-    Sub_ConstitutionMod += 1;
-    Skill_points_main();
-    if (Sub_ConstitutionMod == 2) {
-        ConstitutionMod += 1;
-        Sub_ConstitutionMod = 0;
-    }
-    stat_update();
-}
-function Wisdom_increase() {
-    Wisdom += 1;
-    Sub_WisdomMod += 1;
-    Skill_points_main();
-    if (Sub_WisdomMod == 2) {
-        WisdomMod += 1;
-        Sub_WisdomMod = 0;
-    }
-    stat_update();
-}
-function Intelligence_increase() {
-    Intelligence += 1;
-    Sub_IntelligenceMod += 1;
-    Skill_points_main();
-    if (Sub_IntelligenceMod == 2) {
-        IntelligenceMod += 1;
-        Sub_IntelligenceMod = 0;
-    }
-    stat_update();
-}
-function Charisma_increase() {
-    Charisma += 1;
-    Sub_CharismaMod += 1;
-    Skill_points_main();
-    if (Sub_CharismaMod == 1) {
-        CharismaMod += 1;
-        Sub_CharismaMod = 0;
-    }
-    stat_update();
-}
-
-function resting() {
-    if (combat == false) {
-        if (Class == "Wizard") {
-            HP = MaxHP;
-            SpellSlots = max_spellslots;
-        }
-        if (Class == "Fighter") {
-            HP = MaxHP;
-        }
-    }
-    stat_update();
-}
-
-function Damige_Taken(Edamige) {
-    if (DamigeResistens == 0) {
-        HP -= Edamige;
-        console.log(HP, Edamige);
-    }
-    if (DamigeResistens < 0) {
-        HP += Math.floor(Edamige * DamigeResistens);
-        console.log(Math.floor(Edamige * DamigeResistens));
-    }
-    if (DamigeResistens > 0) {
-        HP -= Math.floor(Edamige / DamigeResistens);
-        console.log(Math.floor(Edamige / DamigeResistens));
-    }
-    if (HP <= 0) {
-        HP = 0;
-        document.getElementById("headerbuttons").style = "display: none;";
-        document.getElementById("stats").style = "display: none;";
-        document.getElementById("P0").style = "display: none;";
-        document.getElementById("H1").style = "display: none;";
-        document.getElementById("div1").innerHTML = `${death}`;
-    }
-    stat_update();
-}
-//main Wizard class this is wear ewrything is going to be colectet for the sub-class and other starts.
-
-//this is whear i will maike the spells and all the math for the ice Wizard.
-
-//this is whear i will maike the spells and all the math for the Fire Wizard.
-
-//this is whear i will maike the spells and all the math for the necromanser Wizard.
-
-//main fighter class this is wear ewrything is going to be colectet for the sub-class and other starts.
-
-//this is wear the stats and abiletys for the Tank sub-class for fighter.
-
-// end of barberian sub class.
-
-//this is wear the stats and abiletys for the archerer sub-class for fighter.
-
-// end of archerer sub class.
-
 //combat system.
 
 // enemys
@@ -558,7 +378,15 @@ class Player {
     CanWearArmor;
     CanWealdShild;
     CanWealdWands;
-
+    CanWealdroedes = true;
+    Sub_SthrengthMod = 0;
+    Sub_DexterityMod = 0;
+    Sub_ConstitutionMod = 0;
+    Sub_IntelligenceMod = 0;
+    Sub_WisdomMod = 0;
+    Sub_CharismaMod = 0;
+    Level_Availability = 0;
+    leveluprequest = 0;
     constructor(subclass) {
         this.subclass = subclass;
         switch (subclass) {
@@ -655,7 +483,7 @@ class Player {
                 this.CanWealdWands = false;
                 break;
 
-            case "barberian":
+            case "Barberian":
                 this.Strength = 12;
                 this.Dexterity = 12;
                 this.Constitution = 12;
@@ -678,7 +506,7 @@ class Player {
                 this.CanWealdWands = false;
                 break;
 
-            case "archerer":
+            case "Weapons_Master":
                 this.Strength = 12;
                 this.Dexterity = 12;
                 this.Constitution = 12;
@@ -717,7 +545,170 @@ class Player {
         if ((Class = "Wizard")) {
             T_Spellslots.innerText = "spellslots: " + player.SpellSlots + "/" + player.max_spellslots + ".";
         }
-        console.log(Class);
-        console.log(player.subclass);
+        console.log("stat_update");
+    }
+    level_up_request(leveluprequest) {
+        if (leveluprequest == 1) {
+            if (player.Skill_points > 0) {
+                B1.innerText = "Strength";
+                B2.innerText = "Dexterity";
+                B3.innerText = "Constitution";
+                B4.innerText = "Wisdom";
+                B5.innerText = "Intelligence";
+                B6.innerText = "Charisma";
+                if (player.Strength == 100) {
+                    B1.innerText = "Strength is maxed";
+                }
+                if (player.Dexterity == 100) {
+                    B2.innerText = "Dexterity is maxed";
+                }
+                if (player.Constitution == 100) {
+                    B3.innerText = "Constitution is maxed";
+                }
+                if (player.Wisdom == 100) {
+                    B4.innerText = "Wisdom is maxed";
+                }
+                if (player.Intelligence == 100) {
+                    B5.innerText = "Intelligence is maxed";
+                }
+                if (player.Charisma == 100) {
+                    B6.innerText = "Charisma is maxed";
+                }
+                player.Level_Availability = 1;
+            } else {
+                alert("can not Level UP you need: " + (player.XP_Requirements - player.XP) + " XP to Level UP to Level " + (player.Level + 1) + ".");
+            }
+        }
+        console.log("level_up_request");
+    }
+    Skill_points_main() {
+        if (player.Skill_points >= 1) {
+            player.Skill_points -= 1;
+        } else {
+            B1.innerText = "tester 1";
+            B2.innerText = "tester 2";
+            B3.innerText = "tester 3";
+            B4.innerText = "tester 4";
+            B5.innerText = "tester 5";
+            B6.innerText = "tester 6";
+            player.Level_Availability = 0;
+        }
+        player.stat_update();
+        console.log("Skill_points_main");
+    }
+    Strength_increase() {
+        player.Strength += 1;
+        player.Sub_SthrengthMod += 1;
+        if (player.Sub_SthrengthMod == 2) {
+            player.StrengthMod += 1;
+            player.Sub_SthrengthMod = 0;
+        }
+        player.Skill_points_main();
+        console.log("Strength_increase");
+    }
+    Dexterity_increase() {
+        player.Dexterity += 1;
+        player.Sub_DexterityMod += 1;
+        if (player.Sub_DexterityMod == 2) {
+            player.DexterityMod += 1;
+            player.Sub_DexterityMod = 0;
+        }
+        player.Skill_points_main();
+        console.log("Dexterity_increase");
+    }
+    Constitution_increase() {
+        player.Constitution += 1;
+        player.Sub_ConstitutionMod += 1;
+        if (player.Sub_ConstitutionMod == 2) {
+            player.ConstitutionMod += 1;
+            player.Sub_ConstitutionMod = 0;
+        }
+        player.Skill_points_main();
+        console.log("Constitution_increase");
+    }
+    Wisdom_increase() {
+        player.Wisdom += 1;
+        player.Sub_WisdomMod += 1;
+        if (player.Sub_WisdomMod == 2) {
+            player.WisdomMod += 1;
+            player.Sub_WisdomMod = 0;
+        }
+        player.Skill_points_main();
+        console.log("Wisdom_increase");
+    }
+    Intelligence_increase() {
+        player.Intelligence += 1;
+        player.Sub_IntelligenceMod += 1;
+        if (player.Sub_IntelligenceMod == 2) {
+            player.IntelligenceMod += 1;
+            player.Sub_IntelligenceMod = 0;
+        }
+        player.Skill_points_main();
+        console.log("Intelligence_increase");
+    }
+    Charisma_increase() {
+        player.Charisma += 1;
+        player.Sub_CharismaMod += 1;
+        if (player.Sub_CharismaMod == 1) {
+            player.CharismaMod += 1;
+            player.Sub_CharismaMod = 0;
+        }
+        player.Skill_points_main();
+        console.log("Charisma_increase");
+    }
+    LevelUp() {
+        if (player.XP >= player.XP_Requirements) {
+            player.XP -= player.XP_Requirements;
+            player.Skill_points += 1;
+            player.Level += 1;
+            player.XP_Requirements = 1000 * (player.Level + 1);
+            if (Class == "Wizard") {
+                player.HP = player.ConstitutionMod + player.Level * 8;
+            }
+            if (Class == "Fighter") {
+                player.HP = player.ConstitutionMod + player.Level * 12;
+            }
+            player.MaxHP = player.HP;
+        }
+        player.stat_update();
+        console.log("LevelUp");
+    }
+    Damige_Taken(damige) {
+        if (player.DamigeResistens == 0) {
+            player.HP -= damige;
+            console.log(player.HP, damige);
+        }
+        if (player.DamigeResistens < 0) {
+            player.HP += Math.floor(damige * player.DamigeResistens);
+            console.log(Math.floor(damige * player.DamigeResistens));
+        }
+        if (DamigeResistens > 0) {
+            player.HP -= Math.floor(damige / player.DamigeResistens);
+            console.log(Math.floor(damige / player.DamigeResistens));
+        }
+        if (player.HP <= 0) {
+            player.HP = 0;
+            document.getElementById("headerbuttons").style = "display: none;";
+            document.getElementById("stats").style = "display: none;";
+            document.getElementById("P0").style = "display: none;";
+            document.getElementById("H1").style = "display: none;";
+            document.getElementById("div1").innerHTML = `${death}`;
+        }
+        player.stat_update();
+        console.log("Damige_Taken");
+    }
+    resting() {
+        if (combat == false) {
+            if (Class == "Wizard") {
+                player.HP = player.MaxHP;
+                player.SpellSlots = player.max_spellslots;
+            }
+            if (Class == "Fighter") {
+                player.HP = player.MaxHP;
+            }
+            player.LevelUp();
+        }
+        stat_update();
+        console.log("resting");
     }
 }
