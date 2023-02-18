@@ -1,3 +1,4 @@
+ consol.log("mainJS.js loaded");
 const Stats = document.getElementById("stats"),
     HI1 = document.getElementById("HI1"),
     LUR = document.getElementById("LUR"),
