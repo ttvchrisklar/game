@@ -115,8 +115,8 @@ function selecter(presdButton) {
 
         case "B3":
             if (player.Level_Availability == 1) {
+                console.log("hello");
                 if (player.Constitution != 100) {
-                } else {
                     player.Constitution_increase();
                 }
             }
@@ -148,11 +148,16 @@ function selecter(presdButton) {
             break;
 
         case "B7":
+            6;
             if (canrest == true) {
+                6;
                 player.resting();
+                6;
             }
+            6;
             break;
-
+            6;
+            6;
         case "B8":
             break;
 
@@ -652,18 +657,21 @@ class Player {
         console.log("Charisma_increase");
     }
     LevelUp() {
-        if (this.XP >= this.XP_Requirements) {
-            this.XP -= this.XP_Requirements;
-            this.Skill_points += 1;
-            this.Level += 1;
-            this.XP_Requirements = 1000 * (this.Level + 1);
-            if (Class == "Wizard") {
-                this.HP = this.ConstitutionMod + this.Level * 8;
+        if (this.Level == 600) {
+        } else {
+            if (this.XP >= this.XP_Requirements) {
+                this.XP -= this.XP_Requirements;
+                this.Skill_points += 1;
+                this.Level += 1;
+                this.XP_Requirements = 1000 * (this.Level + 1);
+                if (Class == "Wizard") {
+                    this.HP = this.ConstitutionMod + this.Level * 8;
+                }
+                if (Class == "Fighter") {
+                    this.HP = this.ConstitutionMod + this.Level * 12;
+                }
+                this.MaxHP = this.HP;
             }
-            if (Class == "Fighter") {
-                this.HP = this.ConstitutionMod + this.Level * 12;
-            }
-            this.MaxHP = this.HP;
         }
         player.stat_update();
         console.log("LevelUp");
