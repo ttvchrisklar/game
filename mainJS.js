@@ -73,7 +73,7 @@ let XP_Requirements,
     CanWealdShild,
     damige_type,
     turn,
-    death = '<p style="color: red; font-size: 200px;text-align: center;">you died! <br> ;(<br> <button class="button" onclick="setscreen()">get revived</button></p>';
+    death = '<p style="color: red; font-size: 200px;text-align: center;">you died! <br> ;(<br> <button class="button" onclick="setscreen(),player.rivival();">get revived</button></p>';
 var player;
 //into cean
 function introdone() {
@@ -341,9 +341,6 @@ function Fighter_select() {
 }
 //combat system.
 
-// enemys
-
-// the end of the enemy script part
 class Player {
     subclass;
     Strength;
@@ -360,8 +357,8 @@ class Player {
     CharismaMod;
     Other_Bonuses;
     HP; //HP is also calcalated difrently for ech class for Fighter its, hp=conMOD+(Level*12) and for Wizard, hp=conmod+(Level*8).
-    MaxHP = this.HP;
-    Armer_Class = 10 + this.Other_Bonuses; // Armer Class also konown as AC, AC is calculatecd diffrent its, AC=(10 + DexMOD + other boneses).
+    MaxHP;
+    Armer_Class; // Armer Class also konown as AC, AC is calculatecd diffrent its, AC=(10 + DexMOD + other boneses).
     Level = 1;
     XP = 0;
     Gold = 0;
@@ -539,7 +536,7 @@ class Player {
         T_Intelligence.innerText = "Intelligence: " + this.Intelligence + " || " + "Intelligence Mod: " + this.IntelligenceMod + ".";
         T_Charisma.innerText = "Charisma: " + this.Charisma + " || " + "Charisma Mod: " + player.CharismaMod + ".";
         T_XP.innerText = "XP: " + this.XP + " / " + this.XP_Requirements + ".";
-        T_Level.innerText = "Level: " + this.Level + " / 600" + " || " + "+" + this.Skill_points + ".";
+        T_Level.innerText = "Level: " + this.Level + " / 600" + " || " + " + " + this.Skill_points + ".";
         if ((Class = "Wizard")) {
             T_Spellslots.innerText = "spellslots: " + this.SpellSlots + "/" + this.max_spellslots + ".";
         }
@@ -701,6 +698,7 @@ class Player {
             if (Class == "Wizard") {
                 this.HP = this.MaxHP;
                 this.SpellSlots = this.max_spellslots;
+                console.log(this.HP, this.MaxHP);
             }
             if (Class == "Fighter") {
                 this.HP = this.MaxHP;
@@ -709,5 +707,17 @@ class Player {
         }
         stat_update();
         console.log("resting");
+    }
+    rivival() {
+        if (Class == "Wizard") {
+            this.HP = this.MaxHP;
+            this.SpellSlots = this.max_spellslots;
+            console.log(this.HP, this.MaxHP);
+        }
+        if (Class == "Fighter") {
+            this.HP = this.MaxHP;
+        }
+        player.stat_update();
+        console.log("rivival");
     }
 }
