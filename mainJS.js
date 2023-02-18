@@ -1,4 +1,4 @@
- consol.log("mainJS.js loaded");
+console.log("mainJS.js loaded");
 const Stats = document.getElementById("stats"),
     HI1 = document.getElementById("HI1"),
     LUR = document.getElementById("LUR"),
@@ -30,7 +30,6 @@ const Stats = document.getElementById("stats"),
     P0 = document.getElementById("P0"),
     intro = document.getElementById("intro"),
     H1 = document.getElementById("H1");
-death = '<p style="color: red; font-size: 200px;text-align: center;">you died! <br> ;(<br> <button class="button" onclick="setscreen()">get revived</button></p>';
 let XP_Requirements,
     Other_Bonuses,
     MaxHP,
@@ -44,12 +43,6 @@ let XP_Requirements,
     regain,
     healing,
     damige,
-    Strength,
-    Dexterity,
-    Constitution,
-    Intelligence,
-    Wisdom,
-    Charisma,
     HP,
     Armer_Class,
     Action_Point,
@@ -79,7 +72,8 @@ let XP_Requirements,
     CanWearArmor,
     CanWealdShild,
     damige_type,
-    turn;
+    turn,
+    death = '<p style="color: red; font-size: 200px;text-align: center;">you died! <br> ;(<br> <button class="button" onclick="setscreen()">get revived</button></p>';
 var player;
 //into cean
 function introdone() {
