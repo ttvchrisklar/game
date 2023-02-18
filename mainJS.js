@@ -73,7 +73,7 @@ let XP_Requirements,
     CanWealdShild,
     damige_type,
     turn,
-    death = '<p style="color: red; font-size: 200px;text-align: center;">you died! <br> ;(<br> <button class="button" onclick="setscreen(),player.rivival();">get revived</button></p>';
+    death = '<p style="color: red; font-size: 200px;text-align: center;">you died! <br> ;(<br> <button class="button" onclick="setscreen(),player.revival();">get revived</button></p>';
 var player;
 //into cean
 function introdone() {
@@ -708,7 +708,7 @@ class Player {
         stat_update();
         console.log("resting");
     }
-    rivival() {
+    revival() {
         if (Class == "Wizard") {
             this.HP = this.MaxHP;
             this.SpellSlots = this.max_spellslots;
@@ -718,6 +718,6 @@ class Player {
             this.HP = this.MaxHP;
         }
         player.stat_update();
-        console.log("rivival");
+        console.log("revival");
     }
 }
