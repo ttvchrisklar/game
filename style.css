@@ -1,3 +1,19 @@
+html {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    height: 935px;
+    border: solid orange 3px;
+    padding: 1px;
+}
+*,
+*:before,
+*:after {
+    -webkit-box-sizing: inherit;
+    -moz-box-sizing: inherit;
+    box-sizing: inherit;
+}
 .button {
     display: inline-block;
     padding: 10px 10px;
@@ -47,12 +63,16 @@
 
 body {
     background-color: black;
-
     color: white;
 }
 
 h1 {
     text-align: center;
+    font-size: 30px;
+    height: 40px;
+    box-sizing: border-box;
+    width: 100%;
+    border: solid red 3px;
 }
 
 .center {
@@ -60,34 +80,64 @@ h1 {
 }
 .headerbuttons {
     text-align: right;
+    box-sizing: border-box;
+    width: 100%;
+    border: solid #5b6dcd 3px;
+    padding: 1px;
 }
 #header_box {
+    height: 10px;
     display: block;
     font-size: 20px;
-    box-shadow: #fff;
-    padding: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    border: solid #5b6dcd 3px;
+    padding: 1px;
+    justify-content: space-around;
+    align-items: flex-start;
 }
 #game_area {
     display: block;
+    height: 380px;
+    width: 100%;
     font-size: 20px;
-    box-shadow: #fff;
     text-align: center;
+    box-sizing: border-box;
+
+    border: solid #f1f1f17e 3px;
+    padding: 1px;
 }
 #choics_aria {
-    height: 50px;
-    width: 1800px;
+    height: 75px;
+    width: 100%;
     display: block;
     text-align: center;
-    align-items: center;
+    box-sizing: border-box;
+
+    border: solid #030099 3px;
+    padding: 1px;
 }
 #stats {
-    display: block;
+    display: flex;
     font-size: 20px;
-    width: 100;
+    height: 350px;
+    width: 100%;
+}
+#more_info {
+    box-sizing: border-box;
+    width: 30%;
+    border: solid whitesmoke 3px;
+    padding: 1px;
 }
 #enemy_stats {
-    align-self: end;
+    box-sizing: border-box;
+    width: 60%;
+    border: solid red 3px;
+    padding: 1px;
 }
 #player_stats {
-    align-self: start;
+    box-sizing: border-box;
+    width: 30%;
+    border: solid green 3px;
+    padding: 1px;
 }
