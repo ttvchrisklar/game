@@ -1,4 +1,4 @@
-const Stats = document.getElementById("stats"),
+const player_stats = document.getElementById("player_stats"),
     HI1 = document.getElementById("HI1"),
     LUR = document.getElementById("LUR"),
     classsub1 = document.getElementById("classsub1"),
@@ -24,11 +24,16 @@ const Stats = document.getElementById("stats"),
     T_Level = document.getElementById("Level"),
     T_Spellslots = document.getElementById("spellslots"),
     spellslotsshow = document.getElementById("spellslotsshow"),
-    div1 = document.getElementById("div1"),
+    game_area = document.getElementById("game_area"),
     headerbuttons = document.getElementById("headerbuttons"),
     P0 = document.getElementById("P0"),
+    P1 = document.getElementById("P1"),
+    P2 = document.getElementById("P2"),
+    P3 = document.getElementById("P3"),
     intro = document.getElementById("intro"),
-    H1 = document.getElementById("H1");
+    H1 = document.getElementById("H1"),
+    stats = document.getElementById("stats"),
+    choics_aria = document.getElementById("choics_aria");
 let XP_Requirements,
     Other_Bonuses,
     MaxHP,
@@ -71,259 +76,251 @@ let XP_Requirements,
     CanWearArmor,
     CanWealdShild,
     damige_type,
-    turn,
-    death = '<p style="color: red; font-size: 101px;text-align: center;"> you died! <br> <button class="button" onclick="setscreen(),player.revival();">get revived</button></p>';
+    turn;
 var player,
     Enemy = [];
 //into cean
 function introdone() {
     intro.style.display = "none";
-    class_select1.style.display = "";
+    setscreen();
+    choics_aria.innerHTML = `<p id="ClassMaster1"> || <button id="classsub1" class="button" onclick="selecter(this)">Wizard</button> || <button id="classsub2" class="button" onclick="selecter(this)">Figther</button> ||</p>`;
 }
 function setscreen() {
     headerbuttons.style = "";
-    Stats.style = "";
+    player_stats.style = "";
     P0.style = "";
     H1.style = "";
-    div1.innerHTML = "";
+    stats.style = "";
+    game_area.innerHTML = ``;
+    choics_aria.innerHTML = ``;
 }
 //if the stats arnt seet
 //this is whar i do my button selections and other uppdate requests.
 function selecter(presdButton) {
-    console.log(presdButton.id);
-    switch (presdButton.id) {
-        case "LUR":
-            leveluprequest = 1;
-            player.level_up_request();
-            break;
+    console.log(presdButton.id);    
+        switch (presdButton.id) {
+            
+            case "LUR":
+                leveluprequest = 1;
+                player.level_up_request();
+                break;
 
-        case "B1":
-            if (player.Level_Availability == 1) {
-                if (player.Strength != 100) {
-                    player.Strength_increase();
+            case "B1":
+                if (player.Level_Availability == 1) {
+                    if (player.Strength != 100) {
+                        player.Strength_increase();
+                    }
                 }
-            }
-            break;
+                break;
 
-        case "B2":
-            if (player.Level_Availability == 1) {
-                if (player.Dexterity != 100) {
-                    player.Dexterity_increase();
+            case "B2":
+                if (player.Level_Availability == 1) {
+                    if (player.Dexterity != 100) {
+                        player.Dexterity_increase();
+                    }
                 }
-            }
-            break;
+                break;
 
-        case "B3":
-            if (player.Level_Availability == 1) {
-                if (player.Constitution != 100) {
-                    player.Constitution_increase();
+            case "B3":
+                if (player.Level_Availability == 1) {
+                    if (player.Constitution != 100) {
+                        player.Constitution_increase();
+                    }
                 }
-            }
-            break;
+                break;
 
-        case "B4":
-            if (player.Level_Availability == 1) {
-                if (player.Wisdom != 100) {
-                    player.Wisdom_increase();
+            case "B4":
+                if (player.Level_Availability == 1) {
+                    if (player.Wisdom != 100) {
+                        player.Wisdom_increase();
+                    }
                 }
-            }
-            break;
+                break;
 
-        case "B5":
-            if (player.Level_Availability == 1) {
-                if (player.Intelligence != 100) {
-                    player.Intelligence_increase();
+            case "B5":
+                if (player.Level_Availability == 1) {
+                    if (player.Intelligence != 100) {
+                        player.Intelligence_increase();
+                    }
                 }
-            }
 
-            break;
+                break;
 
-        case "B6":
-            if (player.Level_Availability == 1) {
-                if (player.Charisma != 100) {
-                    player.Charisma_increase();
+            case "B6":
+                if (player.Level_Availability == 1) {
+                    if (player.Charisma != 100) {
+                        player.Charisma_increase();
+                    }
                 }
-            }
-            break;
+                break;
 
-        case "B7":
-            if (canrest == true) {
-                player.resting();
-            }
+            case "B7":
+                if (canrest == true) {
+                    player.resting();
+                }
 
-            break;
+                break;
 
-        case "B8":
-            break;
+            case "B8":
+                break;
 
-        case "B9":
-            break;
+            case "B9":
+                break;
 
-        case "B10":
-            break;
+            case "B10":
+                break;
 
-        case "B11":
-            break;
+            case "B11":
+                break;
 
-        case "B12":
-            break;
+            case "B12":
+                break;
 
-        case "B13":
-            break;
+            case "B13":
+                break;
 
-        case "B14":
-            break;
+            case "B14":
+                break;
 
-        case "B15":
-            break;
+            case "B15":
+                break;
 
-        case "B16":
-            break;
+            case "B16":
+                break;
 
-        case "B17":
-            break;
+            case "B17":
+                break;
 
-        case "B18":
-            break;
+            case "B18":
+                break;
 
-        case "B19":
-            break;
+            case "B19":
+                break;
 
-        case "B20":
-            break;
+            case "B20":
+                break;
 
-        case "B21":
-            break;
+            case "B21":
+                break;
 
-        case "B22":
-            break;
+            case "B22":
+                break;
 
-        case "B23":
-            break;
+            case "B23":
+                break;
 
-        case "B24":
-            player.XP += player.XP_Requirements;
-            player.LevelUp();
-            break;
+            case "B24":
+                player.XP += player.XP_Requirements;
+                player.LevelUp();
+                break;
 
-        case "B25":
-            break;
+            case "B25":
+                break;
 
-        case "B26":
-            break;
+            case "B26":
+                break;
 
-        case "B27":
-            console.log(player.HP);
-            break;
+            case "B27":
+                console.log(player.HP);
+                break;
 
-        case "B28":
-            player.Damige_Taken(6);
-            break;
+            case "B28":
+                player.Damige_Taken(100);
+                break;
 
-        case "B29":
-            break;
+            case "B29":
+                break;
 
-        case "B30":
-            break;
+            case "B30":
+                break;
 
-        case "B31":
-            break;
+            case "B31":
+                break;
 
-        case "B32":
-            break;
+            case "B32":
+                break;
 
-        case "B33":
-            break;
+            case "B33":
+                break;
 
-        case "B34":
-            break;
+            case "B34":
+                break;
 
-        case "B35":
-            break;
+            case "B35":
+                break;
 
-        case "B36":
-            break;
+            case "B36":
+                break;
 
-        case "B37":
-            break;
+            case "B37":
+                break;
 
-        case "classsub1":
-            if (Class == undefined) {
-                Wizard_select();
-                return;
-            }
-            if (Class == "Wizard") {
-                document.getElementById("P1.5").innerText = " Ice";
-                player = new Player_Class("Ice_Wizard");
-                player.stat_update();
-                buttonremover();
-                return;
-            }
-            if (Class == "Fighter") {
-                document.getElementById("P1.5").innerText = " Tank";
-                player = new Player_Class("Tank");
-                player.stat_update();
-                buttonremover();
-                return;
-            }
-            break;
+            case "classsub1":
+                if (Class == undefined) {
+                    Wizard_select();
+                    return;
+                }
+                if (Class == "Wizard") {
+                    P3.innerText = " Ice";
+                    player = new Player_Class("Ice_Wizard");
+                    player.stat_update();
+                    return;
+                }
+                if (Class == "Fighter") {
+                    P3.innerText.innerText = " Tank";
+                    player = new Player_Class("Tank");
+                    player.stat_update();
+                    return;
+                }
+                break;
 
-        case "classsub2":
-            if (Class == undefined) {
-                Fighter_select();
-                return;
-            }
-            if (Class == "Wizard") {
-                document.getElementById("P1.5").innerText = " Fire";
-                player = new Player_Class("Fire_Wizard");
-                player.stat_update();
-                buttonremover();
-                return;
-            }
-            if (Class == "Fighter") {
-                document.getElementById("P1.5").innerText = " Barberian";
-                player = new Player_Class("Barberian");
-                player.stat_update();
-                buttonremover();
-                return;
-            }
-            break;
+            case "classsub2":
+                if (Class == undefined) {
+                    Fighter_select();
+                    return;
+                }
+                if (Class == "Wizard") {
+                    P3.innerText.innerText = " Fire";
+                    player = new Player_Class("Fire_Wizard");
+                    player.stat_update();
+                    return;
+                }
+                if (Class == "Fighter") {
+                    P3.innerText.innerText = " Barberian";
+                    player = new Player_Class("Barberian");
+                    player.stat_update();
+                    return;
+                }
+                break;
 
-        case "classsub3":
-            if (Class == "Wizard") {
-                document.getElementById("P1.5").innerText = " Necromanser";
-                player = new Player_Class("Necromanser");
-                player.stat_update();
-                buttonremover();
-                return;
-            }
-            if (Class == "Fighter") {
-                document.getElementById("P1.5").innerText = " Weapons Master";
-                player = new Player_Class("Weapons_Master");
-                player.stat_update();
-                buttonremover();
-                return;
-            }
-            break;
+            case "classsub3":
+                if (Class == "Wizard") {
+                    P3.innerText.innerText = " Necromanser";
+                    player = new Player_Class("Necromanser");
+                    player.stat_update();
+                    return;
+                }
+                if (Class == "Fighter") {
+                    P3.innerText.innerText = " Weapons Master";
+                    player = new Player_Class("Weapons_Master");
+                    player.stat_update();
+                    return;
+                }
+                break;
 
-        default:
-            console.log("not a diffind button", presdButton.id);
+            default:
+                console.log("not a diffind button", presdButton.id);
+        }
     }
-}
 
-function buttonremover() {
-    class_select1.attributes.getNamedItem("style").value = "display: none;";
-}
 //comenly used functions.
 
 // this is wher theplayer selects the Wizard class.
 function Wizard_select() {
-    document.getElementById("P1").innerText = "Wizard";
-    document.getElementById("P1.25").innerText = " || ";
-    preclasssub3.attributes.getNamedItem("style").value = "";
-    classsub1.innerText = "Ice Wizard";
-    classsub2.innerText = "Fire Wizard";
-    classsub3.innerText = "Necromanser";
+    P1.innerText = "Wizard";
+    P2.innerText = " || ";
+    choics_aria.innerHTML = `<p id="ClassMaster1"> || <button id="classsub1" class="button" onclick="selecter(this)">Ice Wizard</button> || <button id="classsub2" class="button" onclick="selecter(this)">Fire Wizard</button> || <button id="classsub3" class="button" onclick="selecter(this)">Necromanser</button>||
+</p>`;
     spellslotsshow.style.display = "";
     HI1.style.display = "";
     Class = "Wizard";
@@ -331,13 +328,11 @@ function Wizard_select() {
 
 // this is wher the player selects the Fighter class.
 function Fighter_select() {
-    document.getElementById("P1").innerText = "Fighter";
-    document.getElementById("P1.25").innerText = " || ";
-    preclasssub3.attributes.getNamedItem("style").value = "";
-    classsub1.innerText = "Tank";
-    classsub2.innerText = "Barberian";
-    classsub3.innerText = "Weapons Master";
-    HI1.attributes.getNamedItem("style").value = "";
+    P1.innerText = "Fighter";
+    P2.innerText = " || ";
+    choics_aria.innerHTML = `<p id="ClassMaster1"> || <button id="classsub1" class="button" onclick="selecter(this)">Tank</button> || <button id="classsub2" class="button" onclick="selecter(this)">Barberian</button> || <button id="classsub3" class="button" onclick="selecter(this)">Weapons Master</button>||
+    </p>`;
+    HI1.style.display = "";
     Class = "Fighter";
 }
 //combat system.

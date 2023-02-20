@@ -57,6 +57,7 @@ class Player_Class {
                 this.Armer_Class = 10 + (this.DexterityMod + this.Other_Bonuses);
                 this.SpellSlots = 10;
                 this.max_spellslots = this.SpellSlots;
+                this.DamigeResistens = -1.5;
                 this.CanWealdShild = false;
                 this.CanWealdWands = true;
                 this.CanWearArmor = false;
@@ -81,6 +82,7 @@ class Player_Class {
                 this.Armer_Class = 10 + (this.DexterityMod + this.Other_Bonuses);
                 this.SpellSlots = 10;
                 this.max_spellslots = this.SpellSlots;
+                this.DamigeResistens = 0;
                 this.CanWealdShild = false;
                 this.CanWealdWands = true;
                 this.CanWearArmor = false;
@@ -105,6 +107,7 @@ class Player_Class {
                 this.Armer_Class = 10 + (this.DexterityMod + this.Other_Bonuses);
                 this.SpellSlots = 10;
                 this.max_spellslots = this.SpellSlots;
+                this.DamigeResistens = 0;
                 this.CanWealdShild = false;
                 this.CanWealdWands = true;
                 this.CanWearArmor = false;
@@ -127,7 +130,7 @@ class Player_Class {
                 this.HP = this.ConstitutionMod + this.Level * 12;
                 this.MaxHP = this.HP;
                 this.Armer_Class = 10 + (this.DexterityMod + this.Other_Bonuses);
-                this.DamigeResistens = 0;
+                this.DamigeResistens = 1;
                 this.CanWealdWands = false;
                 this.CanWealdroedes = false;
                 break;
@@ -309,28 +312,38 @@ class Player_Class {
     }
     Damige_Taken(damige) {
         console.log(damige);
-        if (this.DamigeResistens == 0) {
-            this.HP -= damige;
-            console.log(this.HP, damige);
-        }
-        if (this.DamigeResistens < 0) {
-            this.HP += Math.floor(damige * this.DamigeResistens);
-            console.log(Math.floor(damige * this.DamigeResistens));
-        }
-        if (this.DamigeResistens > 0) {
-            this.HP -= Math.floor(damige / this.DamigeResistens);
-            console.log(Math.floor(damige / this.DamigeResistens));
+        switch (true) {
+            case this.DamigeResistens < -1:
+                this.HP += Math.floor(damige * this.DamigeResistens);
+                console.log(Math.floor(damige * this.DamigeResistens), "318");
+                break;
+            case this.DamigeResistens > 1:
+                this.HP -= Math.floor(damige / this.DamigeResistens);
+                console.log(this.hp, Math.floor(damige / this.DamigeResistens), "322");
+                break;
+            default:
+                this.HP -= damige;
+                console.log(this.HP, damige, "326");
         }
         if (this.HP <= 0) {
             this.HP = 0;
-            document.getElementById("headerbuttons").style = "display: none;";
-            document.getElementById("stats").style = "display: none;";
-            document.getElementById("P0").style = "display: none;";
-            document.getElementById("H1").style = "display: none;";
-            document.getElementById("div1").innerHTML = `${death}`;
+            var deathText = document.getElementById("deathText");
+            var deathTextSize = 50;
+            game_area.innerHTML = `<p id="deathText" style="color: red; text-align: center;"> you died! <br></p>`;
+            var deathText = document.getElementById("deathText");
+            var deathTextSize = 25;
+            var textSpeed = 5;
+            var interval = setInterval(() => {
+                deathTextSize++;
+                deathText.style.fontSize = `${deathTextSize}px`;
+                if (deathTextSize >= 100) {
+                    clearInterval(interval);
+                    choics_aria.innerHTML = `<div> <button class="button" onclick="setscreen(); player.revival();">get revived</button></div>`;
+                }
+            }, textSpeed);
         }
         this.stat_update();
-        console.log("Damige_Taken", this.HP);
+        console.log("Damige Taken: ", this.HP);
     }
     resting() {
         if (combat == false) {

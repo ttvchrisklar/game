@@ -47,7 +47,7 @@
 
 body {
     background-color: black;
-    font-size: 20px;
+
     color: white;
 }
 
@@ -60,4 +60,34 @@ h1 {
 }
 .headerbuttons {
     text-align: right;
+}
+#header_box {
+    display: block;
+    font-size: 20px;
+    box-shadow: #fff;
+    padding: 5px;
+}
+#game_area {
+    display: block;
+    font-size: 20px;
+    box-shadow: #fff;
+    text-align: center;
+}
+#choics_aria {
+    height: 50px;
+    width: 1800px;
+    display: block;
+    text-align: center;
+    align-items: center;
+}
+#stats {
+    display: block;
+    font-size: 20px;
+    width: 100;
+}
+#enemy_stats {
+    align-self: end;
+}
+#player_stats {
+    align-self: start;
 }

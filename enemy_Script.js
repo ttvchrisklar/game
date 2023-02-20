@@ -40,9 +40,9 @@ class Enemy_Class {
                 this.CharismaMod = Math.floor(this.Charisma / 2);
                 this.Other_Bonuses = Math.floor(this.level / 10);
                 this.HP = this.ConstitutionMod + this.Level * 8;
-                this.MaxHP;
-                this.Armer_Class;
-                this.Speed;
+                this.MaxHP = this.HP;
+                this.Armer_Class = 10 + (this.DexterityMod + this.Other_Bonuses);
+                this.Speed = 1 + Math.floor(this.level / 10);
                 break;
             case "thief":
                 break;
