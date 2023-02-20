@@ -35,6 +35,8 @@ class Player_Class {
     Sub_CharismaMod = 0;
     Level_Availability = 0;
     DamigeResistens = 0;
+    killcounter = 0;
+    deathcounter = 0;
     constructor(subclass) {
         this.subclass = subclass;
         switch (subclass) {
@@ -327,6 +329,7 @@ class Player_Class {
         }
         if (this.HP <= 0) {
             this.HP = 0;
+            this.deathcounter +=1; 
             var deathText = document.getElementById("deathText");
             var deathTextSize = 50;
             game_area.innerHTML = `<p id="deathText" style="color: red; text-align: center;"> you died! <br></p>`;

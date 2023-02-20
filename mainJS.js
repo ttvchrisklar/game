@@ -225,7 +225,7 @@ function selecter(presdButton) {
             break;
 
         case "B28":
-            player.Damige_Taken(100);
+            player.Damige_Taken(6);
             break;
 
         case "B29":

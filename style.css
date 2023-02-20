@@ -79,11 +79,9 @@ h1 {
     text-align: center;
 }
 .headerbuttons {
-    text-align: right;
     box-sizing: border-box;
     width: 100%;
     border: solid #5b6dcd 3px;
-    padding: 1px;
 }
 #header_box {
     height: 10px;
@@ -92,7 +90,6 @@ h1 {
     width: 100%;
     box-sizing: border-box;
     border: solid #5b6dcd 3px;
-    padding: 1px;
     justify-content: space-around;
     align-items: flex-start;
 }
@@ -103,9 +100,7 @@ h1 {
     font-size: 20px;
     text-align: center;
     box-sizing: border-box;
-
     border: solid #f1f1f17e 3px;
-    padding: 1px;
 }
 #choics_aria {
     height: 75px;
@@ -113,31 +108,25 @@ h1 {
     display: block;
     text-align: center;
     box-sizing: border-box;
-
     border: solid #030099 3px;
-    padding: 1px;
 }
 #stats {
     display: flex;
     font-size: 20px;
     height: 350px;
-    width: 100%;
 }
 #more_info {
     box-sizing: border-box;
     width: 30%;
     border: solid whitesmoke 3px;
-    padding: 1px;
 }
 #enemy_stats {
     box-sizing: border-box;
     width: 60%;
     border: solid red 3px;
-    padding: 1px;
 }
 #player_stats {
     box-sizing: border-box;
     width: 30%;
     border: solid green 3px;
-    padding: 1px;
 }
