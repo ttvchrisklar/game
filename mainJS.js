@@ -73,7 +73,7 @@ let XP_Requirements,
     damige_type,
     turn,
     death = '<p style="color: red; font-size: 100px;text-align: center;"> you died! <br> <button class="button" onclick="setscreen(),player.revival();">get revived</button></p>';
-var player;
+var player, Enemy = [];
 //into cean
 function introdone() {
     intro.style.display = "none";
@@ -340,54 +340,5 @@ function Fighter_select() {
     Class = "Fighter";
 }
 //combat system.
-class Enemy {
-    Strength;
-    Dexterity;
-    Constitution;
-    Intelligence;
-    Wisdom;
-    Charisma;
-    StrengthMod;
-    DexterityMod;
-    ConstitutionMod;
-    IntelligenceMod;
-    WisdomMod;
-    CharismaMod;
-    Other_Bonuses;
-    HP;
-    MaxHP;
-    Armer_Class;
-    Level;
-    SpellSlots;
-    max_spellslots;
-    DamigeResistens;
-    type;
-    Speed;
-    constructor(type, level) {
-        this.type = type;
-        this.Level = level;
-        switch (type) {
-            case "goblin":
-                this.Strength = 10 + Math.floor(this.level / 4);
-                this.Dexterity = 10 + Math.floor(this.level / 4);
-                this.Constitution = 10 + Math.floor(this.level / 4);
-                this.Intelligence = 5 + Math.floor(this.level / 8);
-                this.Wisdom = 5 + Math.floor(this.level / 8);
-                this.Charisma = 5 + Math.floor(this.level / 8);
-                this.StrengthMod = Math.floor(this.Strength / 2);
-                this.DexterityMod = Math.floor(this.Dexterity / 2);
-                this.ConstitutionMod = Math.floor(this.Constitution / 2);
-                this.IntelligenceMod = Math.floor(this.Intelligence / 2);
-                this.WisdomMod = Math.floor(this.Wisdom / 2);
-                this.CharismaMod = Math.floor(this.Charisma / 2);
-                break;
-            case "thief":
-                break;
-            case "orc":
-                break;
-            case "dragon":
-                break;
-        }
-    }
-}
+
 console.log("mainJS.js loaded");
