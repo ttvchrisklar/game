@@ -1,4 +1,3 @@
-console.log("mainJS.js loaded");
 const Stats = document.getElementById("stats"),
     HI1 = document.getElementById("HI1"),
     LUR = document.getElementById("LUR"),
@@ -73,7 +72,7 @@ let XP_Requirements,
     CanWealdShild,
     damige_type,
     turn,
-    death = '<p style="color: red; font-size: 200px;text-align: center;">you died! <br> ;(<br> <button class="button" onclick="setscreen(),player.revival();">get revived</button></p>';
+    death = '<p style="color: red; font-size: 100px;text-align: center;"> you died! <br> <button class="button" onclick="setscreen(),player.revival();">get revived</button></p>';
 var player;
 //into cean
 function introdone() {
@@ -93,8 +92,8 @@ function selecter(presdButton) {
     console.log(presdButton.id);
     switch (presdButton.id) {
         case "LUR":
-            player.leveluprequest = 1;
-            player.level_up_request(player.leveluprequest);
+            leveluprequest = 1;
+            player.level_up_request();
             break;
 
         case "B1":
@@ -115,7 +114,6 @@ function selecter(presdButton) {
 
         case "B3":
             if (player.Level_Availability == 1) {
-                console.log("hello");
                 if (player.Constitution != 100) {
                     player.Constitution_increase();
                 }
@@ -148,16 +146,12 @@ function selecter(presdButton) {
             break;
 
         case "B7":
-            6;
             if (canrest == true) {
-                6;
                 player.resting();
-                6;
             }
-            6;
+
             break;
-            6;
-            6;
+
         case "B8":
             break;
 
@@ -218,10 +212,11 @@ function selecter(presdButton) {
             break;
 
         case "B27":
+            console.log(player.HP);
             break;
 
         case "B28":
-            player.Damige_Taken(1);
+            player.Damige_Taken(6);
             break;
 
         case "B29":
@@ -258,14 +253,14 @@ function selecter(presdButton) {
             }
             if (Class == "Wizard") {
                 document.getElementById("P1.5").innerText = " Ice";
-                player = new Player("Ice_Wizard");
+                player = new Player_Class("Ice_Wizard");
                 player.stat_update();
                 buttonremover();
                 return;
             }
             if (Class == "Fighter") {
                 document.getElementById("P1.5").innerText = " Tank";
-                player = new Player("Tank");
+                player = new Player_Class("Tank");
                 player.stat_update();
                 buttonremover();
                 return;
@@ -279,14 +274,14 @@ function selecter(presdButton) {
             }
             if (Class == "Wizard") {
                 document.getElementById("P1.5").innerText = " Fire";
-                player = new Player("Fire_Wizard");
+                player = new Player_Class("Fire_Wizard");
                 player.stat_update();
                 buttonremover();
                 return;
             }
             if (Class == "Fighter") {
                 document.getElementById("P1.5").innerText = " Barberian";
-                player = new Player("Barberian");
+                player = new Player_Class("Barberian");
                 player.stat_update();
                 buttonremover();
                 return;
@@ -296,14 +291,14 @@ function selecter(presdButton) {
         case "classsub3":
             if (Class == "Wizard") {
                 document.getElementById("P1.5").innerText = " Necromanser";
-                player = new Player("Necromanser");
+                player = new Player_Class("Necromanser");
                 player.stat_update();
                 buttonremover();
                 return;
             }
             if (Class == "Fighter") {
                 document.getElementById("P1.5").innerText = " Weapons Master";
-                player = new Player("Weapons_Master");
+                player = new Player_Class("Weapons_Master");
                 player.stat_update();
                 buttonremover();
                 return;
@@ -345,9 +340,7 @@ function Fighter_select() {
     Class = "Fighter";
 }
 //combat system.
-
-class Player {
-    subclass;
+class Enemy {
     Strength;
     Dexterity;
     Constitution;
@@ -361,371 +354,40 @@ class Player {
     WisdomMod;
     CharismaMod;
     Other_Bonuses;
-    HP; //HP is also calcalated difrently for ech class for Fighter its, hp=conMOD+(Level*12) and for Wizard, hp=conmod+(Level*8).
+    HP;
     MaxHP;
-    Armer_Class; // Armer Class also konown as AC, AC is calculatecd diffrent its, AC=(10 + DexMOD + other boneses).
-    Level = 1;
-    XP = 0;
-    Gold = 0;
-    XP_Requirements = 2000;
-    Skill_points = 0; //Skill_points = over Level.
+    Armer_Class;
+    Level;
     SpellSlots;
     max_spellslots;
-    CanWearArmor;
-    CanWealdShild;
-    CanWealdWands;
-    CanWealdroedes = true;
-    Sub_SthrengthMod = 0;
-    Sub_DexterityMod = 0;
-    Sub_ConstitutionMod = 0;
-    Sub_IntelligenceMod = 0;
-    Sub_WisdomMod = 0;
-    Sub_CharismaMod = 0;
-    Level_Availability = 0;
-    leveluprequest = 0;
-    DamigeResistens = 0;
-    constructor(subclass) {
-        this.subclass = subclass;
-        switch (subclass) {
-            case "Ice_Wizard":
-                this.Strength = 8;
-                this.Dexterity = 8;
-                this.Constitution = 8;
-                this.Intelligence = 12;
-                this.Wisdom = 12;
-                this.Charisma = 12;
-                this.StrengthMod = 4;
-                this.DexterityMod = 4;
-                this.ConstitutionMod = 4;
-                this.IntelligenceMod = 6;
-                this.WisdomMod = 6;
-                this.CharismaMod = 6;
-                this.Other_Bonuses = 0;
-                this.HP = this.ConstitutionMod + this.Level * 8;
-                this.MaxHP = this.HP;
-                this.Armer_Class = 10 + (this.DexterityMod + this.Other_Bonuses);
-                this.SpellSlots = 10;
-                this.max_spellslots = this.SpellSlots;
-                this.CanWealdShild = false;
-                this.CanWealdWands = true;
-                this.CanWearArmor = false;
+    DamigeResistens;
+    type;
+    Speed;
+    constructor(type, level) {
+        this.type = type;
+        this.Level = level;
+        switch (type) {
+            case "goblin":
+                this.Strength = 10 + Math.floor(this.level / 4);
+                this.Dexterity = 10 + Math.floor(this.level / 4);
+                this.Constitution = 10 + Math.floor(this.level / 4);
+                this.Intelligence = 5 + Math.floor(this.level / 8);
+                this.Wisdom = 5 + Math.floor(this.level / 8);
+                this.Charisma = 5 + Math.floor(this.level / 8);
+                this.StrengthMod = Math.floor(this.Strength / 2);
+                this.DexterityMod = Math.floor(this.Dexterity / 2);
+                this.ConstitutionMod = Math.floor(this.Constitution / 2);
+                this.IntelligenceMod = Math.floor(this.Intelligence / 2);
+                this.WisdomMod = Math.floor(this.Wisdom / 2);
+                this.CharismaMod = Math.floor(this.Charisma / 2);
                 break;
-
-            case "Fire_Wizard":
-                this.Strength = 8;
-                this.Dexterity = 8;
-                this.Constitution = 8;
-                this.Intelligence = 12;
-                this.Wisdom = 12;
-                this.Charisma = 12;
-                this.StrengthMod = 4;
-                this.DexterityMod = 4;
-                this.ConstitutionMod = 4;
-                this.IntelligenceMod = 6;
-                this.WisdomMod = 6;
-                this.CharismaMod = 6;
-                this.Other_Bonuses = 0;
-                this.HP = this.ConstitutionMod + this.Level * 8;
-                this.MaxHP = this.HP;
-                this.Armer_Class = 10 + (this.DexterityMod + this.Other_Bonuses);
-                this.SpellSlots = 10;
-                this.max_spellslots = this.SpellSlots;
-                this.CanWealdShild = false;
-                this.CanWealdWands = true;
-                this.CanWearArmor = false;
+            case "thief":
                 break;
-
-            case "Necromanser":
-                this.Strength = 8;
-                this.Dexterity = 8;
-                this.Constitution = 8;
-                this.Intelligence = 12;
-                this.Wisdom = 12;
-                this.Charisma = 12;
-                this.StrengthMod = 4;
-                this.DexterityMod = 4;
-                this.ConstitutionMod = 4;
-                this.IntelligenceMod = 6;
-                this.WisdomMod = 6;
-                this.CharismaMod = 6;
-                this.Other_Bonuses = 0;
-                this.HP = this.ConstitutionMod + this.Level * 8;
-                this.MaxHP = this.HP;
-                this.Armer_Class = 10 + (this.DexterityMod + this.Other_Bonuses);
-                this.SpellSlots = 10;
-                this.max_spellslots = this.SpellSlots;
-                this.CanWealdShild = false;
-                this.CanWealdWands = true;
-                this.CanWearArmor = false;
+            case "orc":
                 break;
-
-            case "Tank":
-                this.Strength = 12;
-                this.Dexterity = 12;
-                this.Constitution = 12;
-                this.Intelligence = 8;
-                this.Wisdom = 8;
-                this.Charisma = 8;
-                this.StrengthMod = 6;
-                this.DexterityMod = 6;
-                this.ConstitutionMod = 6;
-                this.IntelligenceMod = 4;
-                this.WisdomMod = 4;
-                this.CharismaMod = 4;
-                this.Other_Bonuses = Math.floor(this.ConstitutionMod / 2);
-                this.HP = this.ConstitutionMod + this.Level * 12;
-                this.MaxHP = this.HP;
-                this.Armer_Class = 10 + (this.DexterityMod + this.Other_Bonuses);
-                this.DamigeResistens = 0;
-                this.CanWealdWands = false;
-                break;
-
-            case "Barberian":
-                this.Strength = 12;
-                this.Dexterity = 12;
-                this.Constitution = 12;
-                this.Intelligence = 8;
-                this.Wisdom = 8;
-                this.Charisma = 8;
-                this.StrengthMod = 6;
-                this.DexterityMod = 6;
-                this.ConstitutionMod = 6;
-                this.IntelligenceMod = 4;
-                this.WisdomMod = 4;
-                this.CharismaMod = 4;
-                this.Other_Bonuses = Math.floor(this.ConstitutionMod / 4);
-                this.HP = this.ConstitutionMod + this.Level * 12;
-                this.MaxHP = this.HP;
-                this.Armer_Class = 10 + (this.DexterityMod + this.Other_Bonuses);
-                this.DamigeResistens = 2;
-                this.CanWearArmor = false;
-                this.CanWealdShild = true;
-                this.CanWealdWands = false;
-                break;
-
-            case "Weapons_Master":
-                this.Strength = 12;
-                this.Dexterity = 12;
-                this.Constitution = 12;
-                this.Intelligence = 8;
-                this.Wisdom = 8;
-                this.Charisma = 8;
-                this.StrengthMod = 6;
-                this.DexterityMod = 6;
-                this.ConstitutionMod = 6;
-                this.IntelligenceMod = 4;
-                this.WisdomMod = 4;
-                this.CharismaMod = 4;
-                this.Other_Bonuses = 0;
-                this.HP = this.ConstitutionMod + this.Level * 12;
-                this.MaxHP = this.HP;
-                this.Armer_Class = 10 + (this.DexterityMod + this.Other_Bonuses);
-                this.DamigeResistens = 0;
-                this.CanWealdWands = false;
-
-                break;
-
-            default:
-                console.log("subclass not selected");
+            case "dragon":
                 break;
         }
-        setscreen();
-    }
-    stat_update() {
-        T_HP.innerText = "Max HP: " + this.MaxHP + " || " + "Curent HP: " + this.HP + ".";
-        T_AC.innerText = "AC: " + this.Armer_Class + ".";
-        T_Strength.innerText = "Strength: " + this.Strength + " || " + "Strength Mod: " + this.StrengthMod + ".";
-        T_Dexterity.innerText = "Dexterity: " + this.Dexterity + " || " + "Dexterity Mod: " + this.DexterityMod + ".";
-        T_Constitution.innerText = "Constitution: " + this.Constitution + " || " + "Constitution Mod: " + this.ConstitutionMod + ".";
-        T_Wisdom.innerText = "Wisdom: " + this.Wisdom + " || " + "Wisdom Mod: " + this.WisdomMod + ".";
-        T_Intelligence.innerText = "Intelligence: " + this.Intelligence + " || " + "Intelligence Mod: " + this.IntelligenceMod + ".";
-        T_Charisma.innerText = "Charisma: " + this.Charisma + " || " + "Charisma Mod: " + player.CharismaMod + ".";
-        T_XP.innerText = "XP: " + this.XP + " / " + this.XP_Requirements + ".";
-        T_Level.innerText = "Level: " + this.Level + " / 600" + " || " + " + " + this.Skill_points + ".";
-        if ((Class = "Wizard")) {
-            T_Spellslots.innerText = "spellslots: " + this.SpellSlots + "/" + this.max_spellslots + ".";
-        }
-        console.log("stat_update");
-    }
-    level_up_request(leveluprequest) {
-        if (leveluprequest == 1) {
-            if (this.Skill_points > 0) {
-                B1.innerText = "Strength";
-                B2.innerText = "Dexterity";
-                B3.innerText = "Constitution";
-                B4.innerText = "Wisdom";
-                B5.innerText = "Intelligence";
-                B6.innerText = "Charisma";
-                if (this.Strength == 100) {
-                    B1.innerText = "Strength is maxed";
-                }
-                if (this.Dexterity == 100) {
-                    B2.innerText = "Dexterity is maxed";
-                }
-                if (this.Constitution == 100) {
-                    B3.innerText = "Constitution is maxed";
-                }
-                if (this.Wisdom == 100) {
-                    B4.innerText = "Wisdom is maxed";
-                }
-                if (this.Intelligence == 100) {
-                    B5.innerText = "Intelligence is maxed";
-                }
-                if (this.Charisma == 100) {
-                    B6.innerText = "Charisma is maxed";
-                }
-                player.Level_Availability = 1;
-            } else {
-                alert("can not Level UP you need: " + (this.XP_Requirements - this.XP) + " XP to Level UP to Level " + (this.Level + 1) + ".");
-            }
-        }
-        console.log("level_up_request");
-    }
-    Skill_points_main() {
-        if (this.Skill_points >= 1) {
-            this.Skill_points -= 1;
-        } else {
-            B1.innerText = "tester 1";
-            B2.innerText = "tester 2";
-            B3.innerText = "tester 3";
-            B4.innerText = "tester 4";
-            B5.innerText = "tester 5";
-            B6.innerText = "tester 6";
-            this.Level_Availability = 0;
-        }
-        player.stat_update();
-        console.log("Skill_points_main");
-    }
-    Strength_increase() {
-        this.Strength += 1;
-        this.Sub_SthrengthMod += 1;
-        if (this.Sub_SthrengthMod == 2) {
-            this.StrengthMod += 1;
-            this.Sub_SthrengthMod = 0;
-        }
-        player.Skill_points_main();
-        console.log("Strength_increase");
-    }
-    Dexterity_increase() {
-        this.Dexterity += 1;
-        this.Sub_DexterityMod += 1;
-        if (this.Sub_DexterityMod == 2) {
-            this.DexterityMod += 1;
-            this.Sub_DexterityMod = 0;
-        }
-        player.Skill_points_main();
-        console.log("Dexterity_increase");
-    }
-    Constitution_increase() {
-        this.Constitution += 1;
-        this.Sub_ConstitutionMod += 1;
-        if (this.Sub_ConstitutionMod == 2) {
-            this.ConstitutionMod += 1;
-            this.Sub_ConstitutionMod = 0;
-        }
-        player.Skill_points_main();
-        console.log("Constitution_increase");
-    }
-    Wisdom_increase() {
-        this.Wisdom += 1;
-        this.Sub_WisdomMod += 1;
-        if (this.Sub_WisdomMod == 2) {
-            this.WisdomMod += 1;
-            this.Sub_WisdomMod = 0;
-        }
-        player.Skill_points_main();
-        console.log("Wisdom_increase");
-    }
-    Intelligence_increase() {
-        this.Intelligence += 1;
-        this.Sub_IntelligenceMod += 1;
-        if (this.Sub_IntelligenceMod == 2) {
-            this.IntelligenceMod += 1;
-            this.Sub_IntelligenceMod = 0;
-        }
-        player.Skill_points_main();
-        console.log("Intelligence_increase");
-    }
-    Charisma_increase() {
-        this.Charisma += 1;
-        this.Sub_CharismaMod += 1;
-        if (this.Sub_CharismaMod == 1) {
-            this.CharismaMod += 1;
-            this.Sub_CharismaMod = 0;
-        }
-        player.Skill_points_main();
-        console.log("Charisma_increase");
-    }
-    LevelUp() {
-        if (this.Level == 600) {
-        } else {
-            if (this.XP >= this.XP_Requirements) {
-                this.XP -= this.XP_Requirements;
-                this.Skill_points += 1;
-                this.Level += 1;
-                this.XP_Requirements = 1000 * (this.Level + 1);
-                if (Class == "Wizard") {
-                    this.HP = this.ConstitutionMod + this.Level * 8;
-                }
-                if (Class == "Fighter") {
-                    this.HP = this.ConstitutionMod + this.Level * 12;
-                }
-                this.MaxHP = this.HP;
-            }
-        }
-        player.stat_update();
-        console.log("LevelUp");
-    }
-    Damige_Taken(damige) {
-        console.log(damige);
-        if (this.DamigeResistens == 0) {
-            this.HP -= damige;
-            console.log(this.HP, damige);
-        }
-        if (this.DamigeResistens < 0) {
-            this.HP += Math.floor(damige * this.DamigeResistens);
-            console.log(Math.floor(damige * this.DamigeResistens));
-        }
-        if (this.DamigeResistens > 0) {
-            this.HP -= Math.floor(damige / this.DamigeResistens);
-            console.log(Math.floor(damige / this.DamigeResistens));
-        }
-        if (this.HP <= 0) {
-            this.HP = 0;
-            document.getElementById("headerbuttons").style = "display: none;";
-            document.getElementById("stats").style = "display: none;";
-            document.getElementById("P0").style = "display: none;";
-            document.getElementById("H1").style = "display: none;";
-            document.getElementById("div1").innerHTML = `${death}`;
-        }
-        player.stat_update();
-        console.log("Damige_Taken", player.HP);
-    }
-    resting() {
-        if (combat == false) {
-            if (Class == "Wizard") {
-                this.HP = this.MaxHP;
-                this.SpellSlots = this.max_spellslots;
-                console.log(this.HP, this.MaxHP);
-            }
-            if (Class == "Fighter") {
-                this.HP = this.MaxHP;
-            }
-            player.LevelUp();
-        }
-        stat_update();
-        console.log("resting");
-    }
-    revival() {
-        if (Class == "Wizard") {
-            this.HP = this.MaxHP;
-            this.SpellSlots = this.max_spellslots;
-            console.log(this.HP, this.MaxHP);
-        }
-        if (Class == "Fighter") {
-            this.HP = this.MaxHP;
-        }
-        player.stat_update();
-        console.log("revival");
     }
 }
+console.log("mainJS.js loaded");

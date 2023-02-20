@@ -31,11 +31,11 @@ todo:
 
     6: difrent sub-classes for the classes[x](2)
 
-        1: Wizard: ice magick adept.[x/v]
+        1: Wizard: ice magic adept.[x/v]
 
             -5 spells and 3 catrips. [x/v]
 
-        2: Wizard: fire magick adept.[x/v]
+        2: Wizard: fire magic adept.[x/v]
 
             -5 spells and 3 catrips.[x/v]
 
