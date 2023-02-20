@@ -72,8 +72,9 @@ let XP_Requirements,
     CanWealdShild,
     damige_type,
     turn,
-    death = '<p style="color: red; font-size: 100px;text-align: center;"> you died! <br> <button class="button" onclick="setscreen(),player.revival();">get revived</button></p>';
-var player, Enemy = [];
+    death = '<p style="color: red; font-size: 101px;text-align: center;"> you died! <br> <button class="button" onclick="setscreen(),player.revival();">get revived</button></p>';
+var player,
+    Enemy = [];
 //into cean
 function introdone() {
     intro.style.display = "none";
