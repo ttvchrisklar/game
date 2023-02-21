@@ -18,8 +18,8 @@ class Player_Class {
     Armer_Class; // Armer Class also konown as AC, AC is calculatecd diffrent its, AC=(10 + DexMOD + other boneses).
     Level = 1;
     XP = 0;
-    Gold = 10;
-    silver = 5;
+    Gold = 0;
+    silver = 0;
     copper = 0;
     XP_Requirements = 2000;
     Skill_points = 0; //Skill_points = over Level.
@@ -33,6 +33,7 @@ class Player_Class {
     DamigeResistens = 0;
     killcounter = 0;
     deathcounter = 0;
+    maxLevel = 600;
     constructor(subclass) {
         this.subclass = subclass;
         switch (subclass) {
@@ -131,6 +132,8 @@ class Player_Class {
                 this.DamigeResistens = 1;
                 this.CanWealdWands = false;
                 this.CanWealdroedes = false;
+                this.CanWearArmor = true;
+                this.CanWealdShild = true;
                 break;
 
             case "Barberian":
@@ -197,7 +200,7 @@ class Player_Class {
         T_Intelligence.innerText = `Intelligence: ${this.Intelligence} || Intelligence Mod: ${this.IntelligenceMod}.`;
         T_Charisma.innerText = `Charisma: ${this.Charisma} || Charisma Mod: ${this.CharismaMod}.`;
         T_XP.innerText = `XP: ${this.XP}/${this.XP_Requirements}.`;
-        T_Level.innerText = `Level: ${this.Level}  / 600 || ${this.Skill_points}.`;
+        T_Level.innerText = `Level: ${this.Level} / ${this.maxLevel} || Skill points to spend: ${this.Skill_points}.`;
         if ((Class = "Wizard")) {
             T_Spellslots.innerText = `Spellslots: ${this.SpellSlots} / ${this.max_spellslots}.`;
         }
@@ -291,54 +294,50 @@ class Player_Class {
         console.log("Charisma_increase");
     }
     LevelUp() {
-        if (this.Level != 600) {
-            if (this.XP >= this.XP_Requirements) {
-                this.XP -= this.XP_Requirements;
-                this.Skill_points += 1;
-                this.Level += 1;
-                this.XP_Requirements = 1000 * (this.Level + 1);
-                if (Class == "Wizard") {
-                    this.HP = this.ConstitutionMod + this.Level * 8;
-                }
-                if (Class == "Fighter") {
-                    this.HP = this.ConstitutionMod + this.Level * 12;
-                }
-                this.MaxHP = this.HP;
+        if (this.Level == this.maxLevel) return;
+        if (this.XP >= this.XP_Requirements) {
+            this.XP -= this.XP_Requirements;
+            this.Skill_points += 1;
+            this.Level += 1;
+            this.XP_Requirements = 1000 * (this.Level + 1);
+            if (Class == "Wizard") {
+                this.HP = this.ConstitutionMod + this.Level * 8;
             }
+            if (Class == "Fighter") {
+                this.HP = this.ConstitutionMod + this.Level * 12;
+            }
+            this.MaxHP = this.HP;
         }
+
         this.stat_update();
-        console.log("LevelUp");
+        console.log('[player_Script:312]: "LevelUp"');
     }
+
     Damige_Taken(damige) {
         console.log(damige);
         switch (true) {
             case this.DamigeResistens < -1:
                 this.HP += Math.floor(damige * this.DamigeResistens);
-                console.log(Math.floor(damige * this.DamigeResistens), "318");
                 break;
             case this.DamigeResistens > 1:
                 this.HP -= Math.floor(damige / this.DamigeResistens);
-                console.log(this.hp, Math.floor(damige / this.DamigeResistens), "322");
                 break;
             default:
                 this.HP -= damige;
-                console.log(this.HP, damige, "326");
         }
         if (this.HP <= 0) {
             this.HP = 0;
             this.deathcounter += 1;
+            game_area.innerHTML = `<p id="deathText" style="color: red; text-align: center;">you died!</p>`;
             var deathText = document.getElementById("deathText");
-            var deathTextSize = 50;
-            game_area.innerHTML = `<p id="deathText" style="color: red; text-align: center;"> you died! <br></p>`;
-            var deathText = document.getElementById("deathText");
-            var deathTextSize = 25;
-            var textSpeed = 5;
+            var deathTextSize = 1;
+            var textSpeed = 1;
             var interval = setInterval(() => {
-                deathTextSize++;
+                deathTextSize += 2;
                 deathText.style.fontSize = `${deathTextSize}px`;
                 if (deathTextSize >= 100) {
                     clearInterval(interval);
-                    choics_aria.innerHTML = `<div> <button class="button" onclick="setscreen(); player.revival();">get revived</button></div>`;
+                    choics_aria.innerHTML = `<div> <button class="button" onclick="player.revival();">get revived</button></div>`;
                 }
             }, textSpeed);
         }
@@ -350,10 +349,11 @@ class Player_Class {
             if (Class == "Wizard") {
                 this.HP = this.MaxHP;
                 this.SpellSlots = this.max_spellslots;
-                console.log(this.HP, this.MaxHP);
+                console.log("curent hp", this.HP, "max HP", this.MaxHP);
             }
             if (Class == "Fighter") {
                 this.HP = this.MaxHP;
+                console.log("curent hp", this.HP, "max HP", this.MaxHP);
             }
             this.LevelUp();
         }
@@ -370,6 +370,7 @@ class Player_Class {
             this.HP = this.MaxHP;
         }
         this.stat_update();
+        setscreen();
         console.log("revival");
     }
 }

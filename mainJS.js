@@ -36,8 +36,10 @@ const player_stats = document.getElementById("player_stats"),
     stat_numbs = document.getElementById("stat_numbs"),
     enemy_stats = document.getElementById("enemy_stats"),
     game_screen = document.getElementById("game_screen"),
-    mony = document.getElementById("mony");
-let XP_Requirements,
+    mony = document.getElementById("mony"),
+    base_debt = 500000;
+let total_debt,
+    XP_Requirements,
     Other_Bonuses,
     MaxHP,
     piercing,
@@ -355,6 +357,10 @@ function Fighter_select() {
     HI1.style.display = "";
     Class = "Fighter";
 }
-//combat system.
+function diffecolty(Diffecolty){
+    switch(Diffecolty){
+
+    }
+}
 
 console.log("mainJS.js loaded");
