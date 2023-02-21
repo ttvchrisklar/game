@@ -39,18 +39,18 @@ class Enemy_Class {
                 this.WisdomMod = Math.floor(this.Wisdom / 2);
                 this.CharismaMod = Math.floor(this.Charisma / 2);
                 this.Other_Bonuses = Math.floor(this.level / 10);
-                this.HP = this.ConstitutionMod + this.Level * 8;
+                this.HP = 10 + (this.ConstitutionMod + this.Level * 8);
                 this.MaxHP = this.HP;
                 this.Armer_Class = 10 + (this.DexterityMod + this.Other_Bonuses);
-                this.Speed = 1 + Math.floor(this.level / 10);
+                this.Speed = 1 + (Math.floor(this.level / 10) + this.DexterityMod);
                 break;
             case "thief":
-                this.Strength = 10 + Math.floor(this.level / 4);
-                this.Dexterity = 10 + Math.floor(this.level / 4);
-                this.Constitution = 10 + Math.floor(this.level / 4);
-                this.Intelligence = 5 + Math.floor(this.level / 8);
-                this.Wisdom = 5 + Math.floor(this.level / 8);
-                this.Charisma = 5 + Math.floor(this.level / 8);
+                this.Strength = 20 + Math.floor(this.level / 4);
+                this.Dexterity = 20 + Math.floor(this.level / 4);
+                this.Constitution = 20 + Math.floor(this.level / 4);
+                this.Intelligence = 10 + Math.floor(this.level / 8);
+                this.Wisdom = 10 + Math.floor(this.level / 8);
+                this.Charisma = 10 + Math.floor(this.level / 8);
                 this.StrengthMod = Math.floor(this.Strength / 2);
                 this.DexterityMod = Math.floor(this.Dexterity / 2);
                 this.ConstitutionMod = Math.floor(this.Constitution / 2);
@@ -58,10 +58,10 @@ class Enemy_Class {
                 this.WisdomMod = Math.floor(this.Wisdom / 2);
                 this.CharismaMod = Math.floor(this.Charisma / 2);
                 this.Other_Bonuses = Math.floor(this.level / 10);
-                this.HP = this.ConstitutionMod + this.Level * 8;
+                this.HP = 25 + (this.ConstitutionMod + this.Level * 8);
                 this.MaxHP = this.HP;
                 this.Armer_Class = 10 + (this.DexterityMod + this.Other_Bonuses);
-                this.Speed = 1 + Math.floor(this.level / 10);
+                this.Speed = 2 + (Math.floor(this.level / 10) + this.DexterityMod);
                 break;
             case "orc":
                 this.Strength = 40 + Math.floor(this.level / 4);
@@ -77,10 +77,10 @@ class Enemy_Class {
                 this.WisdomMod = Math.floor(this.Wisdom / 2);
                 this.CharismaMod = Math.floor(this.Charisma / 2);
                 this.Other_Bonuses = Math.floor(this.level / 10);
-                this.HP = this.ConstitutionMod + this.Level * 8;
+                this.HP = 50 + (this.ConstitutionMod + this.Level * 8);
                 this.MaxHP = this.HP;
                 this.Armer_Class = 10 + (this.DexterityMod + this.Other_Bonuses);
-                this.Speed = 1 + Math.floor(this.level / 10);
+                this.Speed = 3 + (Math.floor(this.level / 10) + this.DexterityMod);
                 break;
             case "dragon":
                 this.Strength = 60 + Math.floor(this.level / 4);
@@ -99,7 +99,7 @@ class Enemy_Class {
                 this.HP = 100 + (this.ConstitutionMod + this.Level * 8);
                 this.MaxHP = this.HP;
                 this.Armer_Class = 10 + (this.DexterityMod + this.Other_Bonuses);
-                this.Speed = 1 + Math.floor(this.level / 10);
+                this.Speed = 4 + (Math.floor(this.level / 10) + this.DexterityMod);
                 break;
         }
     }

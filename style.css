@@ -41,6 +41,7 @@ html {
 }
 
 .dropdown {
+    width: 100px;
     position: relative;
     display: inline-block;
 }
@@ -48,13 +49,13 @@ html {
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: rgba(90, 88, 88, 0.222);
+    background-color: rgb(255 255 255 / 18%);
     min-width: 30px;
     padding: 10px;
-    z-index: 1;
-    border-radius: 20px;
-    width: auto;
+    border-radius: 0 0px 20px 20px;
+    width: inherit;
     text-align: center;
+    transform: translateY(-20px);
 }
 
 .dropdown:hover .dropdown-content {
@@ -67,12 +68,14 @@ body {
 }
 
 h1 {
+    margin: 0px;
     text-align: center;
-    font-size: 30px;
-    height: 40px;
+    font-size: xx-large;
+    height: 50px;
     box-sizing: border-box;
     width: 100%;
     border: solid red 3px;
+    padding: 0px;
 }
 
 .center {
@@ -84,7 +87,7 @@ h1 {
     border: solid #5b6dcd 3px;
 }
 #header_box {
-    height: 10px;
+    height: 5%;
     display: block;
     font-size: 20px;
     width: 100%;
@@ -95,12 +98,12 @@ h1 {
 }
 #game_area {
     display: block;
-    height: 520px;
+    height: 580px;
     width: 100%;
     font-size: 20px;
     text-align: center;
     box-sizing: border-box;
-    border: solid #f1f1f17e 3px;
+    border: solid white 3px;
 }
 #choics_aria {
     height: 75px;
@@ -118,7 +121,7 @@ h1 {
 #more_info {
     box-sizing: border-box;
     width: 30%;
-    border: solid whitesmoke 3px;
+    border: solid brown 3px;
 }
 #enemy_stats {
     box-sizing: border-box;
@@ -135,6 +138,12 @@ h1 {
     font-size: 40px;
 }
 
-#menus{
-    
+#menus {
+    border: none;
+    width: 100px;
+    z-index: 1 !important;
+    position: relative;
+    background: transparent;
+    color: white;
+    font-weight: bolder;
 }

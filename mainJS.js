@@ -33,7 +33,10 @@ const player_stats = document.getElementById("player_stats"),
     H1 = document.getElementById("H1"),
     stats = document.getElementById("stats"),
     choics_aria = document.getElementById("choics_aria"),
-    stat_numbs = document.getElementById("stat_numbs");
+    stat_numbs = document.getElementById("stat_numbs"),
+    enemy_stats = document.getElementById("enemy_stats"),
+    game_screen = document.getElementById("game_screen"),
+    mony = document.getElementById("mony");
 let XP_Requirements,
     Other_Bonuses,
     MaxHP,
@@ -53,6 +56,8 @@ let XP_Requirements,
     Level,
     XP,
     Gold,
+    silver,
+    copper,
     Level_Availability,
     StrengthMod,
     DexterityMod,
@@ -82,19 +87,32 @@ var player,
 //into cean
 function introdone() {
     intro.style.display = "none";
-    game_area.style.display = "";
+    setscreen(false);
+    game_screen.style.display = "";
     choics_aria.style.display = "";
     choics_aria.innerHTML = `<p id="ClassMaster1"> || <button id="classsub1" class="button" onclick="selecter(this)">Wizard</button> || <button id="classsub2" class="button" onclick="selecter(this)">Figther</button> ||</p>`;
     game_area.innerHTML = ` `;
 }
-function setscreen() {
-    headerbuttons.style = "";
-    P0.style = "";
-    H1.style = "";
-    stats.style = "";
-    game_area.innerHTML = ``;
-    choics_aria.innerHTML = ``;
-    stat_numbs.style = "";
+function setscreen(introdone) {
+    switch (introdone) {
+        case false:
+            headerbuttons.style = "";
+            P0.style = "";
+            H1.style = "";
+            stats.style = "";
+            game_area.style = "";
+            break;
+        default:
+            headerbuttons.style = "";
+            P0.style = "";
+            H1.style = "";
+            stats.style = "";
+            game_area.style = "";
+            game_area.innerHTML = ``;
+            choics_aria.innerHTML = ``;
+            stat_numbs.style = "";
+            break;
+    }
 }
 /*if the stats arnt seet
 this is whar i do my button selections and other uppdate requests.*/
@@ -280,9 +298,9 @@ function selecter(presdButton) {
                 Fighter_select();
                 return;
             }
-            if (Class == "Wizard") {
+            if (Class == "Fire Wizard") {
                 P3.innerText = " Fire";
-                player = new Player_Class("Fire Wizard");
+                player = new Player_Class("Fire_Wizard");
                 player.stat_update();
                 return;
             }
@@ -304,7 +322,7 @@ function selecter(presdButton) {
             }
             if (Class == "Fighter") {
                 P3.innerText = " Weapons Master";
-                player = new Player_Class("Weapons Master");
+                player = new Player_Class("Weapons_Master");
                 player.stat_update();
                 return;
             }

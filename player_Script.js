@@ -18,7 +18,9 @@ class Player_Class {
     Armer_Class; // Armer Class also konown as AC, AC is calculatecd diffrent its, AC=(10 + DexMOD + other boneses).
     Level = 1;
     XP = 0;
-    Gold = 0;
+    Gold = 10;
+    silver = 5;
+    copper = 0;
     XP_Requirements = 2000;
     Skill_points = 0; //Skill_points = over Level.
     SpellSlots;
@@ -27,12 +29,6 @@ class Player_Class {
     CanWealdShild;
     CanWealdWands;
     CanWealdroedes = true;
-    Sub_SthrengthMod = 0;
-    Sub_DexterityMod = 0;
-    Sub_ConstitutionMod = 0;
-    Sub_IntelligenceMod = 0;
-    Sub_WisdomMod = 0;
-    Sub_CharismaMod = 0;
     Level_Availability = 0;
     DamigeResistens = 0;
     killcounter = 0;
@@ -192,19 +188,20 @@ class Player_Class {
         setscreen();
     }
     stat_update() {
-        T_HP.innerText = "Max HP: " + this.MaxHP + " || " + "Curent HP: " + this.HP + ".";
-        T_AC.innerText = "AC: " + this.Armer_Class + ".";
-        T_Strength.innerText = "Strength: " + this.Strength + " || " + "Strength Mod: " + this.StrengthMod + ".";
-        T_Dexterity.innerText = "Dexterity: " + this.Dexterity + " || " + "Dexterity Mod: " + this.DexterityMod + ".";
-        T_Constitution.innerText = "Constitution: " + this.Constitution + " || " + "Constitution Mod: " + this.ConstitutionMod + ".";
-        T_Wisdom.innerText = "Wisdom: " + this.Wisdom + " || " + "Wisdom Mod: " + this.WisdomMod + ".";
-        T_Intelligence.innerText = "Intelligence: " + this.Intelligence + " || " + "Intelligence Mod: " + this.IntelligenceMod + ".";
-        T_Charisma.innerText = "Charisma: " + this.Charisma + " || " + "Charisma Mod: " + player.CharismaMod + ".";
-        T_XP.innerText = "XP: " + this.XP + " / " + this.XP_Requirements + ".";
-        T_Level.innerText = "Level: " + this.Level + " / 600" + " || " + " + " + this.Skill_points + ".";
+        T_HP.innerText = `Max HP: ${this.MaxHP} || Curent HP: ${this.HP}.`;
+        T_AC.innerText = `AC:  ${this.Armer_Class}.`;
+        T_Strength.innerText = `Strength: ${this.Strength} || Strength Mod: ${this.StrengthMod}.`;
+        T_Dexterity.innerText = `Dexterity: ${this.Dexterity} || Dexterity Mod: ${this.DexterityMod}.`;
+        T_Constitution.innerText = `Constitution: ${this.Constitution} || Constitution Mod: ${this.ConstitutionMod}.`;
+        T_Wisdom.innerText = `Wisdom:  ${this.Wisdom} || Wisdom Mod: ${this.WisdomMod}.`;
+        T_Intelligence.innerText = `Intelligence: ${this.Intelligence} || Intelligence Mod: ${this.IntelligenceMod}.`;
+        T_Charisma.innerText = `Charisma: ${this.Charisma} || Charisma Mod: ${this.CharismaMod}.`;
+        T_XP.innerText = `XP: ${this.XP}/${this.XP_Requirements}.`;
+        T_Level.innerText = `Level: ${this.Level}  / 600 || ${this.Skill_points}.`;
         if ((Class = "Wizard")) {
-            T_Spellslots.innerText = "spellslots: " + this.SpellSlots + "/" + this.max_spellslots + ".";
+            T_Spellslots.innerText = `Spellslots: ${this.SpellSlots} / ${this.max_spellslots}.`;
         }
+        mony.innerText = `Gold: ${this.Gold} || Silver: ${this.silver} || Copper: ${this.copper}`;
         console.log("stat_update");
     }
     level_up_request() {
@@ -236,7 +233,7 @@ class Player_Class {
                 }
                 player.Level_Availability = 1;
             } else {
-                alert("can not Level UP you need: " + (this.XP_Requirements - this.XP) + " XP to Level UP to Level " + (this.Level + 1) + ".");
+                alert(`can not Level UP you need: ${this.XP_Requirements - this.XP} XP to Level UP to Level ${this.Level + 1}.`);
             }
         }
         console.log("level_up_request");
@@ -329,7 +326,7 @@ class Player_Class {
         }
         if (this.HP <= 0) {
             this.HP = 0;
-            this.deathcounter +=1; 
+            this.deathcounter += 1;
             var deathText = document.getElementById("deathText");
             var deathTextSize = 50;
             game_area.innerHTML = `<p id="deathText" style="color: red; text-align: center;"> you died! <br></p>`;
