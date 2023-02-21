@@ -14,7 +14,7 @@ date: 02/03/2023/09:27PM GMT+1-->
     <div class="headerbuttons" id="headerbuttons" style="display: none;">
 
         <div class="dropdown">
-            <span> Menu one, </span>
+            <div id="menus"> Menu one, </div>
             <div class="dropdown-content">
                 <p id="HI1" style="display:none">
                     <button class="button" id="LUR" onclick="selecter(this)">level up request</button>
@@ -30,7 +30,7 @@ date: 02/03/2023/09:27PM GMT+1-->
 
 
         <div class="dropdown">
-            <span> Menu two, </span>
+            <div id="menus"> Menu two, </div>
             <div class="dropdown-content">
                 <p><button class="button" id="B7" onclick="selecter(this)">tester 7</button></p>
                 <p><button class="button" id="B8" onclick="selecter(this)">tester 8</button></p>
@@ -41,8 +41,8 @@ date: 02/03/2023/09:27PM GMT+1-->
             </div>
         </div>
 
-        <div style="" class="dropdown">
-            <span> Menu three, </span>
+        <div class="dropdown">
+            <div id="menus"> Menu three, </div>
             <div class="dropdown-content">
                 <p><button class="button" id="B13" onclick="selecter(this)">tester 13</button></p>
                 <p><button class="button" id="B14" onclick="selecter(this)">tester 14</button></p>
@@ -52,8 +52,8 @@ date: 02/03/2023/09:27PM GMT+1-->
                 <p><button class="button" id="B18" onclick="selecter(this)">tester 18</button></p>
             </div>
         </div>
-        <div style="" class="dropdown">
-            <span> Menu four, </span>
+        <div class="dropdown">
+            <div id="menus"> Menu four, </div>
             <div class="dropdown-content">
                 <p><button class="button" id="B19" onclick="selecter(this)">tester 19</button></p>
                 <p><button class="button" id="B20" onclick="selecter(this)">tester 20</button></p>
@@ -63,8 +63,8 @@ date: 02/03/2023/09:27PM GMT+1-->
                 <p><button class="button" id="B24" onclick="selecter(this)">tester 24</button></p>
             </div>
         </div>
-        <div style="" class="dropdown">
-            <span> Menu five, </span>
+        <div class="dropdown">
+            <div id="menus"> Menu five, </div>
             <div class="dropdown-content">
                 <p><button class="button" id="B25" onclick="selecter(this)">tester 25</button></p>
                 <p><button class="button" id="B26" onclick="selecter(this)">tester 26</button></p>
@@ -74,8 +74,8 @@ date: 02/03/2023/09:27PM GMT+1-->
                 <p><button class="button" id="B30" onclick="selecter(this)">tester 30</button></p>
             </div>
         </div>
-        <div style="" class="dropdown">
-            <span> Menu six, </span>
+        <div class="dropdown">
+            <div id="menus"> Menu six, </div>
             <div class="dropdown-content">
                 <p><button class="button" id="B31" onclick="selecter(this)">tester 31</button></p>
                 <p><button class="button" id="B32" onclick="selecter(this)">tester 32</button></p>
@@ -90,46 +90,48 @@ date: 02/03/2023/09:27PM GMT+1-->
 
 <body>
     <h1 id="H1" style=""> The Begining, Of The End.</h1>
-    <p id="intro" style="" class="center">hello!! <br> this is <strong>my</strong> game! <br> if you don't know what I
+    <p id="intro" style="" class="center">hello!! <br> this is <strong>my</strong> game! <br> if you don't know what
+        I
         want to do whit this game of mine
-        <br>I want to perfect my JavaScript skills and some HTML and CSS skills, <br> this project is mailny mine but i
+        <br>I want to perfect my JavaScript skills and some HTML and CSS skills, <br> this project is mailny mine
+        but i
         have goten help from:<br>
         <a href="https://www.twitch.tv/itsoik" target="_blank">itsoik</a>!<br> and <br><a
             href="https://www.twitch.tv/matissetec" target="_blank">matissetec</a>!<br>
         go and check them out over on twitch!<br> thay are so amazing and helpfull <br> click the button under me to
-        start the game!! <span style="font-size: 20px;"><br>↓</span><br><br>
+        start the game!! <span style="font-size: 60px;"><br>↓</span><br>
         <button class="button" onclick="introdone()">CLICK ME!!</button>
     </p>
-    <div id="game_area" style="display: none;">
-    </div>
-    <div id="stats" style="display: none;">
-        <div id="player_stats">
-            <p id="P0" style=""><span id="P1" style=""></span><span id="P2"></span> <span id="P3" style=""></span>
-            </p>
-            <ul>
-                <li id="Level" style="color:greenyellow;"></li>
-                <li id="XP" style="color: lightgreen;"></li>
-                <li id="HP" style="color:lightcoral;"></li>
-                <li id="AC" style="color: lightblue;"></li>
-                <li id="Strength" style="color: #ff4d4d;"></li>
-                <li id="Dexterity" style="color: #2e2eb8;"></li>
-                <li id="Constitution" style="color: orange;"></li>
-                <li id="Wisdom" style="color: deepskyblue;"></li>
-                <li id="Intelligence" style="color: darkgrey;"></li>
-                <li id="Charisma" style="color: lightpink;"></li>
-                <li style="color: black;"></li>
-                <div id="spellslotsshow" style="display:none;">
-                    <li id="spellslots" style="color: cyan;"></li>
-                </div>
-            </ul>
-        </div>
-        <div id="more_info">
+    <div id="game_screen">
+        <div id="game_area" style="">
 
         </div>
-        <div id="enemy_stats">
+        <div id="stats" style="">
+            <div id="player_stats">
+                <p id="P0" style=""><span id="P1" style=""></span><span id="P2"></span> <span id="P3" style=""></span>
+                </p>
+                <ul id="stat_numbs" style="display: none;">
+                    <li id="Level" style="color:greenyellow;"></li>
+                    <li id="XP" style="color: lightgreen;"></li>
+                    <li id="HP" style="color:lightcoral;"></li>
+                    <li id="AC" style="color: lightblue;"></li>
+                    <li id="Strength" style="color: #ff4d4d;"></li>
+                    <li id="Dexterity" style="color: #2e2eb8;"></li>
+                    <li id="Constitution" style="color: orange;"></li>
+                    <li id="Wisdom" style="color: deepskyblue;"></li>
+                    <li id="Intelligence" style="color: darkgrey;"></li>
+                    <li id="Charisma" style="color: lightpink;"></li>
+                    <li id="spellslots" style="color: cyan; display:none;"></li>
+                </ul>
+            </div>
+            <div id="more_info">
+
+            </div>
+            <div id="enemy_stats">
+            </div>
         </div>
-    </div>
-    <div id="choics_aria" style="display: none;">
+        <div id="choics_aria" style="display: none;">
+        </div>
     </div>
     <script src="./player_Script.js"></script>
     <script src="./inventory_Script.js"></script>

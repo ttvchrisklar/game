@@ -23,7 +23,6 @@ const player_stats = document.getElementById("player_stats"),
     T_XP = document.getElementById("XP"),
     T_Level = document.getElementById("Level"),
     T_Spellslots = document.getElementById("spellslots"),
-    spellslotsshow = document.getElementById("spellslotsshow"),
     game_area = document.getElementById("game_area"),
     headerbuttons = document.getElementById("headerbuttons"),
     P0 = document.getElementById("P0"),
@@ -33,7 +32,8 @@ const player_stats = document.getElementById("player_stats"),
     intro = document.getElementById("intro"),
     H1 = document.getElementById("H1"),
     stats = document.getElementById("stats"),
-    choics_aria = document.getElementById("choics_aria");
+    choics_aria = document.getElementById("choics_aria"),
+    stat_numbs = document.getElementById("stat_numbs");
 let XP_Requirements,
     Other_Bonuses,
     MaxHP,
@@ -84,8 +84,8 @@ function introdone() {
     intro.style.display = "none";
     game_area.style.display = "";
     choics_aria.style.display = "";
-    setscreen();
     choics_aria.innerHTML = `<p id="ClassMaster1"> || <button id="classsub1" class="button" onclick="selecter(this)">Wizard</button> || <button id="classsub2" class="button" onclick="selecter(this)">Figther</button> ||</p>`;
+    game_area.innerHTML = ` `;
 }
 function setscreen() {
     headerbuttons.style = "";
@@ -94,9 +94,10 @@ function setscreen() {
     stats.style = "";
     game_area.innerHTML = ``;
     choics_aria.innerHTML = ``;
+    stat_numbs.style = "";
 }
-//if the stats arnt seet
-//this is whar i do my button selections and other uppdate requests.
+/*if the stats arnt seet
+this is whar i do my button selections and other uppdate requests.*/
 function selecter(presdButton) {
     console.log(presdButton.id);
     switch (presdButton.id) {
@@ -261,13 +262,13 @@ function selecter(presdButton) {
                 return;
             }
             if (Class == "Wizard") {
-                P3.innerText = " Ice";
+                P3.innerText = "Ice Wizard";
                 player = new Player_Class("Ice_Wizard");
                 player.stat_update();
                 return;
             }
             if (Class == "Fighter") {
-                P3.innerText.innerText = " Tank";
+                P3.innerText = " Tank";
                 player = new Player_Class("Tank");
                 player.stat_update();
                 return;
@@ -280,29 +281,30 @@ function selecter(presdButton) {
                 return;
             }
             if (Class == "Wizard") {
-                P3.innerText.innerText = " Fire";
-                player = new Player_Class("Fire_Wizard");
+                P3.innerText = " Fire";
+                player = new Player_Class("Fire Wizard");
                 player.stat_update();
                 return;
             }
             if (Class == "Fighter") {
-                P3.innerText.innerText = " Barberian";
+                P3.innerText = " Barberian";
                 player = new Player_Class("Barberian");
                 player.stat_update();
+                console.log("hello");
                 return;
             }
             break;
 
         case "classsub3":
             if (Class == "Wizard") {
-                P3.innerText.innerText = " Necromanser";
+                P3.innerText = " Necromanser";
                 player = new Player_Class("Necromanser");
                 player.stat_update();
                 return;
             }
             if (Class == "Fighter") {
-                P3.innerText.innerText = " Weapons Master";
-                player = new Player_Class("Weapons_Master");
+                P3.innerText = " Weapons Master";
+                player = new Player_Class("Weapons Master");
                 player.stat_update();
                 return;
             }
@@ -315,13 +317,13 @@ function selecter(presdButton) {
 
 //comenly used functions.
 
-// this is wher theplayer selects the Wizard class.
+// this is wher the player selects the Wizard class.
 function Wizard_select() {
     P1.innerText = "Wizard";
     P2.innerText = " || ";
     choics_aria.innerHTML = `<p id="ClassMaster1"> || <button id="classsub1" class="button" onclick="selecter(this)">Ice Wizard</button> || <button id="classsub2" class="button" onclick="selecter(this)">Fire Wizard</button> || <button id="classsub3" class="button" onclick="selecter(this)">Necromanser</button>||
 </p>`;
-    spellslotsshow.style.display = "";
+    T_Spellslots.style.display = "";
     HI1.style.display = "";
     Class = "Wizard";
 }
