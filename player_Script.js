@@ -1,40 +1,6 @@
-class Player_Class {
-    subclass;
-    Strength;
-    Dexterity;
-    Constitution;
-    Intelligence;
-    Wisdom;
-    Charisma;
-    StrengthMod;
-    DexterityMod;
-    ConstitutionMod;
-    IntelligenceMod;
-    WisdomMod;
-    CharismaMod;
-    Other_Bonuses;
-    HP; //HP is also calcalated difrently for ech class for Fighter its, hp=conMOD+(Level*12) and for Wizard, hp=conmod+(Level*8).
-    MaxHP;
-    Armer_Class; // Armer Class also konown as AC, AC is calculatecd diffrent its, AC=(10 + DexMOD + other boneses).
-    Level = 1;
-    XP = 0;
-    Gold = 0;
-    silver = 0;
-    copper = 0;
-    XP_Requirements = 2000;
-    Skill_points = 0; //Skill_points = over Level.
-    SpellSlots;
-    max_spellslots;
-    CanWearArmor;
-    CanWealdShild;
-    CanWealdWands;
-    CanWealdroedes = true;
-    Level_Availability = 0;
-    DamigeResistens = 0;
-    killcounter = 0;
-    deathcounter = 0;
-    maxLevel = 600;
+class Player_Class extends Character {
     constructor(subclass) {
+        super();
         this.subclass = subclass;
         switch (subclass) {
             case "Ice_Wizard":
@@ -53,7 +19,7 @@ class Player_Class {
                 this.Other_Bonuses = 0;
                 this.HP = this.ConstitutionMod + this.Level * 8;
                 this.MaxHP = this.HP;
-                this.Armer_Class = 10 + (this.DexterityMod + this.Other_Bonuses);
+                this.Armer_Class = 10 + this.DexterityMod + this.Other_Bonuses;
                 this.SpellSlots = 10;
                 this.max_spellslots = this.SpellSlots;
                 this.DamigeResistens = -1.5;
@@ -236,7 +202,11 @@ class Player_Class {
                 }
                 player.Level_Availability = 1;
             } else {
-                alert(`can not Level UP you need: ${this.XP_Requirements - this.XP} XP to Level UP to Level ${this.Level + 1}.`);
+                alert(
+                    `can not Level UP you need: ${this.XP_Requirements - this.XP} XP to Level UP to Level ${
+                        this.Level + 1
+                    }.`
+                );
             }
         }
         console.log("level_up_request");
