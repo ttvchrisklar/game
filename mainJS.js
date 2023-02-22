@@ -83,7 +83,8 @@ let total_debt,
     CanWearArmor,
     CanWealdShild,
     damige_type,
-    turn;
+    turn,
+    diffecolty_mod;
 var player,
     Enemy = [];
 //into cean
@@ -94,6 +95,7 @@ function introdone() {
     choics_aria.style.display = "";
     choics_aria.innerHTML = `<p id="ClassMaster1"> || <button id="classsub1" class="button" onclick="selecter(this)">Wizard</button> || <button id="classsub2" class="button" onclick="selecter(this)">Figther</button> ||</p>`;
     game_area.innerHTML = ` `;
+    diffecolty("hard");
 }
 function setscreen(introdone) {
     switch (introdone) {
@@ -271,6 +273,13 @@ function selecter(presdButton) {
             break;
 
         case "B36":
+            var enemiesInRoom = [];
+            for (var i = 0; i < 5; i++) {
+                var newEnemy;
+                newEnemy = new Enemy_Class("goblin", 10, diffecolty_mod);
+                enemiesInRoom.push(newEnemy);
+                console.log("[mainJS:281]: newEnemy", newEnemy);
+            }
             break;
 
         case "B37":
@@ -357,9 +366,20 @@ function Fighter_select() {
     HI1.style.display = "";
     Class = "Fighter";
 }
-function diffecolty(Diffecolty){
-    switch(Diffecolty){
-
+function diffecolty(Diffecolty) {
+    switch (Diffecolty) {
+        case "Easy":
+            diffecolty_mod = 0.5;
+            break;
+        case "Hard":
+            diffecolty_mod = 1.5;
+            break;
+        case "HardCore":
+            diffecolty_mod = 2;
+            break;
+        default:
+            diffecolty_mod = 1;
+            break;
     }
 }
 
