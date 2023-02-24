@@ -103,7 +103,7 @@ h1 {
     font-size: 20px;
     text-align: center;
     box-sizing: border-box;
-    border: solid white 3px;
+    border: solid orange 3px;
 }
 #choics_aria {
     height: 75px;
@@ -111,7 +111,7 @@ h1 {
     display: block;
     text-align: center;
     box-sizing: border-box;
-    border: solid #030099 3px;
+    border: solid blue 3px;
 }
 #stats {
     display: flex;
@@ -121,16 +121,16 @@ h1 {
 #more_info {
     box-sizing: border-box;
     width: 30%;
-    border: solid brown 3px;
+    border: solid yellow 3px;
 }
 #enemy_stats {
     box-sizing: border-box;
-    width: 60%;
+    width: 55%;
     border: solid red 3px;
 }
 #player_stats {
     box-sizing: border-box;
-    width: 30%;
+    width: 35%;
     border: solid green 3px;
 }
 

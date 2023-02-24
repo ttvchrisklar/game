@@ -11,7 +11,7 @@ todo:
     
     this is a "ramake of my text baisd rpg that i gave up on".
 
-    []= chek box if ther is a "v" its done if "x" then no, if [x/y] or [y/x] i have begun on it.
+    []= chek box if ther is a "v" its done if "x" then no, if [x/v] or [v/x] i have begun on it.
     
     (x) priority system. rhe lower the nuber the higer is the priority.
 
@@ -19,17 +19,15 @@ todo:
 
     2: to have a save game system.[x](7)
 
-    3: have art in the game.[x](8)
+    3: diffrent diffecoltys.[v](6)
 
-    4: diffrent diffecoltys.[x](6)
-
-    5: 2 diffrent classes for the player.[v](1)
+    4: 2 diffrent classes for the player.[v](1)
 
         1: Wizard.[v] 
 
         2: figther.[v]
 
-    6: difrent sub-classes for the classes[x](2)
+    5: difrent sub-classes for the classes[x](2)
 
         1: Wizard: ice magic adept.[x/v]
 
@@ -49,10 +47,10 @@ todo:
 
         6: fighter: Weapons_Master.[x/v]
 
-    7: 40+ diffrent items, armer, potions, and magick items.[x](4)
+    6: 40+ diffrent items, armer, potions, and magick items.[x](4)
 
-    8: a mony system.[x](3)
+    7: a mony system.[v](3)
 
-    9:shops for item's(look at point "7") that uses idea from point 8.[x](5)  
+    8:shops for item's(look at point "7") that uses idea from point 8.[x](5)  
     
 
