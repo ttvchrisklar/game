@@ -1,3 +1,4 @@
+// every class that is a creature inharets from this class
 console.log("[character_Script:0]: loaded");
 
 class Character {
@@ -38,4 +39,14 @@ class Character {
     deathcounter = 0;
     maxLevel = 600;
     total_debt;
+    speed = 1 + Math.floor(this.dexterityMod + this.level / 5);
+    stats = {
+        strength: 0,
+        dexterity: 0,
+        constitution: 0,
+        intelligence: 0,
+        wisdom: 0,
+        charisma: 0,
+        mod : {},
+    };
 }

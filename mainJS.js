@@ -1,3 +1,4 @@
+//all of my variabals
 const T_difficulty = document.getElementById("difficulty"),
     player_stats = document.getElementById("player_stats"),
     hI1 = document.getElementById("HI1"),
@@ -47,7 +48,9 @@ let total_deat,
     difficulty_mod;
 var player,
     Enemy = [];
-//into cean
+var enemiesInRoom = [];
+var newEnemy;
+//into sequens
 function introdone() {
     intro.style.display = "none";
     setscreen(false);
@@ -55,6 +58,8 @@ function introdone() {
     choics_aria.style.display = "";
     game_area.innerHTML = ` `;
 }
+// this sets my screen and if the intro isnt done it will send a request to game start to set tehr
+// screen so the player can select ther class
 function setscreen(introdone) {
     switch (introdone) {
         case false:
@@ -80,8 +85,7 @@ function setscreen(introdone) {
             console.log("seting screen error?");
     }
 }
-/*if the stats arnt seet
-this is whar i do my button selections and other uppdate requests.*/
+// this is wheare when a player clicks a button somthing will hapen i might not have buttons in my html doc but making them in my story.
 function selecter(presdButton) {
     console.log(presdButton.id);
     switch (presdButton.id) {
@@ -91,50 +95,50 @@ function selecter(presdButton) {
             break;
 
         case "B1":
-            if (player.Level_Availability == 1) {
-                if (player.Strength != 100) {
-                    player.Strength_increase();
+            if (player.level_Availability == 1) {
+                if (player.stats.strength != 100) {
+                    player.stat_increase("strength");
                 }
             }
             break;
 
         case "B2":
-            if (player.Level_Availability == 1) {
-                if (player.Dexterity != 100) {
-                    player.Dexterity_increase();
+            if (player.level_Availability == 1) {
+                if (player.stats.dexterity != 100) {
+                    player.stat_increase("dexterity");
                 }
             }
             break;
 
         case "B3":
-            if (player.Level_Availability == 1) {
-                if (player.Constitution != 100) {
-                    player.Constitution_increase();
+            if (player.level_Availability == 1) {
+                if (player.stats.constitution != 100) {
+                    player.stat_increase("constitution");
                 }
             }
             break;
 
         case "B4":
-            if (player.Level_Availability == 1) {
-                if (player.Wisdom != 100) {
-                    player.Wisdom_increase();
+            if (player.level_Availability == 1) {
+                if (player.stats.wisdom != 100) {
+                    player.stat_increase("wisdom");
                 }
             }
             break;
 
         case "B5":
-            if (player.Level_Availability == 1) {
-                if (player.Intelligence != 100) {
-                    player.Intelligence_increase();
+            if (player.level_Availability == 1) {
+                if (player.stats.intelligence != 100) {
+                    player.stat_increase("intelligence");
                 }
             }
 
             break;
 
         case "B6":
-            if (player.Level_Availability == 1) {
-                if (player.Charisma != 100) {
-                    player.Charisma_increase();
+            if (player.level_Availability == 1) {
+                if (player.stats.charisma != 100) {
+                    player.stat_increase("charisma");
                 }
             }
             break;
@@ -147,6 +151,7 @@ function selecter(presdButton) {
             break;
 
         case "B8":
+            player.stat_increase("strength");
             break;
 
         case "B9":
@@ -232,87 +237,74 @@ function selecter(presdButton) {
             break;
 
         case "B35":
+            console.log(enemiesInRoom[2].hp, enemiesInRoom[2]);
             break;
 
         case "B36":
-            var enemiesInRoom = [];
-            for (var i = 0; i < 5; i++) {
-                var newEnemy;
+            for (var i = 0; i < 10; i++) {
                 newEnemy = new Enemy_Class("goblin", 100, difficulty_mod);
                 enemiesInRoom.push(newEnemy);
                 console.log("[mainJS:281]: newEnemy", newEnemy);
+                console.log(enemiesInRoom[i], "enemy nub", i);
             }
             break;
 
         case "B37":
             break;
 
-        case "classsub1":
-            if (Class == undefined) {
-                Wizard_select();
-                return;
-            }
-            if (Class == "Wizard") {
-                p3.innerText = "Ice Wizard";
-                p3.style.color = "blue";
-                player = new Player_Class("Ice_Wizard", difficulty_mod);
-                player.stat_update();
-                gamestart(3);
-                return;
-            }
-            if (Class == "Fighter") {
-                p3.innerText = "Tank";
-                p3.style.color = "lightgray";
-                player = new Player_Class("Tank");
-                player.stat_update();
-                gamestart(3);
-                return;
-            }
+        case "Wizard":
+            Wizard_select();
             break;
-
-        case "classsub2":
-            if (Class == undefined) {
-                Fighter_select();
-                return;
-            }
-            if (Class == "Wizard") {
-                p3.innerText = "Fire Wizard";
-                p3.style.color = "red";
-                player = new Player_Class("Fire_Wizard");
-                player.stat_update();
-                gamestart(3);
-                return;
-            }
-            if (Class == "Fighter") {
-                p3.innerText = "Barberian";
-                p3.style.color = "darkred";
-                player = new Player_Class("Barberian");
-                setscreen(true);
-                player.stat_update();
-                gamestart(3);
-                return;
-            }
+        case "Fighter":
+            Fighter_select();
             break;
-
-        case "classsub3":
-            if (Class == "Wizard") {
-                p3.innerText = "Necromanser";
-                p3.style.color = "gray";
-                player = new Player_Class("Necromanser");
-                setscreen(true);
-                player.stat_update();
-                gamestart(3);
-                return;
-            }
-            if (Class == "Fighter") {
-                p3.innerText = "Weapons Master";
-                p3.style.color = "darkgreen";
-                player = new Player_Class("Weapons_Master");
-                setscreen(true);
-                player.stat_update();
-                gamestart(3);
-                return;
-            }
+        case "Ice_Wizard":
+            p3.innerText = "Ice Wizard";
+            p3.style.color = "blue";
+            player = new Player_Class("Ice_Wizard");
+            setscreen(true);
+            player.stat_update();
+            gamestart(3);
+            break;
+        case "Fire_Wizard":
+            p3.innerText = "Fire Wizard";
+            p3.style.color = "red";
+            player = new Player_Class("Fire_Wizard");
+            setscreen(true);
+            player.stat_update();
+            gamestart(3);
+            break;
+        case "Necromanser":
+            p3.innerText = "Necromanser";
+            p3.style.color = "gray";
+            player = new Player_Class("Necromanser");
+            setscreen(true);
+            player.stat_update();
+            gamestart(3);
+            break;
+        case "Tank":
+            p3.innerText = "Tank";
+            p3.style.color = "lightgray";
+            player = new Player_Class("Tank");
+            setscreen(true);
+            player.stat_update();
+            gamestart(3);
+            break;
+        case "Barberian":
+            p3.innerText = "Barberian";
+            p3.style.color = "darkred";
+            player = new Player_Class("Barberian");
+            setscreen(true);
+            player.stat_update();
+            gamestart(3);
+            break;
+        case "Weapons_Master":
+            p3.innerText = "Weapons Master";
+            p3.style.color = "darkgreen";
+            player = new Player_Class("Weapons_Master");
+            setscreen(true);
+            player.stat_update();
+            gamestart(3);
             break;
         case "easy":
             difficulty_mod = difficulty("Easy");
@@ -344,18 +336,20 @@ function selecter(presdButton) {
 }
 
 //comenly used functions.
+
+// this is for the start of the game wher the player selects clsaa subclass and difficulty
 function gamestart(phase) {
     console.log(phase);
     switch (phase) {
         case 1:
-            choics_aria.innerHTML = `<p id="ClassMaster1"> chose a Class: <button id="classsub1" class="button" onclick="selecter(this)">Wizard</button> || <button id="classsub2" class="button" onclick="selecter(this)">Figther</button> <b style ="font-size: 20px;">this can not be changed in the futere!!</b></p>`;
+            choics_aria.innerHTML = `<p id="ClassMaster1"> chose a Class: <button id="Wizard" class="button" onclick="selecter(this)">Wizard</button> || <button id="Figther" class="button" onclick="selecter(this)">Figther</button> <b style ="font-size: 20px;">this can not be changed in the futere!!</b></p>`;
             break;
         case 2:
             if (Class == "Wizard") {
-                choics_aria.innerHTML = `<p id="ClassMaster1"> chose a Sub Class: <button id="classsub1" class="button" onclick="selecter(this)">Ice Wizard</button> || <button id="classsub2" class="button" onclick="selecter(this)">Fire Wizard</button> || <button id="classsub3" class="button" onclick="selecter(this)">Necromanser</button> <b style ="font-size: 20px;">this can not be changed in the futere!!</b></p>`;
+                choics_aria.innerHTML = `<p id="ClassMaster1"> chose a Sub Class: <button id="Ice_Wizard" class="button" onclick="selecter(this)">Ice Wizard</button> || <button id="Fire_Wizard" class="button" onclick="selecter(this)">Fire Wizard</button> || <button id="Necromanser" class="button" onclick="selecter(this)">Necromanser</button> <b style ="font-size: 20px;">this can not be changed in the futere!!</b></p>`;
             }
             if (Class == "Fighter") {
-                choics_aria.innerHTML = `<p id="ClassMaster1"> chose a Sub Class: <button id="classsub1" class="button" onclick="selecter(this)">Tank</button> || <button id="classsub2" class="button" onclick="selecter(this)">Barberian</button> || <button id="classsub3" class="button" onclick="selecter(this)">Weapons Master</button> <b style ="font-size: 20px;">this can not be changed in the futere!!</b></p>`;
+                choics_aria.innerHTML = `<p id="ClassMaster1"> chose a Sub Class: <button id="Tank" class="button" onclick="selecter(this)">Tank</button> || <button id="Barberian" class="button" onclick="selecter(this)">Barberian</button> || <button id="Weapons_Master" class="button" onclick="selecter(this)">Weapons Master</button> <b style ="font-size: 20px;">this can not be changed in the futere!!</b></p>`;
             }
             break;
         case 3:
@@ -384,6 +378,7 @@ function Fighter_select() {
     Class = "Fighter";
     gamestart(2);
 }
+// sets the diddiculty of the game.
 function difficulty(difficulty) {
     switch (difficulty) {
         case "Easy":
