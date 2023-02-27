@@ -135,11 +135,11 @@ class Player_Class extends Character {
     }
     calculateStatMod() {
         this.stats.mod = {};
-        Object.entries(this.stats).forEach((statKey, statValue) => {
-            if (statKey == "mod") return;
-            this.stats.mod[statKey] = Math.floor(statValue / 2);
-            console.log(this.stats.mod);
-        });
+        Object.entries(this.stats)
+            .filter(([key]) => key != "mod")
+            .forEach((statKey, statValue) => {
+                this.stats.mod[statKey] = statValue / 2;
+            });
     }
     // updates the stats for the player to see.
     //this is also my difolt for any player update.

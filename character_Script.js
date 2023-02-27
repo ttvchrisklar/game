@@ -4,18 +4,6 @@ console.log("[character_Script:0]: loaded");
 class Character {
     constructor() {}
     subclass = "";
-    strength = 0;
-    dexterity = 0;
-    constitution = 0;
-    intelligence = 0;
-    wisdom = 0;
-    charisma = 0;
-    strengthMod = 0;
-    dexterityMod = 0;
-    constitutionMod = 0;
-    intelligenceMod = 0;
-    wisdomMod = 0;
-    charismaMod = 0;
     other_Bonuses = 0;
     hp = 0; //HP is also calcalated difrently for ech class for Fighter its, hp=conMOD+(Level*12) and for Wizard, hp=conmod+(Level*8).
     maxHP = 0;
@@ -47,6 +35,5 @@ class Character {
         intelligence: 0,
         wisdom: 0,
         charisma: 0,
-        mod : {},
     };
 }
