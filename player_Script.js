@@ -17,7 +17,7 @@ class Player_Class extends Character {
                 this.other_Bonuses = 0;
                 this.hp = this.stats.mod.constitution + this.level * 8;
                 this.maxHP = this.hp;
-                this.armer_Class = 10 + this.stats.mod.dexterity + this.other_Bonuses;
+                this.armer_Class = this.calculateArmerClass();
                 this.spellSlots = 10;
                 this.max_spellSlots = this.spellSlots;
                 this.damigeResistens = 1;
@@ -133,12 +133,18 @@ class Player_Class extends Character {
                 break;
         }
     }
+    
+    calculateArmerClass = ()=> 10 + this.stats.mod.dexterity + this.other_Bonuses; 
+
     calculateStatMod() {
         this.stats.mod = {};
         Object.entries(this.stats)
             .filter(([key]) => key != "mod")
-            .forEach((statKey, statValue) => {
+            .forEach(([statKey, statValue]) => {
                 this.stats.mod[statKey] = statValue / 2;
+                console.log("[player_Script:141]: statKey", statKey);
+                console.log("[player_Script:141]: statValue", statValue);
+                console.log("[player_Script:141]: this.stats.mod", this.stats.mod);
             });
     }
     // updates the stats for the player to see.
