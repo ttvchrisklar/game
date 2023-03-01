@@ -6,135 +6,57 @@ class Player_Class extends Character {
         this.difficulty = difficulty_mod;
         this.subclass = subclass;
         switch (subclass) {
-            case "Ice_Wizard":
-                this.stats.strength = 8;
-                this.stats.dexterity = 8;
-                this.stats.constitution = 10;
-                this.stats.intelligence = 12;
-                this.stats.wisdom = 12;
-                this.stats.charisma = 12;
-                this.calculateStatMod();
-                this.other_Bonuses = 0;
-                this.hp = this.stats.mod.constitution + this.level * 8;
-                this.maxHP = this.hp;
-                this.armer_Class = this.calculateArmerClass();
+            case "Ice_Wizard" || "Fire_Wizard" || "Necromanser":
+                this.stats = this.wizardStats;
+                this.calculateAll(8);
                 this.spellSlots = 10;
-                this.max_spellSlots = this.spellSlots;
-                this.damigeResistens = 1;
+                this.max_spellslots = this.spellSlots;
+            case "Ice_Wizard":
                 this.canWealdShild = false;
-                this.canWealdWands = true;
                 this.canWealdArmor = false;
-                this.canWealdroedes = true;
                 this.stat_update();
                 break;
-
             case "Fire_Wizard":
-                this.stats.strength = 8;
-                this.stats.dexterity = 8;
-                this.stats.constitution = 10;
-                this.stats.intelligence = 12;
-                this.stats.wisdom = 12;
-                this.stats.charisma = 12;
-                this.strengthMod = 4;
-                this.calculateStatMod();
-                this.other_Bonuses = 0;
-                this.hp = this.constitutionMod + this.level * 8;
-                this.maxHP = this.hp;
-                this.armer_Class = 10 + (this.dexterityMod + this.other_Bonuses);
-                this.spellSlots = 10;
-                this.max_spellSlots = this.spellSlots;
-                this.damigeResistens = 1;
                 this.canWealdShild = false;
-                this.canWealdWands = true;
                 this.canWealdArmor = false;
-                this.canWealdroedes = true;
                 break;
-
             case "Necromanser":
-                this.stats.strength = 8;
-                this.stats.dexterity = 8;
-                this.stats.constitution = 10;
-                this.stats.intelligence = 12;
-                this.stats.wisdom = 12;
-                this.stats.charisma = 12;
-                this.calculateStatMod();
-                this.other_Bonuses = 0;
-                this.hp = this.constitutionMod + this.level * 8;
-                this.maxHP = this.hp;
-                this.armer_Class = 10 + (this.dexterityMod + this.other_Bonuses);
-                this.spellSlots = 10;
-                this.max_spellSlots = this.spellSlots;
-                this.damigeResistens = 1;
                 this.canWealdShild = false;
-                this.canWealdWands = true;
                 this.canWealdArmor = false;
-                this.canWealdroedes = true;
                 break;
-
-            case "Tank":
-                this.stats.strength = 12;
-                this.stats.dexterity = 12;
-                this.stats.constitution = 10;
-                this.stats.intelligence = 8;
-                this.stats.wisdom = 8;
-                this.stats.charisma = 8;
-                this.calculateStatMod();
-                this.other_Bonuses = Math.floor(this.constitutionMod / 2);
-                this.hp = this.constitutionMod + this.level * 12;
-                this.maxHP = this.hp;
-                this.armer_Class = 10 + (this.dexterityMod + this.other_Bonuses);
-                this.damigeResistens = 0.75;
+            case "Tank" || "Barberian" || "Weapons_Master":
+                this.stats = this.fighterStats;
+                this.calculateAll(12);
                 this.canWealdWands = false;
                 this.canWealdroedes = false;
-                this.canWealdArmor = true;
-                this.canWealdShild = true;
+            case "Tank":
+                this.other_Bonuses = Math.floor(this.constitutionMod / 2);
+                this.damigeResistens = 0.75;
                 break;
-
             case "Barberian":
-                this.stats.strength = 12;
-                this.stats.dexterity = 12;
-                this.stats.constitution = 10;
-                this.stats.intelligence = 8;
-                this.stats.wisdom = 8;
-                this.stats.charisma = 8;
-                this.calculateStatMod();
                 this.other_Bonuses = Math.floor(this.constitutionMod / 4);
-                this.hp = this.constitutionMod + this.level * 12;
-                this.maxHP = this.hp;
-                this.armer_Class = 10 + (this.dexterityMod + this.other_Bonuses);
                 this.damigeResistens = 0.5;
                 this.canWealdArmor = false;
-                this.canWealdShild = true;
-                this.canWealdWands = false;
-                this.canWealdroedes = false;
                 break;
-
             case "Weapons_Master":
-                this.stats.strength = 12;
-                this.stats.dexterity = 12;
-                this.stats.constitution = 10;
-                this.stats.intelligence = 8;
-                this.stats.wisdom = 8;
-                this.stats.charisma = 8;
-                this.calculateStatMod();
-                this.other_Bonuses = 0;
-                this.hp = this.constitutionMod + this.level * 12;
-                this.maxHP = this.hp;
-                this.armer_Class = 10 + (this.dexterityMod + this.other_Bonuses);
-                this.damigeResistens = 1;
-                this.canWealdWands = false;
-                this.canWealdArmor = true;
                 this.canWealdShild = false;
-                this.canWealdroedes = false;
                 break;
 
             default:
                 console.log("subclass not selected");
                 break;
         }
+        this.maxHP = this.hp;
     }
-    
-    calculateArmerClass = ()=> 10 + this.stats.mod.dexterity + this.other_Bonuses; 
+
+    calculateAll(hpMod) {
+        this.calculateStatMod();
+        this.hp = this.calculateHp(hpMod);
+        this.armer_Class = this.calculateArmerClass();
+    }
+
+    calculateHp = (x) => this.stats.mod.constitution + this.level * x;
+    calculateArmerClass = () => 10 + this.stats.mod.dexterity + this.other_Bonuses;
 
     calculateStatMod() {
         this.stats.mod = {};
@@ -142,9 +64,6 @@ class Player_Class extends Character {
             .filter(([key]) => key != "mod")
             .forEach(([statKey, statValue]) => {
                 this.stats.mod[statKey] = statValue / 2;
-                console.log("[player_Script:141]: statKey", statKey);
-                console.log("[player_Script:141]: statValue", statValue);
-                console.log("[player_Script:141]: this.stats.mod", this.stats.mod);
             });
     }
     // updates the stats for the player to see.
@@ -196,10 +115,14 @@ class Player_Class extends Character {
                 if (this.stats.charisma == 100) {
                     b6.innerText = "Charisma is maxed";
                 }
-                player.level_Availability = 1;
+                this.level_Availability = 1;
             } else {
                 //if the player dosent have any more skill ponts it will tell the player that it dosent.
-                alert(`can not level UP you need: ${this.xp_Requirements - this.xp} xp to level UP to level ${this.level + 1}.`);
+                alert(
+                    `can not level UP you need: ${this.xp_Requirements - this.xp} xp to level UP to level ${
+                        this.level + 1
+                    }.`
+                );
                 b1.innerText = "tester 1";
                 b2.innerText = "tester 2";
                 b3.innerText = "tester 3";
@@ -298,7 +221,7 @@ class Player_Class extends Character {
                 deathText.style.fontSize = `${deathTextSize}px`;
                 if (deathTextSize >= 100) {
                     clearInterval(interval);
-                    choics_aria.innerHTML = `<div><button class="button" onclick="player.revival();">get revived</button></div>`;
+                    choice_area.innerHTML = `<div><button class="button" onclick="player.revival();">get revived</button></div>`;
                 }
             }, textSpeed);
         }

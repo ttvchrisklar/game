@@ -16,24 +16,32 @@ class Character {
     xp_Requirements = 2000;
     skill_points = 0; //Skill_points = over Level.
     spellSlots = 0;
-    max_spellslots = 0;
+    max_spellslots = this.spellSlots;
     canWearArmor = true;
     canWealdShild = true;
     canWealdWands = true;
     canWealdroedes = true;
     level_Availability = 0;
-    damigeResistens = 0;
+    damigeResistens = 1;
     killcounter = 0;
     deathcounter = 0;
     maxLevel = 600;
     total_debt;
     speed = 1 + Math.floor(this.dexterityMod + this.level / 5);
-    stats = {
-        strength: 0,
-        dexterity: 0,
-        constitution: 0,
-        intelligence: 0,
-        wisdom: 0,
-        charisma: 0,
+    wizardStats = {
+        strength: 8,
+        dexterity: 8,
+        constitution: 10,
+        intelligence: 12,
+        wisdom: 12,
+        charisma: 12,
+    };
+    fighterStats = {
+        strength: 12,
+        dexterity: 12,
+        constitution: 10,
+        intelligence: 8,
+        wisdom: 8,
+        charisma: 8,
     };
 }

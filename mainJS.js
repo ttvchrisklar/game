@@ -34,7 +34,7 @@ const T_difficulty = document.getElementById("difficulty"),
     intro = document.getElementById("intro"),
     h1 = document.getElementById("H1"),
     stats = document.getElementById("stats"),
-    choics_aria = document.getElementById("choics_aria"),
+    choice_area = document.getElementById("choice_area"),
     stat_numbs = document.getElementById("stat_numbs"),
     enemy_stats = document.getElementById("enemy_stats"),
     game_screen = document.getElementById("game_screen"),
@@ -55,7 +55,7 @@ function introdone() {
     intro.style.display = "none";
     setscreen(false);
     game_screen.style.display = "";
-    choics_aria.style.display = "";
+    choice_area.style.display = "";
     game_area.innerHTML = ` `;
 }
 // this sets my screen and if the intro isnt done it will send a request to game start to set tehr
@@ -77,7 +77,7 @@ function setscreen(introdone) {
             stats.style.display = "";
             game_area.style.display = "";
             game_area.innerHTML = ``;
-            choics_aria.innerHTML = ``;
+            choice_area.innerHTML = ``;
             stat_numbs.style.display = "";
 
             break;
@@ -252,24 +252,24 @@ function selecter(presdButton) {
         case "B37":
             break;
 
-        case "Wizard":
-            Wizard_select();
+        case "wizard":
+            wizard_select();
             break;
-        case "Fighter":
-            Fighter_select();
+        case "fighter":
+            fighter_select();
             break;
-        case "Ice_Wizard":
+        case "Ice_wizard":
             p3.innerText = "Ice Wizard";
             p3.style.color = "blue";
-            player = new Player_Class("Ice_Wizard");
+            player = new Player_Class("Ice_wizard");
             setscreen(true);
             player.stat_update();
             gamestart(3);
             break;
-        case "Fire_Wizard":
+        case "Fire_wizard":
             p3.innerText = "Fire Wizard";
             p3.style.color = "red";
-            player = new Player_Class("Fire_Wizard");
+            player = new Player_Class("Fire_wizard");
             setscreen(true);
             player.stat_update();
             gamestart(3);
@@ -342,40 +342,40 @@ function gamestart(phase) {
     console.log(phase);
     switch (phase) {
         case 1:
-            choics_aria.innerHTML = `<p id="ClassMaster1"> chose a Class: <button id="Wizard" class="button" onclick="selecter(this)">Wizard</button> || <button id="Figther" class="button" onclick="selecter(this)">Figther</button> <b style ="font-size: 20px;">this can not be changed in the futere!!</b></p>`;
+            choice_area.innerHTML = `<p id="ClassMaster1"> chose a Class: <button id="wizard" class="button" onclick="selecter(this)">Wizard</button> || <button id="fighter" class="button" onclick="selecter(this)">Fighter</button> <b style ="font-size: 20px;">this can not be changed in the futere!!</b></p>`;
             break;
         case 2:
-            if (Class == "Wizard") {
-                choics_aria.innerHTML = `<p id="ClassMaster1"> chose a Sub Class: <button id="Ice_Wizard" class="button" onclick="selecter(this)">Ice Wizard</button> || <button id="Fire_Wizard" class="button" onclick="selecter(this)">Fire Wizard</button> || <button id="Necromanser" class="button" onclick="selecter(this)">Necromanser</button> <b style ="font-size: 20px;">this can not be changed in the futere!!</b></p>`;
+            if (Class == "wizard") {
+                choice_area.innerHTML = `<p id="ClassMaster1"> chose a Sub Class: <button id="Ice_wizard" class="button" onclick="selecter(this)">Ice wizard</button> || <button id="Fire_wizard" class="button" onclick="selecter(this)">Fire wizard</button> || <button id="Necromanser" class="button" onclick="selecter(this)">Necromanser</button> <b style ="font-size: 20px;">this can not be changed in the futere!!</b></p>`;
             }
-            if (Class == "Fighter") {
-                choics_aria.innerHTML = `<p id="ClassMaster1"> chose a Sub Class: <button id="Tank" class="button" onclick="selecter(this)">Tank</button> || <button id="Barberian" class="button" onclick="selecter(this)">Barberian</button> || <button id="Weapons_Master" class="button" onclick="selecter(this)">Weapons Master</button> <b style ="font-size: 20px;">this can not be changed in the futere!!</b></p>`;
+            if (Class == "fighter") {
+                choice_area.innerHTML = `<p id="ClassMaster1"> chose a Sub Class: <button id="Tank" class="button" onclick="selecter(this)">Tank</button> || <button id="Barberian" class="button" onclick="selecter(this)">Barberian</button> || <button id="Weapons_Master" class="button" onclick="selecter(this)">Weapons Master</button> <b style ="font-size: 20px;">this can not be changed in the futere!!</b></p>`;
             }
             break;
         case 3:
             difficulty_text.style.display = "";
-            choics_aria.innerHTML = `<div> chose a Difficulty <button class="button" id="easy" onclick="selecter(this)">Easy</button>||<button class="button" id="Medium" onclick="selecter(this)">Medium</button>||<button class="button" id="hard" onclick="selecter(this)">Hard</button>||<button style="color: red;" class="button" id="hardcore" onclick="selecter(this)">HardCore</button></div>`;
+            choice_area.innerHTML = `<div> chose a Difficulty <button class="button" id="easy" onclick="selecter(this)">Easy</button>||<button class="button" id="Medium" onclick="selecter(this)">Medium</button>||<button class="button" id="hard" onclick="selecter(this)">Hard</button>||<button style="color: red;" class="button" id="hardcore" onclick="selecter(this)">HardCore</button></div>`;
             break;
     }
 }
-// this is wher the player selects the Wizard class.
-function Wizard_select() {
+// this is wher the player selects the wizard class.
+function wizard_select() {
     p1.innerText = "Wizard";
     p2.innerText = " || ";
     p1.style.color = "lightblue";
     t_spellslots.style.display = "";
     hI1.style.display = "";
-    Class = "Wizard";
+    Class = "wizard";
     gamestart(2);
 }
 
-// this is wher the player selects the Fighter class.
-function Fighter_select() {
+// this is wher the player selects the fighter class.
+function fighter_select() {
     p1.innerText = "Fighter";
     p2.innerText = " || ";
     p1.style.color = "gray";
     hI1.style.display = "";
-    Class = "Fighter";
+    Class = "fighter";
     gamestart(2);
 }
 // sets the diddiculty of the game.

@@ -105,7 +105,7 @@ h1 {
     box-sizing: border-box;
     border: solid orange 3px;
 }
-#choics_aria {
+#choice_area {
     height: 75px;
     width: 100%;
     display: block;
