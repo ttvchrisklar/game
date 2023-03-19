@@ -52,7 +52,7 @@ var enemiesInRoom = [];
 var newEnemy;
 //into sequens
 function introdone() {
-    intro.style.display = "none";
+    // intro.style.display = "none";
     setscreen(false);
     game_screen.style.display = "";
     choice_area.style.display = "";
@@ -215,7 +215,7 @@ function selecter(presdButton) {
             break;
 
         case "B28":
-            player.damige_Taken(6);
+            player.takeDamige(6);
             break;
 
         case "B29":
@@ -242,7 +242,7 @@ function selecter(presdButton) {
 
         case "B36":
             for (var i = 0; i < 10; i++) {
-                newEnemy = new Enemy_Class("goblin", 100, difficulty_mod);
+                newEnemy = new Enemy_Class("goblin", 10, difficulty_mod);
                 enemiesInRoom.push(newEnemy);
                 console.log("[mainJS:281]: newEnemy", newEnemy);
                 console.log(enemiesInRoom[i], "enemy nub", i);
@@ -261,7 +261,7 @@ function selecter(presdButton) {
         case "Ice_wizard":
             p3.innerText = "Ice Wizard";
             p3.style.color = "blue";
-            player = new Player_Class("Ice_wizard");
+            player = new Player_Class("Ice_Wizard");
             setscreen(true);
             player.stat_update();
             gamestart(3);
@@ -269,7 +269,7 @@ function selecter(presdButton) {
         case "Fire_wizard":
             p3.innerText = "Fire Wizard";
             p3.style.color = "red";
-            player = new Player_Class("Fire_wizard");
+            player = new Player_Class("Fire_Wizard");
             setscreen(true);
             player.stat_update();
             gamestart(3);
@@ -399,3 +399,4 @@ function difficulty(difficulty) {
 }
 
 console.log("mainJS.js loaded");
+window.onload = introdone();

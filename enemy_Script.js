@@ -94,11 +94,32 @@ class Enemy_Class extends Character {
     statCalculation = (orgStat, level, mod) => Math.floor(orgStat + Math.floor(level / mod) * this.difficulty);
     statMod = (orgStat) => Math.floor(orgStat / 2);
 
-    club() {
-        if (type == "goblin" || type == "orc") {
-            this.damige = Math.floor(this.level/2) + this.strengthMod;
-            
+    attack(target) {
+        switch (this.type) {
+            case "goblin":
+                this.club(target);
+                break;
+            case "orc":
+                this.club(target);
+                break;
+            case "thief":
+                this.dager(target)
+                break;
+            case "dragon":
+                break;
+            default:
+                break;
         }
+    }
+
+    club(target) {
+        this.damige = Math.floor(this.level / 6) + this.strengthMod;        
+       target.takeDamige(this.damige);
+    }
+    
+    dager(target){
+        this.damige = this.damige = Math.floor(this.level / 6) + this.dexterityMod;
+        target.takeDamige(this.damige);
     }
 }
 console.log("Enemy Script loded");

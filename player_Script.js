@@ -10,7 +10,7 @@ class Player_Class extends Character {
                 this.stats = this.wizardStats;
                 this.calculateAll(8);
                 this.spellSlots = 10;
-                this.max_spellslots = this.spellSlots;
+                this.max_spellSlots = this.spellSlots;
             case "Ice_Wizard":
                 this.canWealdShild = false;
                 this.canWealdArmor = false;
@@ -69,7 +69,7 @@ class Player_Class extends Character {
     // updates the stats for the player to see.
     //this is also my difolt for any player update.
     stat_update() {
-        t_hp.innerText = `Max hp: ${this.maxHP} || Curent hp: ${this.hp}.`;
+        t_hp.innerText = `Curent hp: ${this.hp} || Max hp: ${this.maxHP}.`;
         t_ac.innerText = `AC:  ${this.armer_Class}.`;
         t_strength.innerText = `Strength: ${this.stats.strength} || Strength Mod: ${this.stats.mod.strength}.`;
         t_dexterity.innerText = `Dexterity: ${this.stats.dexterity} || Dexterity Mod: ${this.stats.mod.dexterity}.`;
@@ -84,7 +84,6 @@ class Player_Class extends Character {
         }
         mony.innerText = `Gold: ${this.gold} || Silver: ${this.silver} || Copper: ${this.copper}`;
         console.log("stat_update");
-        console.log("this.stats.mod.strength:", this.stats.mod.strength);
     }
     //when the player send a request to levle up then it will set teh buttons to ther repesented text
     //if a stat is 100 that is its max and it will display maxd at the end of the text and the button is not poseble to be presd
@@ -118,11 +117,7 @@ class Player_Class extends Character {
                 this.level_Availability = 1;
             } else {
                 //if the player dosent have any more skill ponts it will tell the player that it dosent.
-                alert(
-                    `can not level UP you need: ${this.xp_Requirements - this.xp} xp to level UP to level ${
-                        this.level + 1
-                    }.`
-                );
+                alert(`can not level UP you need: ${this.xp_Requirements - this.xp} xp to level UP to level ${this.level + 1}.`);
                 b1.innerText = "tester 1";
                 b2.innerText = "tester 2";
                 b3.innerText = "tester 3";
@@ -146,46 +141,23 @@ class Player_Class extends Character {
     stat_increase(statToincrease) {
         this.stats[statToincrease] += 1;
         this.stats.mod[statToincrease] = Math.floor(this.stats[statToincrease] / 2);
+        if (statToincrease == "dexterity") {
+            this.stats.speed = Math.floor(this.stats.mod.dexterity / 4);
+        }
+        if (statToincrease == "constitution") {
+            if (Class == "Wizard") {
+                this.hp = this.stats.mod.constitution + this.level * 8;
+            }
+            if (Class == "Fighter") {
+                this.hp = this.stats.mod.constitution + this.level * 12;
+            }
+            this.maxHP = this.hp;
+        }
+        console.log("[player_Script:146]: statToincrease", statToincrease);
+        this.skill_points--;
+        this.level_up_request();
     }
 
-    strength_increase() {
-        this.strength += 1;
-        this.strengthMod = Math.floor(this.strength / 2);
-        this.skill_points_main();
-        console.log("strength_increase");
-    }
-    dexterity_increase() {
-        this.dexterity += 1;
-        this.dexterityMod = Math.floor(this.dexterity / 2);
-        this.skill_points_main();
-        this.speed = 1 + Math.floor(this.dexterityMod / 20 + this.level / 10);
-        console.log("speed: ", (this.speed = 1 + Math.floor(this.dexterityMod / 20 + this.level / 10)));
-        console.log("dexterity_increase");
-    }
-    constitution_increase() {
-        this.constitution += 1;
-        this.constitutionMod = Math.floor(this.constitution / 2);
-        this.skill_points_main();
-        console.log("constitution_increase");
-    }
-    wisdom_increase() {
-        this.wisdom += 1;
-        this.wisdomMod = Math.floor(this.wisdom / 2);
-        this.skill_points_main();
-        console.log("wisdom_increase");
-    }
-    intelligence_increase() {
-        this.intelligence += 1;
-        this.intelligenceMod = Math.floor(this.intelligence / 2);
-        this.skill_points_main();
-        console.log("intelligence_increase");
-    }
-    charisma_increase() {
-        this.charisma += 1;
-        this.charismaMod = Math.floor(this.charisma / 2);
-        this.skill_points_main();
-        console.log("charisma_increase");
-    }
     levelUp() {
         if (this.level == this.maxlevel) return;
         if (this.xp >= this.xp_Requirements) {
@@ -194,10 +166,10 @@ class Player_Class extends Character {
             this.level += 1;
             this.xp_Requirements = 1000 * (this.level + 1);
             if (Class == "Wizard") {
-                this.hp = this.constitutionMod + this.level * 8;
+                this.hp = this.stats.mod.constitution + this.level * 8;
             }
             if (Class == "Fighter") {
-                this.hp = this.constitutionMod + this.level * 12;
+                this.hp = this.stats.mod.constitution + this.level * 12;
             }
             this.maxHP = this.hp;
         }
@@ -205,10 +177,8 @@ class Player_Class extends Character {
         console.log('[player_Script:312]: "levelUp"');
     }
 
-    damige_Taken(damige) {
-        console.log(damige);
+    takeDamige(damige) {
         this.hp -= Math.floor(damige * this.damigeResistens);
-        console.log(Math.floor(damige * this.damigeResistens), "*");
         if (this.hp <= 0) {
             this.hp = 0;
             this.deathcounter += 1;

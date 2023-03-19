@@ -35,6 +35,7 @@ class Character {
         intelligence: 12,
         wisdom: 12,
         charisma: 12,
+        speed: 1,
     };
     fighterStats = {
         strength: 12,
@@ -43,5 +44,6 @@ class Character {
         intelligence: 8,
         wisdom: 8,
         charisma: 8,
+        speed: 1,
     };
 }
