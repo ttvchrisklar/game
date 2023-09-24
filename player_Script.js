@@ -11,10 +11,10 @@ class Player_Class extends Character {
                 this.calculateAll(8);
                 this.spellSlots = 10;
                 this.max_spellSlots = this.spellSlots;
+                this.stat_update();
             case "Ice_Wizard":
                 this.canWealdShild = false;
                 this.canWealdArmor = false;
-                this.stat_update();
                 break;
             case "Fire_Wizard":
                 this.canWealdShild = false;
@@ -29,6 +29,7 @@ class Player_Class extends Character {
                 this.calculateAll(12);
                 this.canWealdWands = false;
                 this.canWealdroedes = false;
+                this.stat_update();
             case "Tank":
                 this.other_Bonuses = Math.floor(this.constitutionMod / 2);
                 this.damigeResistens = 0.75;
